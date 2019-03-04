@@ -101,11 +101,12 @@ public class PlayerController : MonoBehaviour
     {
         //p_anim.SetBool("Attacking", true);
         currentState = PlayerState.Attack;
+       yield return new WaitForSeconds(.2f);
         attackHitbox.SetActive(true);
         yield return null;
         attackHitbox.SetActive(false);
         //p_anim.SetBool("Attacking", false);
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.1f);
         currentState = PlayerState.Walk;
     }
 
