@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     GameObject attackHitbox;
     [SerializeField] 
     Animator anim;
+    public Image abilityIcon;
+    public Sprite spikeIcon;
+    public Sprite spikeCDIcon;
 
 	// Use this for initialization
 	void Start ()
@@ -147,16 +150,18 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 if(Input.GetButton("Fire1")){
                     GameObject clone;
-                    clone = Instantiate(sniperBullet, transform.position, transform.rotation);
+                    clone = Instantiate(sniperBullet, transform.position + new Vector3(0,5,0), transform.rotation);
                     clone.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
-                    Vector3 dir = hit.point - clone.transform.position;
+                    Vector3 dir = hit.point + new Vector3(0,5,0) - clone.transform.position;
                     dir = dir.normalized;
                     clone.GetComponent<Rigidbody>().AddForce(dir * force * 2f);
                     GetComponent<LineRenderer>().enabled = false;
+                    abilityIcon.sprite = spikeCDIcon;
                     yield return new WaitForSeconds(0.5f);
                     currentState = PlayerState.Idle;
                     yield return new WaitForSeconds(5f);
                     abilityReady = true;
+                    abilityIcon.sprite = spikeIcon;
                     StopCoroutine(LaunchAbility());
                 } 
                 else if (Input.GetKeyDown(KeyCode.E))

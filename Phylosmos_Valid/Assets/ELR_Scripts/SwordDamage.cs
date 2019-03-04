@@ -23,6 +23,7 @@ public class SwordDamage : MonoBehaviour
 				collision.GetComponent<EnemyMovement>().Knock(Hit, knockTime,damage);
 				giveAbility = GetComponentInParent<PlayerController>();
 				giveAbility.currentAbility = StolenAbility.Spike;
+                giveAbility.abilityIcon.sprite = giveAbility.spikeIcon;
             }
         }
     }
