@@ -2900,7 +2900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wahi ke
+  m_Text: Phylosmos
 --- !u!222 &793297067
 CanvasRenderer:
   m_ObjectHideFlags: 0

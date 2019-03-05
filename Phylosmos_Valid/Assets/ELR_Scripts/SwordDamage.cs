@@ -24,6 +24,23 @@ public class SwordDamage : MonoBehaviour
 				giveAbility = GetComponentInParent<PlayerController>();
 				giveAbility.currentAbility = StolenAbility.Spike;
                 giveAbility.abilityIcon.sprite = giveAbility.spikeIcon;
+                giveAbility.abilityReady = true;
+            }
+        }
+        if (collision.gameObject.CompareTag ("Healer"))
+        {
+            Rigidbody Hit = collision.GetComponent<Rigidbody>();
+            if (Hit != null)
+            {
+                Vector2 difference = Hit.transform.position - transform.position;
+                difference = difference.normalized * thrust;
+                Hit.AddForce(difference, ForceMode.Impulse);
+				Hit.GetComponent<EnemyMovement>().currentState = EnemyState.Stagger;
+				collision.GetComponent<EnemyMovement>().Knock(Hit, knockTime,damage);
+				giveAbility = GetComponentInParent<PlayerController>();
+				giveAbility.currentAbility = StolenAbility.Healer;
+                giveAbility.abilityReady = true;
+                giveAbility.abilityIcon.sprite = giveAbility.healerIcon;
             }
         }
     }

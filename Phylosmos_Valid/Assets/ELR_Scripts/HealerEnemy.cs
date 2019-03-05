@@ -14,6 +14,8 @@ public class HealerEnemy : EnemyMovement
     bool canHeal = true;
     public Animator anim;
     LineRenderer healLine;
+    [SerializeField]
+    GameObject healthBar;
     // Use this for initialization
     void Start()
     {
@@ -22,6 +24,11 @@ public class HealerEnemy : EnemyMovement
         target = GameObject.FindWithTag("Spike").transform;
         rb = GetComponent<Rigidbody>();
        // anim = GetComponent<Animator>();
+    }
+
+    void Update() 
+    {
+        healthBar.transform.localScale = new Vector3(5, 15, health * 20);
     }
 
     // Update is called once per frame
@@ -38,6 +45,9 @@ public class HealerEnemy : EnemyMovement
                 if (currentState == EnemyState.Idle || currentState == EnemyState.Walk && currentState != EnemyState.Stagger)
                 {
                     Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                    Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
+                    transform.LookAt(target);
+                    transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
                     ChangeAnim(temp - transform.position);
                     rb.MovePosition(temp);
                     ChangeState(EnemyState.Walk);
@@ -52,6 +62,9 @@ public class HealerEnemy : EnemyMovement
             {
                 if (currentState == EnemyState.Idle || currentState == EnemyState.Walk && currentState != EnemyState.Stagger)
                 { 
+                    Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
+                    transform.LookAt(target);
+                    transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
                     healLine.enabled = true;
                     healLine.SetPosition(0, transform.position);
                     healLine.SetPosition(1, target.transform.position);

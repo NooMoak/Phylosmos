@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float force = 1000f;
     bool canShoot = true;
-    bool abilityReady = true;
+    public bool abilityReady = true;
     public PlayerState currentState;
     public StolenAbility currentAbility;
 	RaycastHit hit;
@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     public Image abilityIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
+    public Sprite healerIcon;
+    public Sprite healerCDIcon;
+    int floorMask;
 
 	// Use this for initialization
 	void Start ()
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
 		right = Quaternion.Euler(new Vector3(0,90,0)) * forward;
         currentState = PlayerState.Walk;
         currentAbility = StolenAbility.None;
+        floorMask = LayerMask.GetMask("Floor");
 	}
 
     // Update is called once per frame
@@ -86,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle )
         {
-            if(hit.transform.tag == "Floor"){
+            if(Physics.Raycast(ray, out hit, 1000, floorMask)){
                 Vector3 look = hit.point - transform.position;
                 transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
@@ -106,21 +110,20 @@ public class PlayerController : MonoBehaviour
         yield return null;
         attackHitbox.SetActive(false);
         //p_anim.SetBool("Attacking", false);
-        yield return new WaitForSeconds(.1f);
         currentState = PlayerState.Walk;
     }
 
     private IEnumerator Fire()
     {
-        if(hit.transform.tag == "Floor"){
-		canShoot = false;
-		GameObject clone;
-		clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
-		Vector3 dir = (hit.point + new Vector3(0,5,0)) - clone.transform.position;
-		dir = dir.normalized;
-		clone.GetComponent<Rigidbody>().AddForce(dir * force);
-		yield return new WaitForSeconds(0.2f);
-		canShoot = true;
+        if(Physics.Raycast(ray, out hit, 1000, floorMask)){
+            canShoot = false;
+            GameObject clone;
+            clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
+            Vector3 dir = (hit.point + new Vector3(0,5,0)) - clone.transform.position;
+            dir = dir.normalized;
+            clone.GetComponent<Rigidbody>().AddForce(dir * force);
+            yield return new WaitForSeconds(0.2f);
+            canShoot = true;
         }
     }
 
@@ -158,11 +161,9 @@ public class PlayerController : MonoBehaviour
                     clone.GetComponent<Rigidbody>().AddForce(dir * force * 2f);
                     GetComponent<LineRenderer>().enabled = false;
                     abilityIcon.sprite = spikeCDIcon;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
-                    yield return new WaitForSeconds(5f);
-                    abilityReady = true;
-                    abilityIcon.sprite = spikeIcon;
+                    StartCoroutine("AbilityCooldown");
                     StopCoroutine(LaunchAbility());
                 } 
                 else if (Input.GetKeyDown(KeyCode.E))
@@ -183,9 +184,48 @@ public class PlayerController : MonoBehaviour
             }
             if(currentAbility == StolenAbility.Healer)
             {
-                
+                Vector3 look = hit.point - transform.position;
+                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
+                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
+                gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                abilityIcon.sprite = healerCDIcon;
+                yield return new WaitForSeconds(0.2f);
+                currentState = PlayerState.Idle;
+                StartCoroutine("AbilityCooldown");
+                StopCoroutine(LaunchAbility());
             }
         }
+    }
+
+    IEnumerator AbilityCooldown()
+    {
+        yield return new WaitForSeconds(5f);
+        abilityReady = true;
+        if(currentAbility == StolenAbility.Liana)
+            {
+
+            }
+            if(currentAbility == StolenAbility.Worm)
+            {
+                
+            }
+            if(currentAbility == StolenAbility.Sticky)
+            {
+            
+            }
+            if(currentAbility == StolenAbility.Spike)
+            {
+                abilityIcon.sprite = spikeIcon;
+            }
+            if(currentAbility == StolenAbility.Rock)
+            {
+                
+            }
+            if(currentAbility == StolenAbility.Healer)
+            {
+                abilityIcon.sprite = healerIcon;
+            }
     }
 
      
