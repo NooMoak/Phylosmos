@@ -5,6 +5,7 @@
 		//Main
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Color (RGB)", 2D) = "white"{}
+		
 
 		//Normalmap
 		_BumpMap ("Normalmap", 2D) = "bump" {}
@@ -37,6 +38,7 @@
 
 		//Emission
 		_EmissionColor("Emission Color", Color) = (0,0,0)
+		_EmissionMap ("Emission Map", 2D) = "black" {}
 
 		//Editor
 		[HideInInspector] _MKEditorShowMainBehavior ("Main Behavior", int) = 1
