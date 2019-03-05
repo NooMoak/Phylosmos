@@ -19,6 +19,12 @@ public class SpikeEnemy : EnemyMovement
     GameObject spikeProjectile;
     [SerializeField]
     GameObject healthBar;
+    [SerializeField]
+    GameObject targetL;
+    [SerializeField]
+    GameObject targetR;
+    int rand;
+    float timer = 0f;
     // Use this for initialization
     void Start()
     {
@@ -26,10 +32,12 @@ public class SpikeEnemy : EnemyMovement
         target = GameObject.FindWithTag("Player").transform;
 		rb = GetComponent<Rigidbody>(); 
         anim = GetComponent<Animator>();
+        rand = Random.Range(1,5);
     }
 	
     void Update() 
     {
+        healthBar.transform.rotation = Quaternion.Euler(0,-45,-30);
         healthBar.transform.localScale = new Vector3(5, 15, health * 20);
     }
 	// Update is called once per frame
@@ -61,8 +69,16 @@ public class SpikeEnemy : EnemyMovement
                 Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
                 transform.LookAt(target);
                 transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
-                if(shootReady){
+                if(shootReady && rand == 1 || shootReady && rand == 2){
                     StartCoroutine(SpikeShoot());
+                }
+                else if (rand == 3)
+                {
+                    MoveToSpot(targetL.transform.position);
+                }
+                else if (rand == 4)
+                {
+                    MoveToSpot(targetR.transform.position);
                 }
             }
         } 
@@ -78,15 +94,15 @@ public class SpikeEnemy : EnemyMovement
 
         yield return new WaitForSeconds(0.2f);
 
-		GameObject clone1;
+        GameObject clone1;
         GameObject clone2;
         GameObject clone3;
         Vector3 look = target.position - transform.position;
-		clone1 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
+        clone1 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
         clone1.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
-		Vector3 dir = (target.position + new Vector3(0,2,0)) - clone1.transform.position;
-		dir = dir.normalized;
-		clone1.GetComponent<Rigidbody>().AddForce(dir * launchForce);
+        Vector3 dir = (target.position + new Vector3(0,2,0)) - clone1.transform.position;
+        dir = dir.normalized;
+        clone1.GetComponent<Rigidbody>().AddForce(dir * launchForce);
 
         clone2 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
         clone2.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,135,90);
@@ -98,8 +114,23 @@ public class SpikeEnemy : EnemyMovement
 
 		yield return new WaitForSeconds(2f);
 		shootReady = true;
+        rand = Random.Range(1,5);
     }
 
+    void MoveToSpot(Vector3 spot)
+    {
+        if(timer < 1f)
+        {
+            Vector3 temp = Vector3.MoveTowards(transform.position, spot, moveSpeed * Time.deltaTime);
+            rb.MovePosition(temp);
+            timer += Time.deltaTime;
+        } 
+        else 
+        {
+            rand = Random.Range(1,5);
+            timer = 0f;
+        }
+    }
     private void SetAnimFloat(Vector2 setVector)
     {
         //anim.SetFloat("moveX", setVector.x);

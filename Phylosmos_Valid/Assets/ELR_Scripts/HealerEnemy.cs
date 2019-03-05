@@ -28,6 +28,7 @@ public class HealerEnemy : EnemyMovement
 
     void Update() 
     {
+        healthBar.transform.rotation = Quaternion.Euler(0,-45,-30);
         healthBar.transform.localScale = new Vector3(5, 15, health * 20);
     }
 
