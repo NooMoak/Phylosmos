@@ -19,11 +19,9 @@ public class SpikeEnemy : EnemyMovement
     GameObject spikeProjectile;
     [SerializeField]
     GameObject healthBar;
-    float startingHealth;
     // Use this for initialization
     void Start()
     {
-        startingHealth = health;
         currentState = EnemyState.Idle;
         target = GameObject.FindWithTag("Player").transform;
 		rb = GetComponent<Rigidbody>(); 
@@ -33,10 +31,6 @@ public class SpikeEnemy : EnemyMovement
     void Update() 
     {
         healthBar.transform.localScale = new Vector3(5, 15, health * 20);
-        if(health > startingHealth)
-        {
-            health = startingHealth;
-        }
     }
 	// Update is called once per frame
 	void FixedUpdate ()

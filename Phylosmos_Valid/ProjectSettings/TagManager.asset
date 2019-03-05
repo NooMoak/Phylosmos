@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - SpikeProjectile
+  - Bullet
+  - Spike
+  - SniperBullet
+  - Healer
   layers:
   - Default
   - TransparentFX

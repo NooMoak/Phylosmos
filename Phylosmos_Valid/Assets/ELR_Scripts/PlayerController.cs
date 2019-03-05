@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float force = 1000f;
     bool canShoot = true;
-    bool abilityReady = true;
+    public bool abilityReady = true;
     public PlayerState currentState;
     public StolenAbility currentAbility;
 	RaycastHit hit;
@@ -183,7 +183,16 @@ public class PlayerController : MonoBehaviour
             }
             if(currentAbility == StolenAbility.Healer)
             {
-                
+                Vector3 look = hit.point - transform.position;
+                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
+                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
+                gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                yield return new WaitForSeconds(0.2f);
+                currentState = PlayerState.Idle;
+                yield return new WaitForSeconds(5f);
+                abilityReady = true;
+                StopCoroutine(LaunchAbility());
             }
         }
     }

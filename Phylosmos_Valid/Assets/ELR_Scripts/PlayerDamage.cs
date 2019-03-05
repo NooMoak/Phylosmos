@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerDamage : MonoBehaviour
 {
-    float PlayerHealth;
+    public float playerHealth;
     float fadeRate = 1.5f;
     float targetAlpha;
     [SerializeField]
@@ -15,12 +15,17 @@ public class PlayerDamage : MonoBehaviour
 
     private void Start() 
     {
-        PlayerHealth = 100f;
+        playerHealth = 100f;
         targetAlpha = 0.7f;
     }
 
      private void Update() 
     {
+        if(playerHealth > 100f)
+        {
+            playerHealth = 100f;
+        }
+        healthBar.fillAmount = playerHealth / 100;
         Color curColor = redBorders.color;
         float alphaDiff = Mathf.Abs(curColor.a-targetAlpha);
         if (alphaDiff>0.0001f)
@@ -48,8 +53,7 @@ public class PlayerDamage : MonoBehaviour
     void TakeDamage(float damage)
     {
         Color curColor = redBorders.color;
-        PlayerHealth -= damage;
-        healthBar.fillAmount = PlayerHealth / 100;
+        playerHealth -= damage;
         curColor.a = 0.7f;
         redBorders.color = curColor;
         targetAlpha = 0.7f;
@@ -60,7 +64,7 @@ public class PlayerDamage : MonoBehaviour
 
     void CheckHealth()
     {
-        if(PlayerHealth <= 0)
+        if(playerHealth <= 0)
         {
             Destroy(gameObject);
         }
