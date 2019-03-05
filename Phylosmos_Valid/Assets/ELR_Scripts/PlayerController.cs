@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public Image abilityIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
+    int floorMask;
 
 	// Use this for initialization
 	void Start ()
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
 		right = Quaternion.Euler(new Vector3(0,90,0)) * forward;
         currentState = PlayerState.Walk;
         currentAbility = StolenAbility.None;
+        floorMask = LayerMask.GetMask("Floor");
 	}
 
     // Update is called once per frame
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle )
         {
-            if(hit.transform.tag == "Floor"){
+            if(Physics.Raycast(ray, out hit, 1000, floorMask)){
                 Vector3 look = hit.point - transform.position;
                 transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
@@ -112,15 +114,15 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        if(hit.transform.tag == "Floor"){
-		canShoot = false;
-		GameObject clone;
-		clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
-		Vector3 dir = (hit.point + new Vector3(0,5,0)) - clone.transform.position;
-		dir = dir.normalized;
-		clone.GetComponent<Rigidbody>().AddForce(dir * force);
-		yield return new WaitForSeconds(0.2f);
-		canShoot = true;
+        if(Physics.Raycast(ray, out hit, 1000, floorMask)){
+            canShoot = false;
+            GameObject clone;
+            clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
+            Vector3 dir = (hit.point + new Vector3(0,5,0)) - clone.transform.position;
+            dir = dir.normalized;
+            clone.GetComponent<Rigidbody>().AddForce(dir * force);
+            yield return new WaitForSeconds(0.2f);
+            canShoot = true;
         }
     }
 
