@@ -17,15 +17,27 @@ public class SpikeEnemy : EnemyMovement
     float launchForce = 1000f;
     [SerializeField]
     GameObject spikeProjectile;
+    [SerializeField]
+    GameObject healthBar;
+    float startingHealth;
     // Use this for initialization
     void Start()
     {
+        startingHealth = health;
         currentState = EnemyState.Idle;
         target = GameObject.FindWithTag("Player").transform;
 		rb = GetComponent<Rigidbody>(); 
         anim = GetComponent<Animator>();
     }
 	
+    void Update() 
+    {
+        healthBar.transform.localScale = new Vector3(5, 15, health * 20);
+        if(health > startingHealth)
+        {
+            health = startingHealth;
+        }
+    }
 	// Update is called once per frame
 	void FixedUpdate ()
     {
@@ -39,7 +51,9 @@ public class SpikeEnemy : EnemyMovement
             if (currentState == EnemyState.Idle || currentState == EnemyState.Walk && currentState != EnemyState.Stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-
+                Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
+                transform.LookAt(target);
+                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
                 ChangeAnim(temp - transform.position);
                 rb.MovePosition(temp);
                 ChangeState(EnemyState.Walk);
@@ -50,6 +64,9 @@ public class SpikeEnemy : EnemyMovement
         {
             if(currentState == EnemyState.Idle || currentState == EnemyState.Walk && currentState != EnemyState.Stagger)
             {
+                Vector3 targetPos = new Vector3(target.position.x, 0, target.position.z);
+                transform.LookAt(target);
+                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
                 if(shootReady){
                     StartCoroutine(SpikeShoot());
                 }

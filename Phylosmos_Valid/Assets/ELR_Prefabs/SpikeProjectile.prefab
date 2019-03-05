@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 54616507079059722}
   - component: {fileID: 114062858649899166}
   m_Layer: 0
-  m_Name: Spike
+  m_Name: SpikeProjectile
   m_TagString: SpikeProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1781578725574190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 73, y: 0, z: 25}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 4134579070927260}
   m_Father: {fileID: 0}
