@@ -40,7 +40,7 @@ public class SwordDamage : MonoBehaviour
 				giveAbility = GetComponentInParent<PlayerController>();
 				giveAbility.currentAbility = StolenAbility.Healer;
                 giveAbility.abilityReady = true;
-                //giveAbility.abilityIcon.sprite = giveAbility.spikeIcon;
+                giveAbility.abilityIcon.sprite = giveAbility.healerIcon;
             }
         }
     }

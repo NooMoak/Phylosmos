@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     public Image abilityIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
+    public Sprite healerIcon;
+    public Sprite healerCDIcon;
     int floorMask;
 
 	// Use this for initialization
@@ -108,7 +110,6 @@ public class PlayerController : MonoBehaviour
         yield return null;
         attackHitbox.SetActive(false);
         //p_anim.SetBool("Attacking", false);
-        yield return new WaitForSeconds(.1f);
         currentState = PlayerState.Walk;
     }
 
@@ -160,11 +161,9 @@ public class PlayerController : MonoBehaviour
                     clone.GetComponent<Rigidbody>().AddForce(dir * force * 2f);
                     GetComponent<LineRenderer>().enabled = false;
                     abilityIcon.sprite = spikeCDIcon;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
-                    yield return new WaitForSeconds(5f);
-                    abilityReady = true;
-                    abilityIcon.sprite = spikeIcon;
+                    StartCoroutine("AbilityCooldown");
                     StopCoroutine(LaunchAbility());
                 } 
                 else if (Input.GetKeyDown(KeyCode.E))
@@ -190,13 +189,43 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                abilityIcon.sprite = healerCDIcon;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
-                yield return new WaitForSeconds(5f);
-                abilityReady = true;
+                StartCoroutine("AbilityCooldown");
                 StopCoroutine(LaunchAbility());
             }
         }
+    }
+
+    IEnumerator AbilityCooldown()
+    {
+        yield return new WaitForSeconds(5f);
+        abilityReady = true;
+        if(currentAbility == StolenAbility.Liana)
+            {
+
+            }
+            if(currentAbility == StolenAbility.Worm)
+            {
+                
+            }
+            if(currentAbility == StolenAbility.Sticky)
+            {
+            
+            }
+            if(currentAbility == StolenAbility.Spike)
+            {
+                abilityIcon.sprite = spikeIcon;
+            }
+            if(currentAbility == StolenAbility.Rock)
+            {
+                
+            }
+            if(currentAbility == StolenAbility.Healer)
+            {
+                abilityIcon.sprite = healerIcon;
+            }
     }
 
      
