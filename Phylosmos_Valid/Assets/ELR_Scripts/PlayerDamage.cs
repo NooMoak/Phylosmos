@@ -13,6 +13,9 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField]
     Image redBorders;
 
+    [SerializeField]
+    Animator anim;
+
     private void Start() 
     {
         playerHealth = 100f;
@@ -66,7 +69,8 @@ public class PlayerDamage : MonoBehaviour
     {
         if(playerHealth <= 0)
         {
-            Destroy(gameObject);
+            anim.SetBool("Dead", true);
+            Destroy(gameObject, 2);
         }
     }
 }

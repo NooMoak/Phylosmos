@@ -11,6 +11,10 @@ public class SwordDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.CompareTag ("Destructible"))
+        {
+            Destroy(collision.gameObject);
+        }
         if (collision.gameObject.CompareTag ("Spike"))
         {
             Rigidbody Hit = collision.GetComponent<Rigidbody>();

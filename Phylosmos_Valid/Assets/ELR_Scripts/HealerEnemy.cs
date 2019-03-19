@@ -21,7 +21,7 @@ public class HealerEnemy : EnemyMovement
     {
         healLine = GetComponent<LineRenderer>();
         currentState = EnemyState.Idle;
-        target = GameObject.FindWithTag("Spike").transform;
+        //target = GameObject.FindWithTag("Spike").transform;
         rb = GetComponent<Rigidbody>();
        // anim = GetComponent<Animator>();
     }

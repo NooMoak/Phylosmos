@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             if(Physics.Raycast(ray, out hit, 1000, floorMask)){
                 Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
+                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
             UpdateAnimationAndMove(heading, rightMovement, upMovement);
@@ -103,13 +103,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator AttackCO()
     {
-        //p_anim.SetBool("Attacking", true);
         currentState = PlayerState.Attack;
        yield return new WaitForSeconds(.2f);
         attackHitbox.SetActive(true);
         yield return null;
         attackHitbox.SetActive(false);
-        //p_anim.SetBool("Attacking", false);
         currentState = PlayerState.Walk;
     }
 
@@ -150,7 +148,7 @@ public class PlayerController : MonoBehaviour
             {
                 GetComponent<LineRenderer>().enabled = true;
                 Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
+                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 if(Input.GetButton("Fire1")){
                     GameObject clone;
@@ -185,7 +183,7 @@ public class PlayerController : MonoBehaviour
             if(currentAbility == StolenAbility.Healer)
             {
                 Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,30,0);
+                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
@@ -235,14 +233,11 @@ public class PlayerController : MonoBehaviour
         if (heading != Vector3.zero)
         {
             MovePlayer(heading, rightMovement, upMovement);
-            //p_anim.SetFloat("moveX", change.x);
-            //p_anim.SetFloat("moveY", change.y);
-            //p_anim.SetBool("Moving", true);
-
+            anim.SetBool("Moving", true);
         }
         else
         {
-            //p_anim.SetBool("Moving", false);
+            anim.SetBool("Moving", false);
         }
 
     }
