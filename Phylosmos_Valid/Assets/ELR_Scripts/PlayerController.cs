@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical");
 		Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Physics.Raycast(ray, out hit);
+		Physics.Raycast(ray, out hit, 1000, floorMask);
 
         if (Input.GetButtonDown ("Fire2"))
         {
@@ -147,13 +147,13 @@ public class PlayerController : MonoBehaviour
             if(currentAbility == StolenAbility.Spike)
             {
                 GetComponent<LineRenderer>().enabled = true;
-                Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
+                Vector3 look = hit.point - (transform.position + new Vector3(0,5,0));
+                transform.rotation = Quaternion.LookRotation (look);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 if(Input.GetButton("Fire1")){
                     GameObject clone;
                     clone = Instantiate(sniperBullet, transform.position + new Vector3(0,5,0), transform.rotation);
-                    clone.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
+                    clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
                     Vector3 dir = hit.point + new Vector3(0,5,0) - clone.transform.position;
                     dir = dir.normalized;
                     clone.GetComponent<Rigidbody>().AddForce(dir * force * 2f);
