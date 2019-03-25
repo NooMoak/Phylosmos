@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Animator anim;
     public Button nextButton;
+    public bool sentenceFinished;
+    public bool fast = false;
     Queue<string> sentences;
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,6 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-
     }
 
     IEnumerator TypeSentence (string sentence)
@@ -50,7 +51,17 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.02f);
+            sentenceFinished = false;
+            if(fast == true)
+            {
+                dialogueText.text = sentence;
+                break;
+            }
         }
+        if(dialogueText.text == sentence)
+        {
+            sentenceFinished = true;
+        }    
     }
     void EndDialogue()
     {
@@ -60,10 +71,16 @@ public class DialogueManager : MonoBehaviour
     private void Update() {
         if(anim.GetBool("IsOpen") == true)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) && sentenceFinished == true)
             {
                 nextButton.onClick.Invoke();
+                fast = false;
             }
+            if(Input.GetKeyDown(KeyCode.Space) && sentenceFinished == false)
+            {
+                fast = true;
+            }
+
         }
     }
 
