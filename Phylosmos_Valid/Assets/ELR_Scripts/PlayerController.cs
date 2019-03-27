@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     GameObject attackHitbox;
     [SerializeField] 
     Animator anim;
+    [SerializeField] 
+    Text magazineText;
+    int bulletFired = 0;
     public Image abilityIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
@@ -65,6 +68,8 @@ public class PlayerController : MonoBehaviour
 		Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Physics.Raycast(ray, out hit, 1000, floorMask);
+        string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
+        magazineText.text = magazineToDisplay;
 
         if (Input.GetButtonDown ("Fire2"))
         {
@@ -78,7 +83,13 @@ public class PlayerController : MonoBehaviour
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
             {
-                StartCoroutine(Fire());
+                if(bulletFired < 10)
+                {
+                    StartCoroutine(Fire());
+                } else 
+                {
+                    StartCoroutine(Reload());
+                }
             }
         }
         if (Input.GetKeyDown (KeyCode.E))
@@ -88,6 +99,15 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(LaunchAbility());
             }
         }
+
+        if (Input.GetKeyDown (KeyCode.R))
+        {
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
+            {
+                StartCoroutine(Reload());
+            }
+        }
+
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle )
         {
             if(Physics.Raycast(ray, out hit, 1000, floorMask)){
@@ -122,6 +142,7 @@ public class PlayerController : MonoBehaviour
             clone.GetComponent<Rigidbody>().AddForce(dir * force);
             yield return new WaitForSeconds(0.2f);
             canShoot = true;
+            bulletFired += 1;
         }
     }
 
@@ -224,6 +245,13 @@ public class PlayerController : MonoBehaviour
             {
                 abilityIcon.sprite = healerIcon;
             }
+    }
+    IEnumerator Reload()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(1f);
+        bulletFired = 0;
+        canShoot = true;
     }
 
      

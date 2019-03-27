@@ -24,7 +24,7 @@ public class BestiaryEntry : MonoBehaviour
         if(other.tag == "Player")
         {
             analyseText.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.F))
             {
                 FindObjectOfType<CameraController>().GetComponent<CameraController>().normal = false;
                 analyseText.SetActive(false);
