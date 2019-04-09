@@ -104,7 +104,7 @@ Material:
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _OutlineSize: 0.003
-    - _OutlineWidth: 0.0035294113
+    - _OutlineWidth: 0.002
     - _Parallax: 0.02
     - _RimIntensity: 0
     - _RimOffset: 0.6
