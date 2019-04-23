@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52857385}
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
-  m_LocalPosition: {x: -2.73, y: 5, z: 5.73}
-  m_LocalScale: {x: 9.5, y: 10, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 6}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 1706824414}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -30.000002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &52857389
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -822,12 +822,13 @@ MonoBehaviour:
   bullet: {fileID: 1128578227939444, guid: 55cabc4506f943243833b6de66d98470, type: 3}
   sniperBullet: {fileID: 1791254068669116, guid: 714d97495063bf54f96dd042f3fd3be4,
     type: 3}
-  force: 5000
+  bulletForce: 1000
   abilityReady: 1
   currentState: 0
   currentAbility: 0
   attackHitbox: {fileID: 52857385}
   anim: {fileID: 10072672}
+  magazineText: {fileID: 0}
   abilityIcon: {fileID: 0}
   spikeIcon: {fileID: 21300000, guid: 579087de75b76124abcd67a44297eec7, type: 3}
   spikeCDIcon: {fileID: 21300000, guid: 4559f7f45789e294c84a8dd15b3b3db5, type: 3}
@@ -848,6 +849,7 @@ MonoBehaviour:
   playerHealth: 0
   healthBar: {fileID: 0}
   redBorders: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!54 &1706824411
 Rigidbody:
   m_ObjectHideFlags: 0

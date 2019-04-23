@@ -9,7 +9,7 @@ public enum PlayerState
     }
 public enum StolenAbility
     {
-        None, Liana, Worm, Sticky, Spike, Rock, Healer
+        None, Liana, Spike, Rock, Healer
     }
 
 public class PlayerController : MonoBehaviour
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject sniperBullet;
     [SerializeField]
-    float force = 1000f;
+    float bulletForce = 1000f;
     bool canShoot = true;
     public bool abilityReady = true;
     public PlayerState currentState;
@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     public Sprite spikeCDIcon;
     public Sprite healerIcon;
     public Sprite healerCDIcon;
-    int floorMask;
+    int rayPlaneMask;
+    Vector3 look;
 
-	// Use this for initialization
 	void Start ()
     {
 		rb = GetComponent<Rigidbody>();
@@ -54,23 +54,17 @@ public class PlayerController : MonoBehaviour
 		forward.y = 0;
 		forward = Vector3.Normalize(forward);
 		right = Quaternion.Euler(new Vector3(0,90,0)) * forward;
-        currentState = PlayerState.Walk;
+        currentState = PlayerState.Idle;
         currentAbility = StolenAbility.None;
-        floorMask = LayerMask.GetMask("Floor");
+        rayPlaneMask = LayerMask.GetMask("RayPlane");
 	}
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical"));
-		Vector3 rightMovement = right * p_Speed * Time.deltaTime * Input.GetAxis("Horizontal");
-		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical");
-		Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Physics.Raycast(ray, out hit, 1000, floorMask);
         string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
         magazineText.text = magazineToDisplay;
 
+        //Sword Attack
         if (Input.GetButtonDown ("Fire2"))
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger)
@@ -79,6 +73,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(AttackCO());
             }
         }
+
+        //Rifle Shoot
         if (Input.GetButton ("Fire1"))
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
@@ -92,6 +88,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        //Ability Launch
         if (Input.GetKeyDown (KeyCode.E))
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && abilityReady)
@@ -100,6 +98,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Reloading
         if (Input.GetKeyDown (KeyCode.R))
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
@@ -108,38 +107,55 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (currentState == PlayerState.Walk || currentState == PlayerState.Idle )
+    }
+
+    void FixedUpdate()
+    {
+        //Player Movement & Rotation
+		Vector3 rightMovement = right * p_Speed * Time.deltaTime * Input.GetAxis("Horizontal");
+		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical");
+		Vector3 heading = rightMovement + upMovement;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (currentState == PlayerState.Walk || currentState == PlayerState.Idle || currentState == PlayerState.Attack )
         {
-            if(Physics.Raycast(ray, out hit, 1000, floorMask)){
-                Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
+            if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
+                look = hit.point - transform.position;
+                transform.rotation = Quaternion.LookRotation (look);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
-            UpdateAnimationAndMove(heading, rightMovement, upMovement);
+            if (heading != Vector3.zero)
+            {
+                rb.MovePosition(transform.position + heading);
+                anim.SetBool("Moving", true);
+            }
+            else
+            {
+                anim.SetBool("Moving", false);
+            }
         }
         
     }
     
-
     private IEnumerator AttackCO()
     {
         currentState = PlayerState.Attack;
-       yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.3f);
         attackHitbox.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(.1f);
         attackHitbox.SetActive(false);
         currentState = PlayerState.Walk;
     }
 
     private IEnumerator Fire()
     {
-        if(Physics.Raycast(ray, out hit, 1000, floorMask)){
+        if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
             canShoot = false;
             GameObject clone;
             clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
-            Vector3 dir = (hit.point + new Vector3(0,5,0)) - clone.transform.position;
+            Vector3 dir = look;
             dir = dir.normalized;
-            clone.GetComponent<Rigidbody>().AddForce(dir * force);
+            clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce);
             yield return new WaitForSeconds(0.2f);
             canShoot = true;
             bulletFired += 1;
@@ -157,27 +173,16 @@ public class PlayerController : MonoBehaviour
             {
 
             }
-            if(currentAbility == StolenAbility.Worm)
-            {
-                
-            }
-            if(currentAbility == StolenAbility.Sticky)
-            {
-            
-            }
             if(currentAbility == StolenAbility.Spike)
             {
                 GetComponent<LineRenderer>().enabled = true;
-                Vector3 look = hit.point - (transform.position + new Vector3(0,5,0));
-                transform.rotation = Quaternion.LookRotation (look);
-                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 if(Input.GetButton("Fire1")){
                     GameObject clone;
                     clone = Instantiate(sniperBullet, transform.position + new Vector3(0,5,0), transform.rotation);
                     clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
-                    Vector3 dir = hit.point + new Vector3(0,5,0) - clone.transform.position;
+                    Vector3 dir = look;
                     dir = dir.normalized;
-                    clone.GetComponent<Rigidbody>().AddForce(dir * force * 2f);
+                    clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);
                     GetComponent<LineRenderer>().enabled = false;
                     abilityIcon.sprite = spikeCDIcon;
                     yield return new WaitForSeconds(0.2f);
@@ -203,9 +208,6 @@ public class PlayerController : MonoBehaviour
             }
             if(currentAbility == StolenAbility.Healer)
             {
-                Vector3 look = hit.point - transform.position;
-                transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,0,0);
-                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 abilityIcon.sprite = healerCDIcon;
@@ -224,14 +226,6 @@ public class PlayerController : MonoBehaviour
         if(currentAbility == StolenAbility.Liana)
             {
 
-            }
-            if(currentAbility == StolenAbility.Worm)
-            {
-                
-            }
-            if(currentAbility == StolenAbility.Sticky)
-            {
-            
             }
             if(currentAbility == StolenAbility.Spike)
             {
@@ -253,46 +247,4 @@ public class PlayerController : MonoBehaviour
         bulletFired = 0;
         canShoot = true;
     }
-
-     
-
-    void UpdateAnimationAndMove(Vector3 heading, Vector3 rightMovement, Vector3 upMovement)
-    {
-        if (heading != Vector3.zero)
-        {
-            MovePlayer(heading, rightMovement, upMovement);
-            anim.SetBool("Moving", true);
-        }
-        else
-        {
-            anim.SetBool("Moving", false);
-        }
-
-    }
-
-    void MovePlayer(Vector3 heading, Vector3 rightMovement, Vector3 upMovement)
-    {
-		//transform.forward = heading; -> Rotate the player
-		transform.position += rightMovement;
-		transform.position += upMovement;
-		//rb.velocity = new Vector3(rightMovement.x + upMovement.x, rightMovement.y + upMovement.y, rightMovement.z + upMovement.z) * p_Speed; -> Move the player thanks to velocity
-    }
-
-    /*public void Knock(float knockTime)
-    {
-    	StartCoroutine(KnockCO(knockTime));
-    }
-
-    private IEnumerator KnockCO(float knockTime)
-    {
-        if ( rb != null)
-        {
-            yield return new WaitForSeconds(knockTime);
-            rb.velocity = Vector2.zero;
-            currentState = PlayerState.Idle;
-            rb.velocity = Vector2.zero;
-
-        }
-    }*/
-
 }
