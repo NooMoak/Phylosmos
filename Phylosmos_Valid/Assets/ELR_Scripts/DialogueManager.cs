@@ -71,12 +71,12 @@ public class DialogueManager : MonoBehaviour
     private void Update() {
         if(anim.GetBool("IsOpen") == true)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && sentenceFinished == true)
+            if(Input.GetKeyDown(KeyCode.Return) && sentenceFinished == true)
             {
                 nextButton.onClick.Invoke();
                 fast = false;
             }
-            if(Input.GetKeyDown(KeyCode.Space) && sentenceFinished == false)
+            if(Input.GetKeyDown(KeyCode.Return) && sentenceFinished == false)
             {
                 fast = true;
             }

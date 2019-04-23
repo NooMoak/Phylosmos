@@ -44,14 +44,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject sniperBullet;
     [SerializeField] float rockPowerRadius = 5f;
     [SerializeField] float rockPowerForce = 10f;
+    public int lianaCharge;
+    public int spikeCharge;
+    public int rockCharge;
+    public int healerCharge;
     public bool abilityReady = true;
     public Image abilityIcon;
+    public Sprite lianaIcon;
+    public Sprite lianaCDIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
-    public Sprite healerIcon;
-    public Sprite healerCDIcon;
     public Sprite rockIcon;
     public Sprite rockCDIcon;
+    public Sprite healerIcon;
+    public Sprite healerCDIcon;
+    [SerializeField] GameObject selectionUI;
 
 	void Start ()
     {
@@ -113,6 +120,36 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Selecting Ability
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            currentState = PlayerState.Stagger;
+            selectionUI.SetActive(true);
+            Time.timeScale = 0.2f;
+            StartCoroutine("CursorChange");
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            selectionUI.SetActive(false);
+            Time.timeScale = 1f;
+            currentState = PlayerState.Idle;
+             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                currentAbility = StolenAbility.Spike;
+            } 
+            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                currentAbility = StolenAbility.Liana;
+            }
+            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                currentAbility = StolenAbility.Healer;
+            }  
+            else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                currentAbility = StolenAbility.Rock;
+            } 
+        }
     }
 
     void FixedUpdate()
@@ -179,11 +216,11 @@ public class PlayerController : MonoBehaviour
             abilityReady = false;
             currentState = PlayerState.Attack;
             yield return null;
-            if(currentAbility == StolenAbility.Liana)
+            if(currentAbility == StolenAbility.Liana && lianaCharge > 0)
             {
-
+                lianaCharge -= 1;
             }
-            if(currentAbility == StolenAbility.Spike)
+            if(currentAbility == StolenAbility.Spike && spikeCharge > 0)
             {
                 GetComponent<LineRenderer>().enabled = true;
                 if(Input.GetButton("Fire1")){
@@ -195,6 +232,7 @@ public class PlayerController : MonoBehaviour
                     clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);
                     GetComponent<LineRenderer>().enabled = false;
                     abilityIcon.sprite = spikeCDIcon;
+                    spikeCharge -= 1;
                     yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
                     StartCoroutine("AbilityCooldown");
@@ -212,7 +250,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(LaunchAbility());
                 }
             }
-            if(currentAbility == StolenAbility.Rock)
+            if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
@@ -224,16 +262,18 @@ public class PlayerController : MonoBehaviour
                         hitRb.AddExplosionForce(rockPowerForce, explosionPos, rockPowerRadius);
                 }
                 abilityIcon.sprite = rockCDIcon;
+                rockCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
                 StartCoroutine("AbilityCooldown");
                 StopCoroutine(LaunchAbility());
             }
-            if(currentAbility == StolenAbility.Healer)
+            if(currentAbility == StolenAbility.Healer && healerCharge > 0)
             {
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 abilityIcon.sprite = healerCDIcon;
+                healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
                 StartCoroutine("AbilityCooldown");
@@ -270,5 +310,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         bulletFired = 0;
         canShoot = true;
+    }
+    IEnumerator CursorChange()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        yield return null;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

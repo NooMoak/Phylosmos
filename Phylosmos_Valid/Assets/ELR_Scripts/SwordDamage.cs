@@ -15,37 +15,33 @@ public class SwordDamage : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag ("Liana"))
+        {
+            GameObject hit = collision.gameObject;
+			giveAbility = GetComponentInParent<PlayerController>();
+            if(giveAbility.lianaCharge < 3)
+				giveAbility.lianaCharge += 1;
+        }
         if (collision.gameObject.CompareTag ("Spike"))
         {
-            Rigidbody Hit = collision.GetComponent<Rigidbody>();
-            if (Hit != null)
-            {
-                Vector2 difference = Hit.transform.position - transform.position;
-                difference = difference.normalized * thrust;
-                Hit.AddForce(difference, ForceMode.Impulse);
-				Hit.GetComponent<EnemyMovement>().currentState = EnemyState.Stagger;
-				collision.GetComponent<EnemyMovement>().Knock(Hit, knockTime,damage);
-				giveAbility = GetComponentInParent<PlayerController>();
-				giveAbility.currentAbility = StolenAbility.Spike;
-                giveAbility.abilityIcon.sprite = giveAbility.spikeIcon;
-                giveAbility.abilityReady = true;
-            }
+            GameObject hit = collision.gameObject;
+			giveAbility = GetComponentInParent<PlayerController>();
+            if(giveAbility.spikeCharge < 3)
+				giveAbility.spikeCharge += 1;
         }
         if (collision.gameObject.CompareTag ("Healer"))
         {
-            Rigidbody Hit = collision.GetComponent<Rigidbody>();
-            if (Hit != null)
-            {
-                Vector2 difference = Hit.transform.position - transform.position;
-                difference = difference.normalized * thrust;
-                Hit.AddForce(difference, ForceMode.Impulse);
-				Hit.GetComponent<EnemyMovement>().currentState = EnemyState.Stagger;
-				collision.GetComponent<EnemyMovement>().Knock(Hit, knockTime,damage);
-				giveAbility = GetComponentInParent<PlayerController>();
-				giveAbility.currentAbility = StolenAbility.Healer;
-                giveAbility.abilityReady = true;
-                giveAbility.abilityIcon.sprite = giveAbility.healerIcon;
-            }
+            GameObject hit = collision.gameObject;
+            giveAbility = GetComponentInParent<PlayerController>();
+            if(giveAbility.spikeCharge < 3)
+			    giveAbility.spikeCharge += 1;
+        }
+        if (collision.gameObject.CompareTag ("Rock"))
+        {
+            GameObject hit = collision.gameObject;
+			giveAbility = GetComponentInParent<PlayerController>();
+            if(giveAbility.rockCharge < 3)
+				giveAbility.rockCharge += 1;
         }
     }
 

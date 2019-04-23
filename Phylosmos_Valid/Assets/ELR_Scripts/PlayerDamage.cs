@@ -8,13 +8,9 @@ public class PlayerDamage : MonoBehaviour
     public float playerHealth;
     float fadeRate = 1.5f;
     float targetAlpha;
-    [SerializeField]
-    Image healthBar;
-    [SerializeField]
-    Image redBorders;
-
-    [SerializeField]
-    Animator anim;
+    [SerializeField] Image healthBar;
+    [SerializeField] Image redBorders;
+    [SerializeField] Animator anim;
 
     private void Start() 
     {
@@ -56,7 +52,7 @@ public class PlayerDamage : MonoBehaviour
     void TakeDamage(float damage)
     {
         Color curColor = redBorders.color;
-        //playerHealth -= damage;
+        playerHealth -= damage;
         curColor.a = 0.7f;
         redBorders.color = curColor;
         targetAlpha = 0.7f;
