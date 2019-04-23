@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     public Sprite healerIcon;
     public Sprite healerCDIcon;
     [SerializeField] GameObject selectionUI;
+    [SerializeField] Image spikeImage;
+    [SerializeField] Image liniaImage;
+    [SerializeField] Image healerImage;
+    [SerializeField] Image rockImage;
 
 	void Start ()
     {
@@ -128,12 +132,43 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0.2f;
             StartCoroutine("CursorChange");
         }
+        if(Input.GetKey(KeyCode.Space))
+        {
+            if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                spikeImage.sprite = spikeIcon;
+                //lianaImage.sprite = lianaCDIcon;
+                healerImage.sprite = healerCDIcon;
+                rockImage.sprite = rockCDIcon;
+            } 
+            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                spikeImage.sprite = spikeCDIcon;
+                //lianaImage.sprite = lianaIcon;
+                healerImage.sprite = healerCDIcon;
+                rockImage.sprite = rockCDIcon;
+            }
+            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                spikeImage.sprite = spikeCDIcon;
+                //lianaImage.sprite = lianaCDIcon;
+                healerImage.sprite = healerIcon;
+                rockImage.sprite = rockCDIcon;
+            }  
+            else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            {
+                spikeImage.sprite = spikeCDIcon;
+                //lianaImage.sprite = lianaCDIcon;
+                healerImage.sprite = healerCDIcon;
+                rockImage.sprite = rockIcon;
+            } 
+        }
         if(Input.GetKeyUp(KeyCode.Space))
         {
             selectionUI.SetActive(false);
             Time.timeScale = 1f;
             currentState = PlayerState.Idle;
-             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 currentAbility = StolenAbility.Spike;
             } 
