@@ -56,7 +56,7 @@ public class PlayerDamage : MonoBehaviour
     void TakeDamage(float damage)
     {
         Color curColor = redBorders.color;
-        playerHealth -= damage;
+        //playerHealth -= damage;
         curColor.a = 0.7f;
         redBorders.color = curColor;
         targetAlpha = 0.7f;

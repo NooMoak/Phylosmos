@@ -14,38 +14,44 @@ public enum StolenAbility
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField]
-    float p_Speed;
-	private Rigidbody rb;
+    //Player Variables
+	[SerializeField] float p_Speed;
+    public PlayerState currentState;
+    public StolenAbility currentAbility;
+    [SerializeField] Animator anim;
+	Rigidbody rb;
+
+    //Movement Variables
 	Vector3 forward; 
 	Vector3 right;
     Vector3 mousePos;
-    [SerializeField]
-    GameObject bullet;
-    [SerializeField]
-    GameObject sniperBullet;
-    [SerializeField]
-    float bulletForce = 1000f;
-    bool canShoot = true;
-    public bool abilityReady = true;
-    public PlayerState currentState;
-    public StolenAbility currentAbility;
-	RaycastHit hit;
+    RaycastHit hit;
 	Ray ray;
-    [SerializeField]
-    GameObject attackHitbox;
-    [SerializeField] 
-    Animator anim;
-    [SerializeField] 
-    Text magazineText;
+    int rayPlaneMask;
+    Vector3 look;
+
+    //Attack Variables
+    [SerializeField] GameObject attackHitbox;
+
+    //Shoot Variables
+    [SerializeField] GameObject bullet;
+    [SerializeField] float bulletForce = 1000f;
+    bool canShoot = true;
+    [SerializeField] Text magazineText;
     int bulletFired = 0;
+
+    //Ability Variables
+    [SerializeField] GameObject sniperBullet;
+    [SerializeField] float rockPowerRadius = 5f;
+    [SerializeField] float rockPowerForce = 10f;
+    public bool abilityReady = true;
     public Image abilityIcon;
     public Sprite spikeIcon;
     public Sprite spikeCDIcon;
     public Sprite healerIcon;
     public Sprite healerCDIcon;
-    int rayPlaneMask;
-    Vector3 look;
+    public Sprite rockIcon;
+    public Sprite rockCDIcon;
 
 	void Start ()
     {
@@ -128,26 +134,30 @@ public class PlayerController : MonoBehaviour
             {
                 rb.MovePosition(transform.position + heading);
                 anim.SetBool("Moving", true);
+                if(currentState != PlayerState.Attack)
+                    currentState = PlayerState.Walk;
             }
             else
             {
                 anim.SetBool("Moving", false);
+                if(currentState != PlayerState.Attack)
+                    currentState = PlayerState.Idle; 
             }
         }
         
     }
     
-    private IEnumerator AttackCO()
+    IEnumerator AttackCO()
     {
         currentState = PlayerState.Attack;
         yield return new WaitForSeconds(.3f);
         attackHitbox.SetActive(true);
         yield return new WaitForSeconds(.1f);
         attackHitbox.SetActive(false);
-        currentState = PlayerState.Walk;
+        currentState = PlayerState.Idle;
     }
 
-    private IEnumerator Fire()
+    IEnumerator Fire()
     {
         if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
             canShoot = false;
@@ -162,7 +172,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator LaunchAbility()
+    IEnumerator LaunchAbility()
     {
         if(currentAbility != StolenAbility.None)
         {
@@ -204,7 +214,20 @@ public class PlayerController : MonoBehaviour
             }
             if(currentAbility == StolenAbility.Rock)
             {
-                
+                Vector3 explosionPos = transform.position;
+                Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
+                foreach(Collider hit in colliders)
+                {
+                    Rigidbody hitRb = hit.GetComponent<Rigidbody>();
+                    
+                    if(hitRb != null && hitRb != rb)
+                        hitRb.AddExplosionForce(rockPowerForce, explosionPos, rockPowerRadius);
+                }
+                abilityIcon.sprite = rockCDIcon;
+                yield return new WaitForSeconds(0.2f);
+                currentState = PlayerState.Idle;
+                StartCoroutine("AbilityCooldown");
+                StopCoroutine(LaunchAbility());
             }
             if(currentAbility == StolenAbility.Healer)
             {
@@ -233,13 +256,14 @@ public class PlayerController : MonoBehaviour
             }
             if(currentAbility == StolenAbility.Rock)
             {
-                
+                abilityIcon.sprite = rockIcon;
             }
             if(currentAbility == StolenAbility.Healer)
             {
                 abilityIcon.sprite = healerIcon;
             }
     }
+
     IEnumerator Reload()
     {
         canShoot = false;
