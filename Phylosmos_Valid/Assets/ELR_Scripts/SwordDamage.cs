@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SwordDamage : MonoBehaviour
 {
-    public float thrust;
-    public float knockTime;
-    public float damage;
+    [SerializeField] float damage;
 	PlayerController giveAbility;
 
     private void OnTriggerEnter(Collider collision)
@@ -33,8 +31,8 @@ public class SwordDamage : MonoBehaviour
         {
             GameObject hit = collision.gameObject;
             giveAbility = GetComponentInParent<PlayerController>();
-            if(giveAbility.spikeCharge < 3)
-			    giveAbility.spikeCharge += 1;
+            if(giveAbility.healerCharge < 3)
+			    giveAbility.healerCharge += 1;
         }
         if (collision.gameObject.CompareTag ("Rock"))
         {

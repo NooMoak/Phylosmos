@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerState
     {
-        Idle,Walk,Attack,Interact, Stagger
+        Idle,Walk,Attack,Interact, Stagger, Dead
     }
 public enum StolenAbility
     {
@@ -171,18 +171,34 @@ public class PlayerController : MonoBehaviour
             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 currentAbility = StolenAbility.Spike;
+                if(spikeCharge > 0)
+                    abilityIcon.sprite = spikeIcon;
+                else 
+                    abilityIcon.sprite = spikeCDIcon;
             } 
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 currentAbility = StolenAbility.Liana;
+                if(lianaCharge > 0)
+                    abilityIcon.sprite = lianaIcon;
+                else 
+                    abilityIcon.sprite = lianaCDIcon;
             }
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 currentAbility = StolenAbility.Healer;
+                if(healerCharge > 0)
+                    abilityIcon.sprite = healerIcon;
+                else 
+                    abilityIcon.sprite = healerCDIcon;
             }  
             else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 currentAbility = StolenAbility.Rock;
+                if(rockCharge > 0)
+                    abilityIcon.sprite = rockIcon;
+                else 
+                    abilityIcon.sprite = rockCDIcon;
             } 
         }
     }
@@ -313,6 +329,11 @@ public class PlayerController : MonoBehaviour
                 currentState = PlayerState.Idle;
                 StartCoroutine("AbilityCooldown");
                 StopCoroutine(LaunchAbility());
+            }
+            else 
+            {
+                abilityReady = true;
+                currentState = PlayerState.Idle;
             }
         }
     }

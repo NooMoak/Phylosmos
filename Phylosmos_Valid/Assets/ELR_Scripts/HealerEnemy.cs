@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class HealerEnemy : EnemyMovement
 {
-    public Transform target;
-    public float chaseRadius;
-    public float healRadius;
-
-    //public Transform homePosition;
-    private Rigidbody rb;
+    [SerializeField] Transform target;
+    [SerializeField] float chaseRadius;
+    [SerializeField] float healRadius;
+    Transform homePosition;
+    Rigidbody rb;
     bool canHeal = true;
-    public Animator anim;
+    Animator anim;
     LineRenderer healLine;
-    [SerializeField]
-    GameObject healthBar;
+    [SerializeField] GameObject healthBar;
     // Use this for initialization
     void Start()
     {
