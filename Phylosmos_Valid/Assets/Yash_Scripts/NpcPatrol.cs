@@ -8,7 +8,7 @@ public class NpcPatrol : MonoBehaviour
 {
 
    
-     public static bool patrolWaiting = true;
+    public static bool patrolWaiting = true;
 
     [SerializeField]
     float totalWaitTime = 3f;

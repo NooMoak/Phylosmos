@@ -34,6 +34,11 @@ public class NpcDialogueTrigger : MonoBehaviour
     {
         if (InRadius)
         {
+            /*if (Input.GetKeyDown(KeyCode.F))
+            {
+                TriggerDialogue();
+            }*/
+
             if (NpcPatrol.waiting == true)
             {
 

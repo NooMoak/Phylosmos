@@ -13,13 +13,13 @@ public class WayPoints : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, debugDrawRadius);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "NPC")
         {
             NpcPatrol.patrolWaiting = true;
         }
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
