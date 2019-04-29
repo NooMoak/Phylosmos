@@ -126,7 +126,8 @@ public class HealerBehavior : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-            StartCoroutine("Respawn");
+            if(Vector3.Distance(player.transform.position, homePosition) < 100 && Vector3.Distance(player.transform.position, homePosition) > 90)
+                StartCoroutine("Respawn");
         }
     }
     IEnumerator Heal()
@@ -142,7 +143,7 @@ public class HealerBehavior : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         transform.position = homePosition;
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = HealerState.Sleep;
