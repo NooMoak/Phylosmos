@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 1673134742}
   - component: {fileID: 1673134741}
   m_Layer: 0
-  m_Name: Healer 1
+  m_Name: ELR_Healer
   m_TagString: Healer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673134740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 2, z: 40}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 1535648057}
@@ -334,7 +334,6 @@ MonoBehaviour:
   target: {fileID: 0}
   chaseRadius: 30
   healRadius: 15
-  anim: {fileID: 0}
   healthBar: {fileID: 446786259}
 --- !u!120 &1673134742
 LineRenderer:

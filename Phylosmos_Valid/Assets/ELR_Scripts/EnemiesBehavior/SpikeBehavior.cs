@@ -31,6 +31,17 @@ public class SpikeBehavior : MonoBehaviour
         randomNumber = Random.Range(1,5);
     }
 
+    void Update()
+    {
+         if(currentState == SpikeState.Dead)
+        {
+            GetComponent<CapsuleCollider>().enabled = false;
+            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            StartCoroutine("Respawn");
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -112,5 +123,16 @@ public class SpikeBehavior : MonoBehaviour
             randomNumber = Random.Range(1,5);
             timer = 0f;
         }
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(5f);
+        transform.position = homePosition;
+        GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
+        currentState = SpikeState.Sleep;
+        GetComponent<CapsuleCollider>().enabled = true;
+        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
     }
 }

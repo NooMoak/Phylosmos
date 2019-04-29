@@ -23,7 +23,7 @@ public class HealerBehavior : MonoBehaviour
     bool isFleeing = false;
     int index;
     Collider[] enemies;
-    public GameObject test;
+    int randomNumber;
     // Use this for initialization
     void Start()
     {
@@ -42,37 +42,55 @@ public class HealerBehavior : MonoBehaviour
             index = 0;
             Scan();
         } 
-        else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) <= healRadius)
+        else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) <= healRadius + 10)
         {
-            if(Vector3.Distance(healTarget.transform.position, transform.position) > 20)
+            if(Vector3.Distance(healTarget.transform.position, transform.position) > 10)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, healTarget.transform.position, healerSpeed * Time.deltaTime));
             }
             transform.LookAt(healTarget.transform.position);
             transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
-            healLine.SetPosition(0, transform.position);
-            healLine.SetPosition(1, healTarget.transform.position);
+            healLine.SetPosition(0, new Vector3(transform.position.x, 1, transform.position.z));
+            healLine.SetPosition(1, new Vector3(healTarget.transform.position.x, 1, healTarget.transform.position.z));
             if(canHeal)
                 StartCoroutine("Heal");
         } 
-        if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        
+        if (currentState == HealerState.Return && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        {
+            currentState = HealerState.Sleep;
+        }
+        else if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = HealerState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, healerSpeed/2 * Time.deltaTime));
-        }
-        else if (currentState == HealerState.Return && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
-        {
-            currentState = HealerState.Sleep;
         }
         else if (currentState == HealerState.Flee)
         {
             if(isFleeing == false)
             {
-                vectorToPlayer = player.transform.position - transform.position ;
-                test.transform.position = vectorToPlayer ;
+                randomNumber = Random.Range(1,4);
+                vectorToPlayer = player.transform.position;
                 isFleeing = true;
             }
-            rb.MovePosition(Vector3.MoveTowards(transform.position, -(vectorToPlayer), healerSpeed * Time.deltaTime));
+            if(randomNumber == 1)
+            {
+                rb.MovePosition(Vector3.MoveTowards(transform.position, vectorToPlayer, -healerSpeed * Time.deltaTime));
+                transform.LookAt(vectorToPlayer);
+                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+            }
+            else if(randomNumber == 2)
+            {
+                rb.MovePosition(Vector3.MoveTowards(transform.position, Quaternion.Euler(0,45,0) * vectorToPlayer, -healerSpeed * Time.deltaTime));
+                transform.LookAt(Quaternion.Euler(0,45,0) * vectorToPlayer);
+                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+            }
+            else if(randomNumber == 3)
+            {
+                rb.MovePosition(Vector3.MoveTowards(transform.position, Quaternion.Euler(0,-5,0) * vectorToPlayer, -healerSpeed * Time.deltaTime));
+                transform.LookAt(Quaternion.Euler(0,-5,0) * vectorToPlayer); 
+                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+            }
         }
 
         if(healTarget != null)
@@ -101,6 +119,16 @@ public class HealerBehavior : MonoBehaviour
         }
     }
     
+    void Update() 
+    {
+        if(currentState == HealerState.Dead)
+        {
+            GetComponent<CapsuleCollider>().enabled = false;
+            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            StartCoroutine("Respawn");
+        }
+    }
     IEnumerator Heal()
     {
         canHeal = false;
@@ -112,6 +140,16 @@ public class HealerBehavior : MonoBehaviour
         canHeal = true;
     }
 
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(5f);
+        transform.position = homePosition;
+        GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
+        currentState = HealerState.Sleep;
+        GetComponent<CapsuleCollider>().enabled = true;
+        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
+    }
     void Scan()
     {
         enemies = Physics.OverlapSphere(homePosition, healRadius, enemyToHealLayer);
@@ -122,6 +160,14 @@ public class HealerBehavior : MonoBehaviour
         else
         {
             currentState = HealerState.Flee;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.tag == "Wall" && currentState == HealerState.Flee)
+        {
+            currentState = HealerState.Dead;
         }
     }
 }

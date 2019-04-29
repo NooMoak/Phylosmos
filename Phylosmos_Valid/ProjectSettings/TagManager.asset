@@ -15,6 +15,7 @@ TagManager:
   - Rock
   - Liana
   - NPC
+  - Wall
   layers:
   - Default
   - TransparentFX
