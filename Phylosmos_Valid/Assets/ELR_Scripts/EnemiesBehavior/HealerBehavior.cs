@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum HealerState
     {
-        Sleep, Heal, Flee, Dead
+        Sleep, Heal, Return, Flee, Dead
     }
 public class HealerBehavior : MonoBehaviour
 {
@@ -19,6 +19,11 @@ public class HealerBehavior : MonoBehaviour
     bool canHeal = true;
     LineRenderer healLine;
     LayerMask enemyToHealLayer;
+    Vector3 vectorToPlayer;
+    bool isFleeing = false;
+    int index;
+    Collider[] enemies;
+    public GameObject test;
     // Use this for initialization
     void Start()
     {
@@ -32,12 +37,10 @@ public class HealerBehavior : MonoBehaviour
 
     void FixedUpdate() 
     {
-        if(currentState == HealerState.Sleep && Vector3.Distance(player.transform.position, homePosition) <= healRadius){
+        if((currentState == HealerState.Sleep || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) <= healRadius){
             currentState = HealerState.Heal;
-            Collider[] enemies = Physics.OverlapSphere(homePosition, healRadius, enemyToHealLayer);
-            healTarget = enemies[0].gameObject;
-            if(enemies[0] == null)
-                currentState = HealerState.Flee;
+            index = 0;
+            Scan();
         } 
         else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) <= healRadius)
         {
@@ -52,26 +55,42 @@ public class HealerBehavior : MonoBehaviour
             if(canHeal)
                 StartCoroutine("Heal");
         } 
-        else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) > healRadius && Vector3.Distance(homePosition, transform.position) > 0)
+        if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
         {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, healerSpeed * Time.deltaTime));
+            currentState = HealerState.Return;
+            rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, healerSpeed/2 * Time.deltaTime));
         }
-        else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) > healRadius && Vector3.Distance(homePosition, transform.position) == 0)
+        else if (currentState == HealerState.Return && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = HealerState.Sleep;
         }
         else if (currentState == HealerState.Flee)
         {
-            Vector3 vectorToPlayer = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
-            rb.MovePosition(transform.position + -vectorToPlayer * healerSpeed);
+            if(isFleeing == false)
+            {
+                vectorToPlayer = player.transform.position - transform.position ;
+                test.transform.position = vectorToPlayer ;
+                isFleeing = true;
+            }
+            rb.MovePosition(Vector3.MoveTowards(transform.position, -(vectorToPlayer), healerSpeed * Time.deltaTime));
         }
+
         if(healTarget != null)
         {
-            if((healTarget.tag == "Spike" && healTarget.GetComponent<SpikeBehavior>().currentState == SpikeState.Dead) || (healTarget.tag == "Liana" && healTarget.GetComponent<LianaBehavior>().currentState == LianaState.Dead) || (healTarget.tag == "Healer" && healTarget.GetComponent<HealerBehavior>().currentState == HealerState.Dead) || healTarget.tag == "Rock" && healTarget.GetComponent<RockBehavior>().currentState == RockState.Dead)
+            if((healTarget.tag == "Spike" && healTarget.GetComponent<SpikeBehavior>().currentState == SpikeState.Dead) || (healTarget.tag == "Liana" && healTarget.GetComponent<LianaBehavior>().currentState == LianaState.Dead) || healTarget.tag == "Rock" && healTarget.GetComponent<RockBehavior>().currentState == RockState.Dead)
             {
-                currentState = HealerState.Sleep;
+                if(index < enemies.Length - 1)
+                {
+                    index += 1;
+                    healTarget = enemies[index].gameObject;
+                }
+                else 
+                {
+                    currentState = HealerState.Flee;
+                }
             }
         }
+
         if(currentState == HealerState.Heal)
         {
             healLine.enabled = true;
@@ -91,5 +110,18 @@ public class HealerBehavior : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         canHeal = true;
+    }
+
+    void Scan()
+    {
+        enemies = Physics.OverlapSphere(homePosition, healRadius, enemyToHealLayer);
+        if(enemies.Length > 0)
+        {
+            healTarget = enemies[0].gameObject;
+        }
+        else
+        {
+            currentState = HealerState.Flee;
+        }
     }
 }

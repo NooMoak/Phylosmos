@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SpikeState
     {
-        Sleep, Fight, Dead
+        Sleep, Fight, Return, Dead
     }
 public class SpikeBehavior : MonoBehaviour
 {
@@ -34,7 +34,7 @@ public class SpikeBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(currentState == SpikeState.Sleep && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
+        if((currentState == SpikeState.Sleep || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
         {
             currentState = SpikeState.Fight;
         }
@@ -59,11 +59,12 @@ public class SpikeBehavior : MonoBehaviour
                 MoveToSpot(targetR.transform.position);
             }
         }
-        else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 0)
+        if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
         {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, spikeSpeed * Time.deltaTime));
+            currentState = SpikeState.Return;
+            rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, spikeSpeed/2 * Time.deltaTime));
         }
-        else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) == 0)
+        else if (currentState == SpikeState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = SpikeState.Sleep;
         }
