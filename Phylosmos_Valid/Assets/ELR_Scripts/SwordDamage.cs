@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordDamage : MonoBehaviour
 {
-    [SerializeField] float damage;
+    [SerializeField] int damage;
 	PlayerController giveAbility;
 
     private void OnTriggerEnter(Collider collision)
@@ -19,6 +19,7 @@ public class SwordDamage : MonoBehaviour
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.lianaCharge < 3)
 				giveAbility.lianaCharge += 1;
+            hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag ("Spike"))
         {
@@ -26,6 +27,7 @@ public class SwordDamage : MonoBehaviour
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.spikeCharge < 3)
 				giveAbility.spikeCharge += 1;
+            hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag ("Healer"))
         {
@@ -33,6 +35,7 @@ public class SwordDamage : MonoBehaviour
             giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.healerCharge < 3)
 			    giveAbility.healerCharge += 1;
+            hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag ("Rock"))
         {
@@ -40,6 +43,7 @@ public class SwordDamage : MonoBehaviour
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.rockCharge < 3)
 				giveAbility.rockCharge += 1;
+            hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
     }
 

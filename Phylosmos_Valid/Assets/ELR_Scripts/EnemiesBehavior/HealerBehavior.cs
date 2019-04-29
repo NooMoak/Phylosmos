@@ -135,7 +135,7 @@ public class HealerBehavior : MonoBehaviour
         canHeal = false;
         if(healTarget.GetComponent<EnemyLife>().health < healTarget.GetComponent<EnemyLife>().maxHealth ) 
         {
-            healTarget.GetComponent<SpikeEnemy>().health += 2;
+            healTarget.GetComponent<EnemyLife>().health += 2;
         }
         yield return new WaitForSeconds(0.5f);
         canHeal = true;

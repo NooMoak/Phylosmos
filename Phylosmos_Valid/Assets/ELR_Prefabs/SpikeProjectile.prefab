@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4232910930452892}
   - component: {fileID: 65831539392644846}
   - component: {fileID: 54616507079059722}
-  - component: {fileID: 114062858649899166}
+  - component: {fileID: 1500873110548253257}
   m_Layer: 0
   m_Name: SpikeProjectile
   m_TagString: SpikeProjectile
@@ -63,7 +63,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &114062858649899166
+--- !u!114 &1500873110548253257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781578725574190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ac303f41d98794d89aaff59bbb5f84, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fb4529fccb99ce4d9ea007f4984be76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1942910210573686

@@ -5,12 +5,36 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		Destroy(this.gameObject, 3f);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnTriggerEnter(Collider collision) 
+	{
+		if (collision.gameObject.CompareTag ("Liana"))
+        {
+            GameObject hit = collision.gameObject;
+            hit.GetComponent<EnemyLife>().TakeDamage(1);
+			Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag ("Spike"))
+        {
+            GameObject hit = collision.gameObject;
+            hit.GetComponent<EnemyLife>().TakeDamage(1);
+			Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag ("Healer"))
+        {
+            GameObject hit = collision.gameObject;
+            hit.GetComponent<EnemyLife>().TakeDamage(1);
+			Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag ("Rock"))
+        {
+            GameObject hit = collision.gameObject;
+            hit.GetComponent<EnemyLife>().TakeDamage(1);
+			Destroy(this.gameObject);
+        }
 	}
 }

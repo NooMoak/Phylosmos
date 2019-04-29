@@ -18,14 +18,14 @@ public class EnemyLife : MonoBehaviour
     void Update()
     {
         healthBar.transform.rotation = Quaternion.Euler(0,-45,-30);
-        healthBar.transform.localScale = new Vector3(5, 15, health);
+        healthBar.transform.localScale = new Vector3(0.5f, 1, health);
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if(invicible == false)
         {
-            health -= maxHealth;
+            health -= damage;
             CheckHealth();
         }
     }

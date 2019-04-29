@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 212147354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 6}
   m_Children: []
   m_Father: {fileID: 505543953}
   m_RootOrder: 1
@@ -171,10 +171,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.5
-  m_Height: 8.2
+  m_Radius: 3
+  m_Height: 10
   m_Direction: 2
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &505543955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  fightRadius: 30
+  fightRadius: 50
   spikeSpeed: 10
   spikeProjectile: {fileID: 1781578725574190, guid: 788dbc1200d748549adbedd6d2a441ad,
     type: 3}
@@ -202,12 +202,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505543952}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f459bfe368ce0fa4481f47bce9f38d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 6
   health: 0
   healthBar: {fileID: 212147354}
 --- !u!1 &1455546406

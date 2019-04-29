@@ -140,10 +140,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 5
+  m_Radius: 3
+  m_Height: 8
   m_Direction: 1
-  m_Center: {x: 0.5, y: 2.3, z: 0.08}
+  m_Center: {x: 0.5, y: 4, z: 0.08}
 --- !u!114 &8988991307136054883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  healRadius: 40
+  healRadius: 50
   healerSpeed: 20
 --- !u!114 &6420048768783363927
 MonoBehaviour:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5190921457001514239}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f459bfe368ce0fa4481f47bce9f38d2c, type: 3}
   m_Name: 
@@ -296,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 6671620438522858201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 5.5, z: 0}
-  m_LocalScale: {x: 0.13499999, y: 0.405, z: 4.0499997}
+  m_LocalScale: {x: 0.5, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 374648830027541038}
   m_RootOrder: 1
