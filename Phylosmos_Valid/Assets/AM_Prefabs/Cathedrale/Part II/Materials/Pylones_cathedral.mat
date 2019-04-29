@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pylones
+  m_Name: Pylones_cathedral
   m_Shader: {fileID: 4800000, guid: 8b2f353da1dd05244a7bee1562a2306a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -81,7 +81,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighlightCellOffset: -0.5
+    - _HighlightCellOffset: -0.93
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 0.851
     - _IndirectSpecularContribution: 1

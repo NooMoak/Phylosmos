@@ -14,7 +14,37 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Vaisseau Low
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ailes
+    second: {fileID: 2100000, guid: f449a7706974e884fa5c331ff3994aed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base Inf+ aileron
+    second: {fileID: 2100000, guid: 2e4316483a35de24a865bc006e053d33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base_
+    second: {fileID: 2100000, guid: b308ab7effc62f44096fdb5a09c7c916, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reacteurs
+    second: {fileID: 2100000, guid: 2d633f82e85b9374fb68f471f96d5b51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stabilisateurs
+    second: {fileID: 2100000, guid: e9deaa83a9068cd43adfe922cad8ecec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vitre
+    second: {fileID: 2100000, guid: 3871a58d75473024a9f66b058a0534b9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
