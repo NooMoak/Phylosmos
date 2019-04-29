@@ -38,7 +38,7 @@ Material:
     m_Floats:
     - _BaseCellOffset: 0
     - _BaseCellSharpness: 0.01
-    - _HighlightCellOffset: -0.95
+    - _HighlightCellOffset: -0.99
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
