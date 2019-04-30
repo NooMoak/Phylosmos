@@ -24,12 +24,14 @@ public class HealerBehavior : MonoBehaviour
     int index;
     Collider[] enemies;
     int randomNumber;
+    Animator anim;
     // Use this for initialization
     void Start()
     {
         healLine = GetComponent<LineRenderer>();
         currentState = HealerState.Sleep;
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
         homePosition = transform.position;
         enemyToHealLayer = LayerMask.GetMask("EnemyToHeal");
@@ -47,6 +49,7 @@ public class HealerBehavior : MonoBehaviour
             if(Vector3.Distance(healTarget.transform.position, transform.position) > 10)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, healTarget.transform.position, healerSpeed * Time.deltaTime));
+                anim.SetBool("IsWalking", true);
             }
             transform.LookAt(healTarget.transform.position);
             transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
@@ -59,11 +62,13 @@ public class HealerBehavior : MonoBehaviour
         if (currentState == HealerState.Return && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = HealerState.Sleep;
+            anim.SetBool("IsWalking", false);
         }
         else if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = HealerState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, healerSpeed/2 * Time.deltaTime));
+            anim.SetBool("IsWalking", true);
         }
         else if (currentState == HealerState.Flee)
         {
@@ -71,6 +76,8 @@ public class HealerBehavior : MonoBehaviour
             {
                 randomNumber = Random.Range(1,4);
                 vectorToPlayer = player.transform.position;
+                anim.SetBool("IsWalking", true);
+                anim.SetBool("IsHealing", false);
                 isFleeing = true;
             }
             if(randomNumber == 1)
@@ -124,8 +131,11 @@ public class HealerBehavior : MonoBehaviour
         if(currentState == HealerState.Dead)
         {
             GetComponent<CapsuleCollider>().enabled = false;
-            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            anim.SetBool("IsWalking", false);
+            anim.SetBool("IsHealing", false);
+            isFleeing = false;
             if(Vector3.Distance(player.transform.position, homePosition) < 100 && Vector3.Distance(player.transform.position, homePosition) > 90)
                 StartCoroutine("Respawn");
         }
@@ -133,11 +143,13 @@ public class HealerBehavior : MonoBehaviour
     IEnumerator Heal()
     {
         canHeal = false;
+        anim.SetBool("IsHealing", true);
         if(healTarget.GetComponent<EnemyLife>().health < healTarget.GetComponent<EnemyLife>().maxHealth ) 
         {
             healTarget.GetComponent<EnemyLife>().health += 1;
         }
         yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsWalking", false);
         canHeal = true;
     }
 
@@ -148,7 +160,7 @@ public class HealerBehavior : MonoBehaviour
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = HealerState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
-        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
     }
     void Scan()

@@ -21,6 +21,7 @@ public class SpikeBehavior : MonoBehaviour
     bool canShoot = true;
     int randomNumber;
     float timer = 0f;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class SpikeBehavior : MonoBehaviour
         homePosition = transform.position;
         player = GameObject.FindWithTag("Player");
 		rb = GetComponent<Rigidbody>(); 
+        anim = GetComponentInChildren<Animator>();
         randomNumber = Random.Range(1,5);
     }
 
@@ -36,8 +38,9 @@ public class SpikeBehavior : MonoBehaviour
         if(currentState == SpikeState.Dead)
         {
             GetComponent<CapsuleCollider>().enabled = false;
-            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            anim.SetBool("IsWalking", false);
             if(Vector3.Distance(player.transform.position, homePosition) < 100 && Vector3.Distance(player.transform.position, homePosition) > 90)
                 StartCoroutine("Respawn");
         }
@@ -54,11 +57,13 @@ public class SpikeBehavior : MonoBehaviour
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, spikeSpeed * Time.deltaTime));
             transform.LookAt(player.transform.position);
             transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            anim.SetBool("IsWalking", true);
         }
         else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 10)
         {
             transform.LookAt(player.transform.position);
             transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            anim.SetBool("IsWalking", false);
             if(canShoot && randomNumber == 1 || canShoot && randomNumber == 2){
                 StartCoroutine(SpikeShoot());
             }
@@ -79,14 +84,15 @@ public class SpikeBehavior : MonoBehaviour
         else if (currentState == SpikeState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = SpikeState.Sleep;
+            anim.SetBool("IsWalking", false);
         }
     }
 
     private IEnumerator SpikeShoot()
     {
 		canShoot = false;
-
-        yield return new WaitForSeconds(0.2f);
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.35f);
 
         GameObject clone1;
         GameObject clone2;
@@ -117,11 +123,13 @@ public class SpikeBehavior : MonoBehaviour
         {
             Vector3 temp = Vector3.MoveTowards(transform.position, spot, spikeSpeed * Time.deltaTime);
             rb.MovePosition(temp);
+            anim.SetBool("IsWalking", true);
             timer += Time.deltaTime;
         } 
         else 
         {
             randomNumber = Random.Range(1,5);
+            anim.SetBool("IsWalking", false);
             timer = 0f;
         }
     }
@@ -133,7 +141,7 @@ public class SpikeBehavior : MonoBehaviour
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = SpikeState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
-        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
     }
 }

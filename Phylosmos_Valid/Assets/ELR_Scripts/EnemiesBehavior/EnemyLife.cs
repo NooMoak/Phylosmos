@@ -8,10 +8,12 @@ public class EnemyLife : MonoBehaviour
     public int health;
     bool invicible;
     [SerializeField] GameObject healthBar;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class EnemyLife : MonoBehaviour
         if(invicible == false)
         {
             health -= damage;
+            anim.SetTrigger("Hurt");
             CheckHealth();
         }
     }
