@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerState
     {
-        Idle,Walk,Attack,Interact, Stagger, Dead
+        Idle,Walk,Attack,Ability,Interact, Stagger, Dead
     }
 public enum StolenAbility
     {
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         //Rifle Shoot
         if (Input.GetButton ("Fire1"))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability && canShoot)
             {
                 if(bulletFired < 10)
                 {
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         //Ability Launch
         if (Input.GetKeyDown (KeyCode.E))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && abilityReady)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability && abilityReady)
             {
                 StartCoroutine(LaunchAbility());
             }
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle || currentState == PlayerState.Attack )
         {
             if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
-                look = hit.point - transform.position;
+                look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
                 transform.rotation = Quaternion.LookRotation (look);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
@@ -265,16 +265,22 @@ public class PlayerController : MonoBehaviour
         if(currentAbility != StolenAbility.None)
         {
             abilityReady = false;
-            currentState = PlayerState.Attack;
+            currentState = PlayerState.Ability;
             yield return null;
             if(currentAbility == StolenAbility.Liana && lianaCharge > 0)
             {
                 lianaCharge -= 1;
             }
-            if(currentAbility == StolenAbility.Spike && spikeCharge > 0)
+            else if(currentAbility == StolenAbility.Spike && spikeCharge > 0)
             {
+                if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
+                {
+                    look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
+                    transform.rotation = Quaternion.LookRotation (look);
+                    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                }
                 GetComponent<LineRenderer>().enabled = true;
-                if(Input.GetButton("Fire1")){
+                if(Input.GetButtonDown("Fire1")){
                     GameObject clone;
                     clone = Instantiate(sniperBullet, transform.position + new Vector3(0,5,0), transform.rotation);
                     clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
@@ -286,7 +292,7 @@ public class PlayerController : MonoBehaviour
                     spikeCharge -= 1;
                     yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
-                    StartCoroutine("AbilityCooldown");
+                    abilityReady = true;
                     StopCoroutine(LaunchAbility());
                 } 
                 else if (Input.GetKeyDown(KeyCode.E))
@@ -301,7 +307,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(LaunchAbility());
                 }
             }
-            if(currentAbility == StolenAbility.Rock && rockCharge > 0)
+            else if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
@@ -316,10 +322,10 @@ public class PlayerController : MonoBehaviour
                 rockCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
-                StartCoroutine("AbilityCooldown");
+                abilityReady = true;
                 StopCoroutine(LaunchAbility());
             }
-            if(currentAbility == StolenAbility.Healer && healerCharge > 0)
+            else if(currentAbility == StolenAbility.Healer && healerCharge > 0)
             {
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
@@ -327,37 +333,15 @@ public class PlayerController : MonoBehaviour
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
-                StartCoroutine("AbilityCooldown");
+                abilityReady = true;
                 StopCoroutine(LaunchAbility());
             }
-            else 
+            else
             {
                 abilityReady = true;
                 currentState = PlayerState.Idle;
             }
         }
-    }
-
-    IEnumerator AbilityCooldown()
-    {
-        yield return new WaitForSeconds(5f);
-        abilityReady = true;
-        if(currentAbility == StolenAbility.Liana)
-            {
-
-            }
-            if(currentAbility == StolenAbility.Spike)
-            {
-                abilityIcon.sprite = spikeIcon;
-            }
-            if(currentAbility == StolenAbility.Rock)
-            {
-                abilityIcon.sprite = rockIcon;
-            }
-            if(currentAbility == StolenAbility.Healer)
-            {
-                abilityIcon.sprite = healerIcon;
-            }
     }
 
     IEnumerator Reload()
