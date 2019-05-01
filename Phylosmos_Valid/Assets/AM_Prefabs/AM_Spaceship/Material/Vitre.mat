@@ -81,10 +81,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighlightCellOffset: -0.96
+    - _HighlightCellOffset: -0.957
     - _HighlightCellSharpness: 1
     - _IndirectDiffuseContribution: 1
-    - _IndirectSpecularContribution: 0.63
+    - _IndirectSpecularContribution: 0.821
     - _LightSmoothness: 0.28
     - _LightThreshold: 0.26
     - _MKEditorShowDetailBehavior: 0
@@ -107,8 +107,8 @@ Material:
     - _OutlineWidth: 0.02
     - _Parallax: 0.02
     - _RimIntensity: 0.5
-    - _RimOffset: 0.6
-    - _RimPower: 0.4
+    - _RimOffset: 0.436
+    - _RimPower: 1
     - _RimSize: 1.5
     - _RimSmoothness: 0.5
     - _ShadowContribution: 0.5

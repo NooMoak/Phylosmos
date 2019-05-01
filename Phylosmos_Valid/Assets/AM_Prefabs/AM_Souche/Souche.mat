@@ -91,8 +91,8 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.02
     - _Parallax: 0.02
-    - _RimOffset: 0.6
-    - _RimPower: 0.4
+    - _RimOffset: 1
+    - _RimPower: 0.402
     - _ShadowContribution: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

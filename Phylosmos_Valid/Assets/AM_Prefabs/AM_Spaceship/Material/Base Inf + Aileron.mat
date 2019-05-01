@@ -107,8 +107,8 @@ Material:
     - _OutlineWidth: 0.02
     - _Parallax: 0.02
     - _RimIntensity: 0.5
-    - _RimOffset: 0.6
-    - _RimPower: 0.4
+    - _RimOffset: 0.632
+    - _RimPower: 0.575
     - _RimSize: 1.5
     - _RimSmoothness: 0.5
     - _ShadowContribution: 0.5
