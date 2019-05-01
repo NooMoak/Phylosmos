@@ -5525,8 +5525,8 @@ MonoBehaviour:
   magazineText: {fileID: 0}
   sniperBullet: {fileID: 1791254068669116, guid: 714d97495063bf54f96dd042f3fd3be4,
     type: 3}
-  rockPowerRadius: 25
-  rockPowerForce: 2000
+  rockPowerRadius: 35
+  rockPowerForce: 200
   lianaCharge: 0
   spikeCharge: 0
   rockCharge: 0
@@ -5571,7 +5571,7 @@ Rigidbody:
   m_GameObject: {fileID: 1706824408}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0

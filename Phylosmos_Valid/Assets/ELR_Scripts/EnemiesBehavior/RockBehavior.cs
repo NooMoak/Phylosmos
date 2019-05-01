@@ -17,6 +17,8 @@ public class RockBehavior : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] GameObject targetRotation;
     Vector3 homePosition;
+    Vector3 sight;
+    float fieldOfShield = 180f;
     Rigidbody rb;
     bool canShockWave = true;
     Animator anim;
@@ -33,12 +35,22 @@ public class RockBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sight = transform.rotation.eulerAngles;
+        Vector3 direction = player.transform.position - transform.position;
+        float angle = Vector3.Angle(direction, sight);
+        if(angle < fieldOfShield * 0.5f){
+            GetComponent<EnemyLife>().invicible = false;
+        } else 
+        {
+            GetComponent<EnemyLife>().invicible = true;
+        }
+
         if(currentState == RockState.Dead)
         {
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-            anim.SetBool("IsWalking", false);
+            //anim.SetBool("IsWalking", false);
             if(Vector3.Distance(player.transform.position, homePosition) < 100 && Vector3.Distance(player.transform.position, homePosition) > 90)
                 StartCoroutine("Respawn");
         }
@@ -55,14 +67,14 @@ public class RockBehavior : MonoBehaviour
             targetRotation.transform.LookAt(player.transform.position);
             targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
-            anim.SetBool("IsWalking", true);
+            //anim.SetBool("IsWalking", true);
         }
         else if (currentState == RockState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 20)
         {
             targetRotation.transform.LookAt(player.transform.position);
             targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
-            anim.SetBool("IsWalking", false);
+            //anim.SetBool("IsWalking", false);
             if(canShockWave == true)
             {
                 StartCoroutine("ShockWave");
@@ -76,7 +88,7 @@ public class RockBehavior : MonoBehaviour
         else if (currentState == RockState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = RockState.Sleep;
-            anim.SetBool("IsWalking", false);
+            //anim.SetBool("IsWalking", false);
         }
     
     }
@@ -93,7 +105,7 @@ public class RockBehavior : MonoBehaviour
             
             if(hitRb == player.GetComponent<Rigidbody>())
             {
-                hitRb.AddExplosionForce(rockForce, explosionPos, rockRadius);
+                hitRb.AddForce(-(transform.position - player.transform.position) * rockForce);
             }
         }
         yield return new WaitForSeconds(5);

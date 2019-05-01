@@ -6,7 +6,7 @@ public class EnemyLife : MonoBehaviour
 {
     public int maxHealth;
     public int health;
-    bool invicible;
+    public bool invicible;
     [SerializeField] GameObject healthBar;
     Animator anim;
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class EnemyLife : MonoBehaviour
 
     void CheckHealth()
     {
-        if(health == 0)
+        if(health < 1)
         {
             if(gameObject.tag == "Spike")
             {

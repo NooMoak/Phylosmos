@@ -2117,10 +2117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2812999875853440679}
-  - component: {fileID: 4173229762459194621}
-  - component: {fileID: 3732603400370920854}
   - component: {fileID: 6968035623367855658}
   - component: {fileID: 1709497801568630659}
+  - component: {fileID: 4173229762459194621}
+  - component: {fileID: 3732603400370920854}
   m_Layer: 10
   m_Name: ELR_NewRock2.0
   m_TagString: Rock
@@ -2145,40 +2145,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4173229762459194621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868758019579554725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09fccff8a75d19547b4603ab1e4748a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  fightRadius: 50
-  rockSpeed: 5
-  rockForce: 50
-  rockRadius: 35
-  rotateSpeed: 20
-  targetRotation: {fileID: 2734692242802644136}
---- !u!114 &3732603400370920854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868758019579554725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f459bfe368ce0fa4481f47bce9f38d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 6
-  health: 0
-  healthBar: {fileID: 2701612726744771967}
 --- !u!54 &6968035623367855658
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2188,7 +2154,7 @@ Rigidbody:
   m_GameObject: {fileID: 5868758019579554725}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2209,3 +2175,38 @@ CapsuleCollider:
   m_Height: 18
   m_Direction: 1
   m_Center: {x: -2, y: 9, z: 0}
+--- !u!114 &4173229762459194621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868758019579554725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fccff8a75d19547b4603ab1e4748a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  fightRadius: 50
+  rockSpeed: 5
+  rockForce: 200
+  rockRadius: 35
+  rotateSpeed: 40
+  targetRotation: {fileID: 2734692242802644136}
+--- !u!114 &3732603400370920854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868758019579554725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f459bfe368ce0fa4481f47bce9f38d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  health: 0
+  invicible: 0
+  healthBar: {fileID: 2701612726744771967}

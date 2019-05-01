@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
                     
                     if(hitRb != null && hitRb != rb)
-                        hitRb.AddExplosionForce(rockPowerForce, explosionPos, rockPowerRadius);
+                        hitRb.AddForce(-(transform.position - hitRb.gameObject.transform.position) * rockPowerForce);
                 }
                 abilityIcon.sprite = rockCDIcon;
                 rockCharge -= 1;
