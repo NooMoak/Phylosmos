@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
             }
             else if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
-                Vector3 explosionPos = transform.position;
+                Vector3 explosionPos = transform.position + new Vector3(0,5,0);
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 foreach(Collider hit in colliders)
                 {

@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 87cd6ab4e73b7a24e9018928157b9caf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: arm_ik_D
+    100002: arm_ik_G
+    100004: Armature.003
+    100006: Bone
+    100008: Bone.001
+    100010: Bone.001_end
+    100012: Bone.002
+    100014: Bone.003
+    100016: Bone.003_end
+    100018: Bone.004
+    100020: Bone.005
+    100022: Bone.005_end
+    100024: Bone.006
+    100026: Bone.007
+    100028: Bone.007_end
+    100030: Bone.008
+    100032: Bone.009
+    100034: Bone.009_end
+    100036: Bone.010
+    100038: Bone.011
+    100040: Bone.011_end
+    100042: Bone.012
+    100044: Bone.013
+    100046: Bone.013_end
+    100048: Bone.014
+    100050: Bone.015
+    100052: Bone.015_end
+    100054: Bone.016
+    100056: Bone.017
+    100058: Bone.017_end
+    100060: Bone.018
+    100062: Bone.019
+    100064: Bone.019_end
+    100066: Bone.020
+    100068: Bone.021
+    100070: Bone.022
+    100072: Bone.022_end
+    100074: Bone.023
+    100076: Bone.023_end
+    100078: Bone.024
+    100080: Bone.025
+    100082: Bone.025_end
+    100084: Bone.026
+    100086: Bone.027
+    100088: Bone.027_end
+    100090: Camera
+    100092: coude_pole_D
+    100094: coude_pole_D_end
+    100096: coude_pole_G
+    100098: coude_pole_G_end
+    100100: Cube.001
+    100102: foot_ik_D
+    100104: foot_ik_G
+    100106: hanche_Ik_D
+    100108: hanche_Ik_D_end
+    100110: hanche_ik_G
+    100112: hanche_ik_G_end
+    100114: knee_pole_D
+    100116: knee_pole_D_end
+    100118: knee_pole_G
+    100120: knee_pole_G_end
+    100122: Lamp
+    100124: //RootNode
+    400000: arm_ik_D
+    400002: arm_ik_G
+    400004: Armature.003
+    400006: Bone
+    400008: Bone.001
+    400010: Bone.001_end
+    400012: Bone.002
+    400014: Bone.003
+    400016: Bone.003_end
+    400018: Bone.004
+    400020: Bone.005
+    400022: Bone.005_end
+    400024: Bone.006
+    400026: Bone.007
+    400028: Bone.007_end
+    400030: Bone.008
+    400032: Bone.009
+    400034: Bone.009_end
+    400036: Bone.010
+    400038: Bone.011
+    400040: Bone.011_end
+    400042: Bone.012
+    400044: Bone.013
+    400046: Bone.013_end
+    400048: Bone.014
+    400050: Bone.015
+    400052: Bone.015_end
+    400054: Bone.016
+    400056: Bone.017
+    400058: Bone.017_end
+    400060: Bone.018
+    400062: Bone.019
+    400064: Bone.019_end
+    400066: Bone.020
+    400068: Bone.021
+    400070: Bone.022
+    400072: Bone.022_end
+    400074: Bone.023
+    400076: Bone.023_end
+    400078: Bone.024
+    400080: Bone.025
+    400082: Bone.025_end
+    400084: Bone.026
+    400086: Bone.027
+    400088: Bone.027_end
+    400090: Camera
+    400092: coude_pole_D
+    400094: coude_pole_D_end
+    400096: coude_pole_G
+    400098: coude_pole_G_end
+    400100: Cube.001
+    400102: foot_ik_D
+    400104: foot_ik_G
+    400106: hanche_Ik_D
+    400108: hanche_Ik_D_end
+    400110: hanche_ik_G
+    400112: hanche_ik_G_end
+    400114: knee_pole_D
+    400116: knee_pole_D_end
+    400118: knee_pole_G
+    400120: knee_pole_G_end
+    400122: Lamp
+    400124: //RootNode
+    2000000: Camera
+    2100000: Material I
+    2100002: 'Material #38'
+    2100004: 'Material #39'
+    4300000: Cube.001
+    9500000: //RootNode
+    10800000: Lamp
+    13700000: Cube.001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
