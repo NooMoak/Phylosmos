@@ -41,6 +41,7 @@ public class HealerBehavior : MonoBehaviour
     {
         if((currentState == HealerState.Sleep || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) <= healRadius){
             currentState = HealerState.Heal;
+            anim.SetFloat("StateSpeed", 1f); 
             index = 0;
             Scan();
         } 
@@ -59,16 +60,17 @@ public class HealerBehavior : MonoBehaviour
                 StartCoroutine("Heal");
         } 
         
-        if (currentState == HealerState.Return && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        if (currentState == HealerState.Return && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = HealerState.Sleep;
             anim.SetBool("IsWalking", false);
         }
-        else if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        else if ((currentState == HealerState.Heal || currentState == HealerState.Return) && Vector3.Distance(player.transform.position, homePosition) > healRadius && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = HealerState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, healerSpeed/2 * Time.deltaTime));
             anim.SetBool("IsWalking", true);
+            anim.SetFloat("StateSpeed", -0.5f); 
         }
         else if (currentState == HealerState.Flee)
         {

@@ -90,9 +90,9 @@ GameObject:
   - component: {fileID: 9169128595121153104}
   - component: {fileID: 7727062019622263195}
   - component: {fileID: 8577989738436935503}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ELR_NewLiana2.0
-  m_TagString: Untagged
+  m_TagString: Liana
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5309981765221769577}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 215, y: 0.1, z: -264.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -159,7 +159,7 @@ MonoBehaviour:
   fightRadius: 50
   lianaSpeed: 15
   grab: {fileID: 7401379680880916875, guid: 2b7d878aff337de4b8e2e6644b58a791, type: 3}
-  grabSpeed: 300
+  grabSpeed: 200
 --- !u!114 &8577989738436935503
 MonoBehaviour:
   m_ObjectHideFlags: 0

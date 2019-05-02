@@ -1225,7 +1225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482250520}
   m_LocalRotation: {x: 0.27289835, y: -0.72724295, z: 0.5296176, w: 0.340807}
-  m_LocalPosition: {x: 17.47, y: 8.3, z: -2.71}
+  m_LocalPosition: {x: 21.4, y: 5.1, z: 1.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1324242522}
@@ -2085,6 +2085,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5fb6b0c83024b4ea6668ea1a5ee40e, type: 3}
+--- !u!1 &1158330550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158330552}
+  - component: {fileID: 1158330551}
+  m_Layer: 0
+  m_Name: WindZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!182 &1158330551
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158330550}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1.56
+  m_WindTurbulence: 2.28
+  m_WindPulseMagnitude: 2.09
+  m_WindPulseFrequency: 0.01
+--- !u!4 &1158330552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158330550}
+  m_LocalRotation: {x: -0, y: -0.6351768, z: -0, w: 0.7723668}
+  m_LocalPosition: {x: -25.5, y: -1.1, z: 31.4}
+  m_LocalScale: {x: 0.82757014, y: 0.82757, z: 0.82757014}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205672051
 GameObject:
   m_ObjectHideFlags: 0

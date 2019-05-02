@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum LianaState
     {
-        Sleep, Fight, Stun, Return, Dead
+        Sleep, Fight, Stun, Flee, Return, Dead
     }
 public class LianaBehavior : MonoBehaviour
 {
@@ -35,6 +35,8 @@ public class LianaBehavior : MonoBehaviour
     {
         if(currentState == LianaState.Dead)
         {
+            StopCoroutine("Grab");
+            StopCoroutine("Stunned");
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
@@ -49,12 +51,12 @@ public class LianaBehavior : MonoBehaviour
         if((currentState == LianaState.Sleep || currentState == LianaState.Return) && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
         {
             currentState = LianaState.Fight;
+            anim.SetFloat("StateSpeed", 1f); 
         }
         else if(currentState == LianaState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 20){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, lianaSpeed * Time.deltaTime));
             transform.LookAt(player.transform.position);
             transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
-            grab.transform.position = transform.position;
             anim.SetBool("IsWalking", true);
         }
         else if (currentState == LianaState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 20 && grabbing == false)
@@ -67,15 +69,24 @@ public class LianaBehavior : MonoBehaviour
                 StartCoroutine("Grab");
             }
         }
-        if ((currentState == LianaState.Fight || currentState == LianaState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        else if (currentState == LianaState.Flee && Vector3.Distance(player.transform.position, transform.position) <= fightRadius && grabbing == false)
+        {
+            rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, -lianaSpeed * 1.5f * Time.deltaTime));
+            transform.LookAt(player.transform.position);
+            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            anim.SetTrigger("Flee");
+        }
+
+        if ((currentState == LianaState.Fight || currentState == LianaState.Return || currentState == LianaState.Flee) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = LianaState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, lianaSpeed/2 * Time.deltaTime));
+            anim.SetFloat("StateSpeed", -0.5f); 
         }
-        else if (currentState == LianaState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        else if (currentState == LianaState.Return && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = LianaState.Sleep;
-            //anim.SetBool("IsWalking", false);
+            anim.SetBool("IsWalking", false);
         }
     
     }
@@ -96,10 +107,6 @@ public class LianaBehavior : MonoBehaviour
         canGrab = true;
     }
 
-    void GrabTravel(Vector3 target)
-    {
-        
-    }
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(1f);
@@ -109,5 +116,17 @@ public class LianaBehavior : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    IEnumerator Stunned()
+    {
+        if(currentState != LianaState.Dead)
+        {
+            currentState = LianaState.Stun;
+            yield return new WaitForSeconds(0.5f);
+            currentState = LianaState.Flee;
+            yield return new WaitForSeconds(1f);
+            currentState = LianaState.Fight;
+        }
     }
 }
