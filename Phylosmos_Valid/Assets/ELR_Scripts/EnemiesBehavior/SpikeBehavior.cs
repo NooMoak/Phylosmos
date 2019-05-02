@@ -52,6 +52,7 @@ public class SpikeBehavior : MonoBehaviour
         if((currentState == SpikeState.Sleep || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
         {
             currentState = SpikeState.Fight;
+            anim.SetFloat("StateSpeed", 1f); 
         }
         else if(currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 10){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, spikeSpeed * Time.deltaTime));
@@ -76,12 +77,13 @@ public class SpikeBehavior : MonoBehaviour
                 MoveToSpot(targetR.transform.position);
             }
         }
-        if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = SpikeState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, spikeSpeed/2 * Time.deltaTime));
+            anim.SetFloat("StateSpeed", -0.5f); 
         }
-        else if (currentState == SpikeState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        else if (currentState == SpikeState.Return && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = SpikeState.Sleep;
             anim.SetBool("IsWalking", false);

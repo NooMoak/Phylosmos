@@ -51,6 +51,7 @@ public class LianaBehavior : MonoBehaviour
         if((currentState == LianaState.Sleep || currentState == LianaState.Return) && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
         {
             currentState = LianaState.Fight;
+            anim.SetFloat("StateSpeed", 1f); 
         }
         else if(currentState == LianaState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 20){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, lianaSpeed * Time.deltaTime));
@@ -76,12 +77,13 @@ public class LianaBehavior : MonoBehaviour
             anim.SetTrigger("Flee");
         }
 
-        if ((currentState == LianaState.Fight || currentState == LianaState.Return || currentState == LianaState.Flee) && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        if ((currentState == LianaState.Fight || currentState == LianaState.Return || currentState == LianaState.Flee) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = LianaState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, lianaSpeed/2 * Time.deltaTime));
+            anim.SetFloat("StateSpeed", -0.5f); 
         }
-        else if (currentState == LianaState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        else if (currentState == LianaState.Return && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = LianaState.Sleep;
             anim.SetBool("IsWalking", false);

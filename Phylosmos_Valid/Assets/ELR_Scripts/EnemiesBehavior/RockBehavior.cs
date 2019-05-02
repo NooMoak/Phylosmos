@@ -36,14 +36,14 @@ public class RockBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sight = transform.rotation.eulerAngles;
+        sight = -transform.right;
         Vector3 direction = player.transform.position - transform.position;
         float angle = Vector3.Angle(direction, sight);
         if(angle < fieldOfShield * 0.5f){
-            GetComponent<EnemyLife>().invicible = false;
+            GetComponent<EnemyLife>().invicible = true;
         } else 
         {
-            GetComponent<EnemyLife>().invicible = true;
+            GetComponent<EnemyLife>().invicible = false;
         }
 
         if(currentState == RockState.Dead)
@@ -62,6 +62,7 @@ public class RockBehavior : MonoBehaviour
         if((currentState == RockState.Sleep || currentState == RockState.Return) && Vector3.Distance(player.transform.position, homePosition) <= fightRadius)
         {
             currentState = RockState.Fight;
+            anim.SetFloat("StateSpeed", 1f); 
         }
         else if(currentState == RockState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 20){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, rockSpeed * Time.deltaTime));
@@ -89,15 +90,16 @@ public class RockBehavior : MonoBehaviour
                 anim.SetBool("IsWalking", true);
             }
         }
-        if ((currentState == RockState.Fight || currentState == RockState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) > 2)
+        if ((currentState == RockState.Fight || currentState == RockState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
         {
             currentState = RockState.Return;
             rb.MovePosition(Vector3.MoveTowards(transform.position, homePosition, rockSpeed/2 * Time.deltaTime));
+            anim.SetFloat("StateSpeed", -0.5f); 
         }
-        else if (currentState == RockState.Return && Vector3.Distance(player.transform.position, homePosition) > fightRadius + 10 && Vector3.Distance(homePosition, transform.position) <= 2)
+        else if (currentState == RockState.Return && Vector3.Distance(homePosition, transform.position) <= 2)
         {
             currentState = RockState.Sleep;
-            anim.SetBool("IsWalking", false);
+            anim.SetBool("IsWalking", false); 
         }
     
     }
