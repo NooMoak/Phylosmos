@@ -5525,9 +5525,11 @@ MonoBehaviour:
   magazineText: {fileID: 0}
   sniperBullet: {fileID: 1791254068669116, guid: 714d97495063bf54f96dd042f3fd3be4,
     type: 3}
+  grab: {fileID: 3823104222144460384, guid: f07dca2cf679f0c4da97b7be23490bcc, type: 3}
+  grabSpeed: 200
   rockPowerRadius: 35
   rockPowerForce: 70
-  lianaCharge: 0
+  lianaCharge: 10
   spikeCharge: 0
   rockCharge: 0
   healerCharge: 0

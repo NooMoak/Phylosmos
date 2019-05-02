@@ -16,6 +16,7 @@ TagManager:
   - Liana
   - NPC
   - Wall
+  - GrabAnchor
   layers:
   - Default
   - TransparentFX
