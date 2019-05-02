@@ -84,7 +84,7 @@ public class FireBossBehavior : MonoBehaviour
 		canShoot = false;
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(0.35f);
-
+        /* 
         GameObject clone1;
         GameObject clone2;
         GameObject clone3;
@@ -106,5 +106,6 @@ public class FireBossBehavior : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		canShoot = true;
         randomNumber = Random.Range(1,5);
+        */
     }
 }
