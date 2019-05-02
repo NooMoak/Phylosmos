@@ -309,14 +309,17 @@ public class PlayerController : MonoBehaviour
             }
             else if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
-                Vector3 explosionPos = transform.position + new Vector3(0,5,0);
+                Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
                     
                     if(hitRb != null && hitRb != rb)
-                        hitRb.AddForce(-(transform.position - hitRb.gameObject.transform.position) * rockPowerForce);
+                    {
+                        float distance = Vector3.Distance(hitRb.transform.position, explosionPos);
+                        hitRb.AddForce(-(transform.position - hitRb.transform.position) * rockPowerForce * ((1/distance) * 100));
+                    }
                 }
                 abilityIcon.sprite = rockCDIcon;
                 rockCharge -= 1;

@@ -1534,7 +1534,7 @@ Animator:
   m_GameObject: {fileID: 1928992049661597957}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 87cd6ab4e73b7a24e9018928157b9caf, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a38843a9c1d08b142ae87cd1f48732f7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2190,7 +2190,7 @@ MonoBehaviour:
   currentState: 0
   fightRadius: 50
   rockSpeed: 5
-  rockForce: 200
+  rockForce: 70
   rockRadius: 35
   rotateSpeed: 40
   targetRotation: {fileID: 2734692242802644136}

@@ -20,6 +20,7 @@ public class SwordDamage : MonoBehaviour
             if(giveAbility.lianaCharge < 3)
 				giveAbility.lianaCharge += 1;
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
+            hit.GetComponent<LianaBehavior>().StartCoroutine("Stunned");
         }
         if (collision.gameObject.CompareTag ("Spike"))
         {
@@ -46,8 +47,4 @@ public class SwordDamage : MonoBehaviour
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
     }
-
-
-
-    
 }

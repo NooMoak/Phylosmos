@@ -5526,7 +5526,7 @@ MonoBehaviour:
   sniperBullet: {fileID: 1791254068669116, guid: 714d97495063bf54f96dd042f3fd3be4,
     type: 3}
   rockPowerRadius: 35
-  rockPowerForce: 200
+  rockPowerForce: 70
   lianaCharge: 0
   spikeCharge: 0
   rockCharge: 0
