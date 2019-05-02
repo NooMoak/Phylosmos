@@ -60,7 +60,7 @@ namespace UnityEngine.PostProcessing
 
             uberMaterial.EnableKeyword("DITHERING");
             uberMaterial.SetTexture(Uniforms._DitheringTex, noiseTex);
-            uberMaterial.SetVector(Uniforms._DitheringCoords, new Vector4(
+            uberMaterial.SetVector(nameID: Uniforms._DitheringCoords, new Vector4(
                 (float)context.width / (float)noiseTex.width,
                 (float)context.height / (float)noiseTex.height,
                 rndOffsetX,
