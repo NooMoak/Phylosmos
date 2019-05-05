@@ -59,13 +59,12 @@ public class FireBossBehavior : MonoBehaviour
         {
             transform.LookAt(player.transform.position);
             //anim.SetBool("IsWalking", false);
-            randomNumber = 1;
             if(canShoot && randomNumber == 1){
                 StartCoroutine(InsectAttack());
             }
             else if (canShoot && randomNumber == 2)
             {
-
+                StartCoroutine(TornadoAttack());
             }
         }
         if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
@@ -92,6 +91,7 @@ public class FireBossBehavior : MonoBehaviour
         insectClone.transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
         yield return new WaitForSeconds(1);
         insectClone.GetComponent<Rigidbody>().AddForce(transform.forward * rushSpeed);
+        Destroy(insectClone, 3f);
         yield return new WaitForSeconds(2f);
 		canShoot = true;
         randomNumber = Random.Range(1,3);
@@ -103,6 +103,7 @@ public class FireBossBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.35f);
         GameObject tornadoClone;
         tornadoClone = Instantiate(tornados, transform.position, transform.rotation);
+        Destroy(tornadoClone, 3f);
         yield return new WaitForSeconds(2f);
 		canShoot = true;
         randomNumber = Random.Range(1,3);
