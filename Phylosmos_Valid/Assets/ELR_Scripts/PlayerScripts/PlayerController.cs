@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
-        magazineText.text = magazineToDisplay;
+        //magazineText.text = magazineToDisplay;
 
         //Sword Attack
         if (Input.GetButtonDown ("Fire2"))

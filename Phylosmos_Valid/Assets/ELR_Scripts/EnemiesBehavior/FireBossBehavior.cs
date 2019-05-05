@@ -12,11 +12,14 @@ public class FireBossBehavior : MonoBehaviour
     public SpikeState currentState;
     [SerializeField] float fightRadius;
     [SerializeField] float bossSpeed;
+    [SerializeField] GameObject insectRush;
+    [SerializeField] float rushSpeed;
+    [SerializeField] GameObject tornados;
     Vector3 homePosition;
     Rigidbody rb;
     Animator anim;
     int randomNumber;
-    bool canShoot;
+    bool canShoot = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,20 +53,18 @@ public class FireBossBehavior : MonoBehaviour
         else if(currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 10){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, bossSpeed * Time.deltaTime));
             transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
             //anim.SetBool("IsWalking", true);
         }
         else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 10)
         {
             transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
-            anim.SetBool("IsWalking", false);
+            //anim.SetBool("IsWalking", false);
             if(canShoot && randomNumber == 1){
-                StartCoroutine(SpikeShoot());
+                StartCoroutine(InsectAttack());
             }
             else if (canShoot && randomNumber == 2)
             {
-
+                StartCoroutine(TornadoAttack());
             }
         }
         if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
@@ -79,33 +80,32 @@ public class FireBossBehavior : MonoBehaviour
         }
     }
 
-    private IEnumerator SpikeShoot()
+    private IEnumerator InsectAttack()
     {
 		canShoot = false;
-        anim.SetTrigger("Attack");
+        //anim.SetTrigger("Attack");
         yield return new WaitForSeconds(0.35f);
-        /* 
-        GameObject clone1;
-        GameObject clone2;
-        GameObject clone3;
-        Vector3 look = player.transform.position - transform.position;
-        clone1 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone1.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
-        Vector3 dir = (player.transform.position + new Vector3(0,2,0)) - clone1.transform.position;
-        dir = dir.normalized;
-        clone1.GetComponent<Rigidbody>().AddForce(dir * launchForce);
-
-        clone2 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone2.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,135,90);
-        clone2.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(45f, Vector3.up) * dir * launchForce);
-
-        clone3 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone3.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,45,90);
-        clone3.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(-45f, Vector3.up) * dir * launchForce);
-
-		yield return new WaitForSeconds(2f);
+        GameObject insectClone;
+        insectClone = Instantiate(insectRush, transform.position, transform.rotation);
+        insectClone.transform.position += transform.forward * 20;
+        insectClone.transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+        yield return new WaitForSeconds(1);
+        insectClone.GetComponent<Rigidbody>().AddForce(transform.forward * rushSpeed);
+        Destroy(insectClone, 3f);
+        yield return new WaitForSeconds(2f);
 		canShoot = true;
-        randomNumber = Random.Range(1,5);
-        */
+        randomNumber = Random.Range(1,3);
+    }
+    private IEnumerator TornadoAttack()
+    {
+		canShoot = false;
+        //anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.35f);
+        GameObject tornadoClone;
+        tornadoClone = Instantiate(tornados, transform.position, transform.rotation);
+        Destroy(tornadoClone, 3f);
+        yield return new WaitForSeconds(2f);
+		canShoot = true;
+        randomNumber = Random.Range(1,3);
     }
 }
