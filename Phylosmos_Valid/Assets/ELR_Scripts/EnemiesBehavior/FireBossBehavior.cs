@@ -15,11 +15,13 @@ public class FireBossBehavior : MonoBehaviour
     [SerializeField] GameObject insectRush;
     [SerializeField] float rushSpeed;
     [SerializeField] GameObject tornados;
+    [SerializeField] float tornadoSpeed;
     Vector3 homePosition;
     Rigidbody rb;
     Animator anim;
     int randomNumber;
     bool canShoot = true;
+    bool shooting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,12 +52,12 @@ public class FireBossBehavior : MonoBehaviour
             currentState = SpikeState.Fight;
             //anim.SetFloat("StateSpeed", 1f); 
         }
-        else if(currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 10){
+        else if(currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 30){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, bossSpeed * Time.deltaTime));
             transform.LookAt(player.transform.position);
             //anim.SetBool("IsWalking", true);
         }
-        else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 10)
+        else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 30)
         {
             transform.LookAt(player.transform.position);
             //anim.SetBool("IsWalking", false);
@@ -65,6 +67,12 @@ public class FireBossBehavior : MonoBehaviour
             else if (canShoot && randomNumber == 2)
             {
                 StartCoroutine(TornadoAttack());
+            }
+            else if (canShoot == false && shooting == false && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 40 && Vector3.Distance(player.transform.position, homePosition) < fightRadius + 10)
+            {
+                rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, bossSpeed * Time.deltaTime));
+                transform.LookAt(player.transform.position);
+                //anim.SetBool("IsWalking", true);
             }
         }
         if ((currentState == SpikeState.Fight || currentState == SpikeState.Return) && Vector3.Distance(player.transform.position, homePosition) > fightRadius && Vector3.Distance(homePosition, transform.position) > 2)
@@ -83,6 +91,7 @@ public class FireBossBehavior : MonoBehaviour
     private IEnumerator InsectAttack()
     {
 		canShoot = false;
+        shooting = true;
         //anim.SetTrigger("Attack");
         yield return new WaitForSeconds(0.35f);
         GameObject insectClone;
@@ -92,7 +101,9 @@ public class FireBossBehavior : MonoBehaviour
         yield return new WaitForSeconds(1);
         insectClone.GetComponent<Rigidbody>().AddForce(transform.forward * rushSpeed);
         Destroy(insectClone, 3f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
+        shooting = false;
+        yield return new WaitForSeconds(7f);
 		canShoot = true;
         randomNumber = Random.Range(1,3);
     }
@@ -103,8 +114,11 @@ public class FireBossBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.35f);
         GameObject tornadoClone;
         tornadoClone = Instantiate(tornados, transform.position, transform.rotation);
+        tornadoClone.GetComponent<Rigidbody>().AddForce(transform.forward * tornadoSpeed);
         Destroy(tornadoClone, 3f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
+        shooting = false;
+        yield return new WaitForSeconds(7f);
 		canShoot = true;
         randomNumber = Random.Range(1,3);
     }

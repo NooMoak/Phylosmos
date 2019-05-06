@@ -62,7 +62,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &5760443427304977602
 MonoBehaviour:
@@ -77,11 +77,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  fightRadius: 0
-  bossSpeed: 0
-  insectRush: {fileID: 0}
-  rushSpeed: 0
-  tornados: {fileID: 0}
+  fightRadius: 80
+  bossSpeed: 10
+  insectRush: {fileID: 8709996333970282201, guid: e31c8a78db66a794687acb14cb7bd5ac,
+    type: 3}
+  rushSpeed: 2000
+  tornados: {fileID: 3775826430884571339, guid: af91e365c46266440bd12446b711b211,
+    type: 3}
+  tornadoSpeed: 2000
 --- !u!1 &2117611033476190850
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +233,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117611033476190860}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -238,7 +241,7 @@ Transform:
   - {fileID: 2117611033476222638}
   m_Father: {fileID: 4912238925981265278}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2117611033468772638
 Animator:
   serializedVersion: 3
