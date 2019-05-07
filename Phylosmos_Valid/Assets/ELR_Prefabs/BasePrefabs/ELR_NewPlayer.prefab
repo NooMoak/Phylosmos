@@ -5494,7 +5494,7 @@ Transform:
   m_GameObject: {fileID: 1706824408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.36, y: 0, z: 18.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3581, y: 1.3581, z: 1.3581}
   m_Children:
   - {fileID: 1924578775}
   - {fileID: 1537918043}
@@ -5529,23 +5529,23 @@ MonoBehaviour:
   grabSpeed: 200
   rockPowerRadius: 35
   rockPowerForce: 70
-  lianaCharge: 10
+  lianaCharge: 0
   spikeCharge: 0
   rockCharge: 0
   healerCharge: 0
   abilityReady: 1
   abilityIcon: {fileID: 0}
-  lianaIcon: {fileID: 0}
-  lianaCDIcon: {fileID: 0}
-  spikeIcon: {fileID: 21300000, guid: 579087de75b76124abcd67a44297eec7, type: 3}
-  spikeCDIcon: {fileID: 21300000, guid: 4559f7f45789e294c84a8dd15b3b3db5, type: 3}
+  lianaIcon: {fileID: 21300000, guid: cbf9f50155ca9544cbc63dec9f7e5950, type: 3}
+  lianaCDIcon: {fileID: 21300000, guid: da614f6e3288e5743ac7b577576c82cd, type: 3}
+  spikeIcon: {fileID: 21300000, guid: 662de2e1d076d7a4aaf36e77b3f9b72d, type: 3}
+  spikeCDIcon: {fileID: 21300000, guid: db1aa96014649944f8fe2269964f4aa9, type: 3}
   rockIcon: {fileID: 21300000, guid: fdd8ef7837d990048bcf3a4bd983856a, type: 3}
   rockCDIcon: {fileID: 21300000, guid: e11a2ca4816cb3447ac7c901bd94a11c, type: 3}
   healerIcon: {fileID: 21300000, guid: 04ae5b7b90ab90644b2728d542a2bffb, type: 3}
   healerCDIcon: {fileID: 21300000, guid: f6c0a1253adbab74e89a2ced5f8720da, type: 3}
   selectionUI: {fileID: 0}
   spikeImage: {fileID: 0}
-  liniaImage: {fileID: 0}
+  lianaImage: {fileID: 0}
   healerImage: {fileID: 0}
   rockImage: {fileID: 0}
 --- !u!114 &1706824413

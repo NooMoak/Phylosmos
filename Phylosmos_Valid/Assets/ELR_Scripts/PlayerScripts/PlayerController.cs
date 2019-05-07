@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     public Sprite healerCDIcon;
     [SerializeField] GameObject selectionUI;
     [SerializeField] Image spikeImage;
-    [SerializeField] Image liniaImage;
+    [SerializeField] Image lianaImage;
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
 
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
-        //magazineText.text = magazineToDisplay;
+        magazineText.text = magazineToDisplay;
 
         //Sword Attack
         if (Input.GetButtonDown ("Fire2"))
@@ -139,28 +139,28 @@ public class PlayerController : MonoBehaviour
             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 spikeImage.sprite = spikeIcon;
-                //lianaImage.sprite = lianaCDIcon;
+                lianaImage.sprite = lianaCDIcon;
                 healerImage.sprite = healerCDIcon;
                 rockImage.sprite = rockCDIcon;
             } 
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 spikeImage.sprite = spikeCDIcon;
-                //lianaImage.sprite = lianaIcon;
+                lianaImage.sprite = lianaIcon;
                 healerImage.sprite = healerCDIcon;
                 rockImage.sprite = rockCDIcon;
             }
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 spikeImage.sprite = spikeCDIcon;
-                //lianaImage.sprite = lianaCDIcon;
+                lianaImage.sprite = lianaCDIcon;
                 healerImage.sprite = healerIcon;
                 rockImage.sprite = rockCDIcon;
             }  
             else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
                 spikeImage.sprite = spikeCDIcon;
-                //lianaImage.sprite = lianaCDIcon;
+                lianaImage.sprite = lianaCDIcon;
                 healerImage.sprite = healerCDIcon;
                 rockImage.sprite = rockIcon;
             } 
@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle || currentState == PlayerState.Attack )
         {
-            if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
+            if(Physics.Raycast(ray, out hit, 10000, rayPlaneMask)){
                 look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
                 transform.rotation = Quaternion.LookRotation (look);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
