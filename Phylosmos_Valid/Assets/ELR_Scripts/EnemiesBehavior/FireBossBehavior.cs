@@ -22,6 +22,10 @@ public class FireBossBehavior : MonoBehaviour
     int randomNumber;
     bool canShoot = true;
     bool shooting = false;
+
+    bool intro = false;
+    bool firstPhase = false;
+    bool secondPhase = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +43,7 @@ public class FireBossBehavior : MonoBehaviour
         {
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            //transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
             //anim.SetBool("IsWalking", false);
         }
     }
