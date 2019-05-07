@@ -5548,6 +5548,9 @@ MonoBehaviour:
   lianaImage: {fileID: 0}
   healerImage: {fileID: 0}
   rockImage: {fileID: 0}
+  normalCam: {fileID: 0}
+  spellCam: {fileID: 0}
+  attackCam: {fileID: 0}
 --- !u!114 &1706824413
 MonoBehaviour:
   m_ObjectHideFlags: 0

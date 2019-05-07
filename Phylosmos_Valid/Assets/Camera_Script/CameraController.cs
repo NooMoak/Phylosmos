@@ -21,8 +21,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        //Cursor.visible = false;
-        offset = transform.position - player.transform.position;
+
     }
 
     void Update() {
@@ -37,11 +36,6 @@ public class CameraController : MonoBehaviour
         {
             QuitBestiary();
         }
-    }
-
-    void LateUpdate()
-    {
-        transform.position = player.transform.position + offset;
     }
 
     void QuitBestiary()
