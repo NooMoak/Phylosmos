@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image lianaImage;
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
+    [SerializeField] GameObject normalCam;
+    [SerializeField] GameObject spellCam;
+    [SerializeField] GameObject attackCam;
 
 	void Start ()
     {
@@ -242,9 +245,14 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerState.Attack;
         yield return new WaitForSeconds(.3f);
         attackHitbox.SetActive(true);
+         normalCam.SetActive(false);
+        attackCam.SetActive(true);
         yield return new WaitForSeconds(.1f);
         attackHitbox.SetActive(false);
         currentState = PlayerState.Idle;
+        yield return new WaitForSeconds(.2f);
+        attackCam.SetActive(false);
+        normalCam.SetActive(true);
     }
 
     IEnumerator Fire()
