@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public StolenAbility currentAbility;
     [SerializeField] Animator anim;
 	Rigidbody rb;
+    public static bool rockAb;
 
     //Movement Variables
 	Vector3 forward; 
@@ -335,6 +336,7 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
+                rockAb = true;
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
@@ -348,6 +350,7 @@ public class PlayerController : MonoBehaviour
                 abilityIcon.sprite = rockCDIcon;
                 rockCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
+                rockAb = false;
                 currentState = PlayerState.Idle;
                 abilityReady = true;
                 StopCoroutine(LaunchAbility());
