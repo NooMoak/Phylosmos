@@ -7,26 +7,37 @@ public class DialogueManager : MonoBehaviour
 
     public Text nameText;
     public Text dialogueText;
+    [SerializeField] GameObject analyseText;
     public Animator anim;
     public Button nextButton;
     public bool sentenceFinished;
     public bool fast = false;
+    bool hasUIText;
+    string UIText;
     Queue<string> sentences;
+    Queue<string> names;
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        names = new Queue<string>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         anim.SetBool("IsOpen", true);
-        nameText.text = dialogue.name;
         sentences.Clear();
+        names.Clear();
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
+        foreach (string name in dialogue.names)
+        {
+            names.Enqueue(name);
+        }
+        hasUIText = dialogue.hasUIText;
+        UIText = dialogue.UIText;
 
         DisplayNextSentence();
 
@@ -40,13 +51,15 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
+        string name = names.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(sentence, name));
     }
 
-    IEnumerator TypeSentence (string sentence)
+    IEnumerator TypeSentence (string sentence, string name)
     {
         dialogueText.text = "";
+        nameText.text = name;
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -66,6 +79,12 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         anim.SetBool("IsOpen", false);
+        if(hasUIText)
+        {
+            analyseText.SetActive(true);
+            analyseText.GetComponent<Text>().text = UIText;
+            StartCoroutine(DisableText());
+        }
     }
 
     private void Update() {
@@ -82,6 +101,12 @@ public class DialogueManager : MonoBehaviour
             }
 
         }
+    }
+
+    IEnumerator DisableText()
+    {
+        yield return new WaitForSeconds (5);
+        analyseText.SetActive(false);
     }
 
 }
