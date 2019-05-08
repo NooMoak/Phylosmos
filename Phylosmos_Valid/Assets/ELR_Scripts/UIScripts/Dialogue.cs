@@ -13,4 +13,6 @@ public class Dialogue
     public bool hasUIText;
     public string UIText;
 
+    public float shownTime;
+
 }

@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public bool fast = false;
     bool hasUIText;
     string UIText;
+    float shownTime;
     Queue<string> sentences;
     Queue<string> names;
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class DialogueManager : MonoBehaviour
         }
         hasUIText = dialogue.hasUIText;
         UIText = dialogue.UIText;
+        shownTime = dialogue.shownTime;
 
         DisplayNextSentence();
 
@@ -83,7 +85,7 @@ public class DialogueManager : MonoBehaviour
         {
             analyseText.SetActive(true);
             analyseText.GetComponent<Text>().text = UIText;
-            StartCoroutine(DisableText());
+            StartCoroutine(DisableText(shownTime));
         }
     }
 
@@ -103,9 +105,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    IEnumerator DisableText()
+    IEnumerator DisableText(float time)
     {
-        yield return new WaitForSeconds (5);
+        yield return new WaitForSeconds (time);
         analyseText.SetActive(false);
     }
 
