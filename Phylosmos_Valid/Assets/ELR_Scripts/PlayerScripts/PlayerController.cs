@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     public StolenAbility currentAbility;
     [SerializeField] Animator anim;
 	Rigidbody rb;
-    public static bool rockAb;
+    GameObject mainCam;
+    int enemyLayer;
 
     //Movement Variables
 	Vector3 forward; 
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float grabSpeed;
     [SerializeField] float rockPowerRadius = 5f;
     [SerializeField] float rockPowerForce = 10f;
+    public static bool rockAb;
     public int lianaCharge;
     public int spikeCharge;
     public int rockCharge;
@@ -66,13 +68,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image lianaImage;
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
-    [SerializeField] GameObject normalCam;
-    [SerializeField] GameObject spellCam;
-    [SerializeField] GameObject attackCam;
 
 	void Start ()
     {
 		rb = GetComponent<Rigidbody>();
+        mainCam = Camera.main.gameObject;
 		forward = Camera.main.transform.forward;
 		forward.y = 0;
 		forward = Vector3.Normalize(forward);
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerState.Idle;
         currentAbility = StolenAbility.None;
         rayPlaneMask = LayerMask.GetMask("RayPlane");
+        enemyLayer = LayerMask.GetMask("EnemyToHeal");
 	}
 
     void Update()
@@ -207,6 +208,17 @@ public class PlayerController : MonoBehaviour
                     abilityIcon.sprite = rockCDIcon;
             } 
         }
+
+        //Camera Changing
+        Collider[] nearEnemies = Physics.OverlapSphere(transform.position, 70f, enemyLayer);
+        if(nearEnemies.Length > 0)
+        {
+            mainCam.GetComponent<CameraController>().FightCam();
+        }
+        else
+        {
+            mainCam.GetComponent<CameraController>().NormalCam();
+        }
     }
 
     void FixedUpdate()
@@ -246,14 +258,10 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerState.Attack;
         yield return new WaitForSeconds(.3f);
         attackHitbox.SetActive(true);
-         normalCam.SetActive(false);
-        attackCam.SetActive(true);
         yield return new WaitForSeconds(.1f);
         attackHitbox.SetActive(false);
         currentState = PlayerState.Idle;
         yield return new WaitForSeconds(.2f);
-        attackCam.SetActive(false);
-        normalCam.SetActive(true);
     }
 
     IEnumerator Fire()
@@ -280,6 +288,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
             if(currentAbility == StolenAbility.Liana && lianaCharge > 0)
             {
+                mainCam.GetComponent<CameraController>().SpellCam();
                 if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
                 {
                     look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
@@ -293,11 +302,13 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 abilityReady = true;
                 currentState = PlayerState.Idle;
+                mainCam.GetComponent<CameraController>().NormalCam();
                 lianaCharge -= 1;
                 StopCoroutine(LaunchAbility());
             }
             else if(currentAbility == StolenAbility.Spike && spikeCharge > 0)
             {
+                mainCam.GetComponent<CameraController>().SpellCam();
                 if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
                 {
                     look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
@@ -317,6 +328,7 @@ public class PlayerController : MonoBehaviour
                     spikeCharge -= 1;
                     yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
+                    mainCam.GetComponent<CameraController>().NormalCam();
                     abilityReady = true;
                     StopCoroutine(LaunchAbility());
                 } 
@@ -334,6 +346,7 @@ public class PlayerController : MonoBehaviour
             }
             else if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
+                mainCam.GetComponent<CameraController>().SpellCam();
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
@@ -352,17 +365,20 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
+                mainCam.GetComponent<CameraController>().NormalCam();
                 abilityReady = true;
                 StopCoroutine(LaunchAbility());
             }
             else if(currentAbility == StolenAbility.Healer && healerCharge > 0)
             {
+                mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 abilityIcon.sprite = healerCDIcon;
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
+                mainCam.GetComponent<CameraController>().NormalCam();
                 abilityReady = true;
                 StopCoroutine(LaunchAbility());
             }
@@ -370,6 +386,7 @@ public class PlayerController : MonoBehaviour
             {
                 abilityReady = true;
                 currentState = PlayerState.Idle;
+                mainCam.GetComponent<CameraController>().NormalCam();
             }
         }
     }

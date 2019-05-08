@@ -120,6 +120,7 @@ public class RockBehavior : MonoBehaviour
             {
                 float distance = Vector3.Distance(hitRb.transform.position, explosionPos);
                 hitRb.AddForce(-(transform.position - player.transform.position) * rockForce * ((1/distance) * 100));
+                player.GetComponent<PlayerDamage>().TakeDamage(10f);
             }
         }
         yield return new WaitForSeconds(0.5f);

@@ -18,13 +18,13 @@ public class PlayerDamage : MonoBehaviour
         targetAlpha = 0.7f;
     }
 
-     private void Update() 
+    private void Update() 
     {
         if(playerHealth > 100f)
         {
             playerHealth = 100f;
         }
-        //healthBar.fillAmount = playerHealth / 100;
+        healthBar.fillAmount = playerHealth / 100;
         Color curColor = redBorders.color;
         float alphaDiff = Mathf.Abs(curColor.a-targetAlpha);
         if (alphaDiff>0.0001f)
@@ -47,9 +47,13 @@ public class PlayerDamage : MonoBehaviour
             Destroy(collision.gameObject);
             TakeDamage(10f);
         }
+        if(collision.gameObject.CompareTag("EnemyGrab"))
+        {
+            TakeDamage(10f);
+        }
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Color curColor = redBorders.color;
         playerHealth -= damage;
@@ -57,6 +61,7 @@ public class PlayerDamage : MonoBehaviour
         redBorders.color = curColor;
         targetAlpha = 0.7f;
         redBorders.enabled = true;
+        Camera.main.gameObject.GetComponent<CameraController>().HurtCam();
         targetAlpha = 0.2f;
         CheckHealth();
     }

@@ -17,7 +17,10 @@ public class CameraController : MonoBehaviour
     public GameObject bossPanel;
     public bool normal = true;
 
-    private Vector3 offset;
+    public GameObject normalCam;
+    public GameObject fightCam;
+    public GameObject spellCam;
+    public GameObject hurtCam;
 
     void Start()
     {
@@ -52,5 +55,49 @@ public class CameraController : MonoBehaviour
         bestiaryUI.SetActive(false);
         Time.timeScale = 1f;
         normal = true;
+    }
+
+    public void NormalCam() 
+    {
+        if(normalCam.activeSelf == false)
+        {
+            fightCam.SetActive(false);
+            spellCam.SetActive(false);
+            hurtCam.SetActive(false);
+            normalCam.SetActive(true);
+        }
+    }
+
+    public void FightCam() 
+    {
+        if(fightCam.activeSelf == false && spellCam.activeSelf == false && hurtCam.activeSelf == false)
+        {
+            spellCam.SetActive(false);
+            hurtCam.SetActive(false);
+            normalCam.SetActive(false);
+            fightCam.SetActive(true);
+        }
+    }
+
+    public void SpellCam() 
+    {
+        if(spellCam.activeSelf == false)
+        {
+            hurtCam.SetActive(false);
+            normalCam.SetActive(false);
+            fightCam.SetActive(false);
+            spellCam.SetActive(true);
+        }
+    }
+
+    public void HurtCam() 
+    {
+        if(hurtCam.activeSelf == false)
+        {
+            fightCam.SetActive(false);
+            spellCam.SetActive(false);
+            normalCam.SetActive(false);
+            hurtCam.SetActive(true);
+        }
     }
 }
