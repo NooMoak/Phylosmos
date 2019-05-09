@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float grabSpeed;
     [SerializeField] float rockPowerRadius = 5f;
     [SerializeField] float rockPowerForce = 10f;
-    public static bool rockAb;
+    public bool rockAb = false;
     public int lianaCharge;
     public int spikeCharge;
     public int rockCharge;
