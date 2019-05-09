@@ -20,11 +20,11 @@ public class RockRotate : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (PlayerController.rockAb == true)
+            if (GameObject.FindWithTag("Player").GetComponent<PlayerController>().rockAb == true)
             {
                 anim.SetBool("Move", true);
             }
