@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float grabSpeed;
     [SerializeField] float rockPowerRadius = 5f;
     [SerializeField] float rockPowerForce = 10f;
-    public static bool rockAb;
+    public bool rockAb = false;
     public int lianaCharge;
     public int spikeCharge;
     public int rockCharge;
@@ -350,6 +350,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
+                Debug.Log("RockAb");
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
@@ -362,7 +363,7 @@ public class PlayerController : MonoBehaviour
                 }
                 abilityIcon.sprite = rockCDIcon;
                 rockCharge -= 1;
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(2f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
