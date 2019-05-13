@@ -14,8 +14,6 @@ public class Bullet : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag ("Liana"))
         {
-            GameObject hit = collision.gameObject;
-            hit.GetComponent<EnemyLife>().TakeDamage(1);
 			Destroy(this.gameObject);
         }
         if (collision.gameObject.CompareTag ("Spike"))
