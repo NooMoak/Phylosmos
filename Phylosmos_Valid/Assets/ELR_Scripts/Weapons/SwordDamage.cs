@@ -18,7 +18,10 @@ public class SwordDamage : MonoBehaviour
             GameObject hit = collision.gameObject;
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.lianaCharge < 3)
+            {
 				giveAbility.lianaCharge += 1;
+                FindObjectOfType<DataSaver>().lianaCharge += 1;
+            }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
             hit.GetComponent<LianaBehavior>().StartCoroutine("Stunned");
         }
@@ -27,7 +30,10 @@ public class SwordDamage : MonoBehaviour
             GameObject hit = collision.gameObject;
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.spikeCharge < 3)
+            {
 				giveAbility.spikeCharge += 1;
+                FindObjectOfType<DataSaver>().spikeCharge += 1;
+            }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag ("Healer"))
@@ -35,7 +41,10 @@ public class SwordDamage : MonoBehaviour
             GameObject hit = collision.gameObject;
             giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.healerCharge < 3)
+            {
 			    giveAbility.healerCharge += 1;
+                FindObjectOfType<DataSaver>().healerCharge += 1;
+            }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag ("Rock"))
@@ -43,7 +52,10 @@ public class SwordDamage : MonoBehaviour
             GameObject hit = collision.gameObject;
 			giveAbility = GetComponentInParent<PlayerController>();
             if(giveAbility.rockCharge < 3)
+            {
 				giveAbility.rockCharge += 1;
+                FindObjectOfType<DataSaver>().rockCharge += 1;
+            }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
         }
     }
