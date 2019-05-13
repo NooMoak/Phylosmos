@@ -260,6 +260,172 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1213713375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213713376}
+  - component: {fileID: 1213713378}
+  - component: {fileID: 1213713377}
+  m_Layer: 5
+  m_Name: Title Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1213713376
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213713375}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000088, y: 1.0000088, z: 1.0000088}
+  m_Children: []
+  m_Father: {fileID: 1669569369}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -94, y: 378.69998}
+  m_SizeDelta: {x: 421.5, y: 108.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1213713377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213713375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 75
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Guardian colony
+--- !u!222 &1213713378
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213713375}
+  m_CullTransparentMesh: 0
+--- !u!1 &1460452306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1460452307}
+  - component: {fileID: 1460452309}
+  - component: {fileID: 1460452308}
+  m_Layer: 5
+  m_Name: Title Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1460452307
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460452306}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000088, y: 1.0000088, z: 1.0000088}
+  m_Children: []
+  m_Father: {fileID: 2040094011}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -94, y: 394.30002}
+  m_SizeDelta: {x: 421.5, y: 92.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1460452308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460452306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 75
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'The flight of fire
+
+'
+--- !u!222 &1460452309
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460452306}
+  m_CullTransparentMesh: 0
+--- !u!224 &1669569369 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5670763781342564281, guid: ed965bce6f44d4b43b3068be19d8936d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5670763780577063895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1886041822
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +495,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!224 &2040094011 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5670763781534166667, guid: ed965bce6f44d4b43b3068be19d8936d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5670763780577063895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5670763780577063895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -454,12 +626,12 @@ PrefabInstance:
     - target: {fileID: 5670763780753773683, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2048
+      value: 1973.31
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780753773683, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1024
+      value: 986.66
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780753773683, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
@@ -479,12 +651,17 @@ PrefabInstance:
     - target: {fileID: 5670763780753773683, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -488.47
+      value: -488.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670763780753773683, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -84.3
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780600713584, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781220101980, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
@@ -494,47 +671,62 @@ PrefabInstance:
     - target: {fileID: 5670763781100003531, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 480.9
+      value: 532.4
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781100003531, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 961.8
+      value: 909.3
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781100003531, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 729
+      value: 637.1
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781100003531, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -91
+      value: -51.785
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781342564282, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670763781760200761, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -103
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670763781760200761, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 573.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670763781760200761, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 487
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780717983880, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 789.3
+      value: 931.4
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780717983880, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 789.3
+      value: 931.44
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780717983880, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 565.35
+      value: 494.3
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780717983880, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -145.19
+      value: -74.121
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781534166668, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
@@ -544,22 +736,22 @@ PrefabInstance:
     - target: {fileID: 5670763781622981967, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -108.41
+      value: -131.39
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781622981967, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 550
+      value: 490.51
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781622981967, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 885.5
+      value: 938.98
       objectReference: {fileID: 0}
     - target: {fileID: 5670763781622981967, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 885.5
+      value: 816.9
       objectReference: {fileID: 0}
     - target: {fileID: 5670763780425994896, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
@@ -665,7 +857,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 9f15ff56d40fb8840a2c404e70047c24, type: 3}
+      objectReference: {fileID: 2800000, guid: 6cde117f5ab8bcf4aa06992fbdd4b27c, type: 3}
     - target: {fileID: 5670763780753773682, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_Color.a
@@ -686,11 +878,41 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 5670763780680053876, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Text
+      value: "\rMira was born aboard the ship carrying humanity, she has always known
+        only him. She is very intelligent and very curious, which from time to time
+        may have caused her some problems. She became a scientist to learn more about
+        the world around her.\r\nShe married one of the ship's engineers with whom
+        she had a child.\r\nAfter years of wandering in space, and thanks to scientific
+        advances, the ship community set out to find a planet to colonize, and where
+        to grow. Given her abilities and her important position among the researchers,
+        she had no choice but to be part of the first squadron to leave the ship to
+        find a livable planet. Being the first expedition and the number of scientists
+        being quite low, they sent a single explorer by planet, but nevertheless well
+        equipped.\r\nAccustomed to life in space, in a cold and metallic vessel, she
+        marvels at the nature discovered. Being curious, she wants to explore and
+        understand where she is."
+      objectReference: {fileID: 0}
     - target: {fileID: 5670763780717983927, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 67f7ab819e3b14c468ca8b52fffbd4d1, type: 3}
+      objectReference: {fileID: 2800000, guid: 13a9ca1c419a8a24ea01b0079e051008, type: 3}
+    - target: {fileID: 5670763780726811482, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Text
+      value: "Lore \xE0 d\xE9bloquer :\nThis little animal has evolved to look like
+        plants in its environment. This allows him to camouflage big predators and
+        surprise his prey. We must not trust his appearance that can be misleading,
+        he is carnivorous and feeds on small animals. He throws spades that grow on
+        his forelimb, which allows him to reach prey that would flee too quickly for
+        him if he approached.\n\nResistance \xE0 d\xE9bloquer :\nSa principale force
+        est bas\xE9e sur la distance qu\u2019il peut mettre entre lui et ses proies.
+        De plus, il essayera de dissuader quiconque de s\u2019approcher en tirant
+        des salves de piques."
+      objectReference: {fileID: 0}
     - target: {fileID: 5670763780932411371, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_Text
@@ -711,10 +933,85 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: c48c0d4726f298446a7c8007db23ce24, type: 3}
+    - target: {fileID: 5670763781760200760, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Text
+      value: "Apoikia kidem\xF3nas"
+      objectReference: {fileID: 0}
     - target: {fileID: 5670763781904615735, guid: ed965bce6f44d4b43b3068be19d8936d,
         type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: 247f7fe20b38ab74dba8174c6dd4b59e, type: 3}
+    - target: {fileID: 5670763782090139811, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Text
+      value: "Lore \xE0 d\xE9bloquer :\nSmall harmless creature who lives at the expense
+        of other animals. In exchange for food, she can heal the animals that help
+        her by using spores. She can also use the spores she produces as a miracle
+        fertilizer that boosts plant growth.\n\nResistance \xE0 d\xE9bloquer :\nCette
+        cr\xE9ature est inoffensive et incapable de se d\xE9fendre par elle-m\xEAme."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670763782228743813, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Text
+      value: "3rd step = Some lore :\r\nLes Apoikia Kidem\xF3nas sont une esp\xE8ce
+        d\u2019insectes vivant en colonie. Ils ont d\xE9velopp\xE9 une technique de
+        survie in\xE9dite. Leur ruche est compos\xE9 de plusieurs types de d\xE9bris
+        qu\u2019ils collent avec une substance collante qu\u2019ils s\xE9cr\xE8tent.
+        La particularit\xE9 de cette ruche est qu\u2019elle est mouvante et dirig\xE9
+        par l'essaim lui m\xEAme.Il s\u2019en sert pour se d\xE9fendre. La forme peut
+        varier en fonction des \xEAtres vivants qu\u2019ils ont crois\xE9 avant de
+        former le nid. \n\n1st step = Resistance and weakness :\r\nCe g\xE9ant de
+        pierre est en fait une colonie d\u2019insecte qui a r\xE9cup\xE9r\xE9 beaucoup
+        de mat\xE9riaux pour se cr\xE9er une sorte de forteresse mobile. La seule
+        mani\xE8re de d\xE9faire cet ennemi est d\u2019attaquer de dos du monstre,
+        o\xF9 la reine est \xE0 d\xE9couvert.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980630826118865936, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -488.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980630826118865936, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -84.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980630826118865936, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1915.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980630826118865936, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1078.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870664329433693752, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Name
+      value: "Opacit\xE9BackgroundRawImage"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349844270083545149, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349844270083545149, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349844270083545149, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349844270083545149, guid: ed965bce6f44d4b43b3068be19d8936d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed965bce6f44d4b43b3068be19d8936d, type: 3}
