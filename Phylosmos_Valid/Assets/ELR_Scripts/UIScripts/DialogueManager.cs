@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
         anim.SetBool("IsOpen", true);
         sentences.Clear();
         names.Clear();
+        analyseText.SetActive(false);
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
