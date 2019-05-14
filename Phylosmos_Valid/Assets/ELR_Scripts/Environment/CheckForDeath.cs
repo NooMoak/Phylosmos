@@ -8,6 +8,8 @@ public class CheckForDeath : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject[] enemiesToCheck;
     [SerializeField] GameObject analyseText;
+    [SerializeField] GameObject blackFade;
+    [SerializeField] GameObject UI;
     int dead = 0;
     bool dialogueTriggered;
     void Start()
@@ -44,6 +46,8 @@ public class CheckForDeath : MonoBehaviour
 
     IEnumerator StartNewLevel()
     {
+        blackFade.GetComponent<Animator>().SetBool("FadeOut", true);
+        UI.SetActive(false);
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("JOB_Lvl forêt");
     }
