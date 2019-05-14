@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckForDeath : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject[] enemiesToCheck;
+    [SerializeField] GameObject analyseText;
     int dead = 0;
+    bool dialogueTriggered;
     void Start()
     {
         
@@ -29,14 +32,20 @@ public class CheckForDeath : MonoBehaviour
 
         if(dead == enemiesToCheck.Length)
         {
-            StartCoroutine(EndTuto());
+            GetComponent<DialogueTrigger>().TriggerDialogue();
+            dialogueTriggered = true;
+        }
+
+        if(dialogueTriggered == true && analyseText.activeSelf == true)
+        {
+            StartCoroutine(StartNewLevel());
         }
     }
 
-    IEnumerator EndTuto()
+    IEnumerator StartNewLevel()
     {
-        yield return null;
-        Debug.Log("fini");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("JOB_Lvl forêt");
     }
     
 }

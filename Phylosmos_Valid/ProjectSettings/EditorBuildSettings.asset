@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/ELR_NewTuto.unity
     guid: 00fa974d480cb9846a4bb35afa7abadd
+  - enabled: 1
+    path: "Assets/_Scenes/JOB_Lvl for\xEAt.unity"
+    guid: dc6b65d77f934504088564497bf221ef
   m_configObjects: {}
