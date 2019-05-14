@@ -6,7 +6,12 @@ public class SwordDamage : MonoBehaviour
 {
     [SerializeField] int damage;
 	PlayerController giveAbility;
+    DataSaver dataSaver;
 
+    private void Start() 
+    {
+        dataSaver = FindObjectOfType<DataSaver>();
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag ("Destructible"))
@@ -24,6 +29,11 @@ public class SwordDamage : MonoBehaviour
             }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
             hit.GetComponent<LianaBehavior>().StartCoroutine("Stunned");
+
+            if(dataSaver.knowLiana == false)
+            {
+                dataSaver.knowLiana = true;
+            }
         }
         if (collision.gameObject.CompareTag ("Spike"))
         {
@@ -35,6 +45,11 @@ public class SwordDamage : MonoBehaviour
                 FindObjectOfType<DataSaver>().spikeCharge += 1;
             }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
+
+            if(dataSaver.knowSpike == false)
+            {
+                dataSaver.knowSpike = true;
+            }
         }
         if (collision.gameObject.CompareTag ("Healer"))
         {
@@ -46,6 +61,11 @@ public class SwordDamage : MonoBehaviour
                 FindObjectOfType<DataSaver>().healerCharge += 1;
             }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
+
+            if(dataSaver.knowHealer == false)
+            {
+                dataSaver.knowHealer = true;
+            }
         }
         if (collision.gameObject.CompareTag ("Rock"))
         {
@@ -57,6 +77,11 @@ public class SwordDamage : MonoBehaviour
                 FindObjectOfType<DataSaver>().rockCharge += 1;
             }
             hit.GetComponent<EnemyLife>().TakeDamage(damage);
+
+            if(dataSaver.knowRock == false)
+            {
+                dataSaver.knowRock = true;
+            }
         }
     }
 }
