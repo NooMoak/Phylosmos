@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
-
     public Text nameText;
     public Text dialogueText;
     [SerializeField] GameObject analyseText;
+    GameObject player;
     public Animator anim;
     public Button nextButton;
     public bool sentenceFinished;
@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         names = new Queue<string>();
+        player = GameObject.FindWithTag("Player");
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -41,7 +42,7 @@ public class DialogueManager : MonoBehaviour
         hasUIText = dialogue.hasUIText;
         UIText = dialogue.UIText;
         shownTime = dialogue.shownTime;
-
+        player.GetComponent<PlayerController>().currentState = PlayerState.Stagger;
         DisplayNextSentence();
 
     }
@@ -82,6 +83,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         anim.SetBool("IsOpen", false);
+        player.GetComponent<PlayerController>().currentState = PlayerState.Idle;
         if(hasUIText)
         {
             analyseText.SetActive(true);

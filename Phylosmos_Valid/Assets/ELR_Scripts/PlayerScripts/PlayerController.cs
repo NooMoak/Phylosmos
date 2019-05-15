@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerState
     {
-        Idle,Walk,Attack,Ability,Interact, Stagger, Dead
+        Idle, Walk, Attack, Ability, Interact, Stagger, Dead
     }
 public enum StolenAbility
     {
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //Sword Attack
         if (Input.GetButtonDown ("Fire2"))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability) 
             {
                 anim.SetTrigger("Attack");
                 StartCoroutine(AttackCO());
