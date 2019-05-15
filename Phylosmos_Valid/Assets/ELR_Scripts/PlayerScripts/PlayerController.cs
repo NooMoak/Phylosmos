@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         //Reloading
         if (Input.GetKeyDown (KeyCode.R))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability && canShoot)
             {
                 StartCoroutine(Reload());
             }
