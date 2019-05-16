@@ -81,7 +81,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighlightCellOffset: -0.99
+    - _HighlightCellOffset: -0.9999
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1

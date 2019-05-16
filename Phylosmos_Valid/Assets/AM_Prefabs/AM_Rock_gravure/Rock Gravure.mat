@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Matelas
+  m_Name: Rock Gravure
   m_Shader: {fileID: 4800000, guid: 93cf02a2704c45446b564f3e5ee660c0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColorRGBOutlineWidthA:
-        m_Texture: {fileID: 2800000, guid: 5a5747b983c68f741a659213c9a365f4, type: 3}
+        m_Texture: {fileID: 2800000, guid: b88383db847bc224291d23e6a013ff4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -81,7 +81,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighlightCellOffset: -1
+    - _HighlightCellOffset: -0.999
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
@@ -89,7 +89,7 @@ Material:
     - _Mode: 0
     - _NormalScale: 1
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.02
+    - _OutlineWidth: 0.035
     - _Parallax: 0.02
     - _RimOffset: 0.6
     - _RimPower: 0.4
@@ -98,10 +98,10 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticHighLights: 0
-    - _TessMax: 25
-    - _TessMin: 10
-    - _TessPhongStrength: 0.5
-    - _TessValue: 4
+    - _TessMax: 44.2
+    - _TessMin: -8
+    - _TessPhongStrength: 1
+    - _TessValue: 32
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
