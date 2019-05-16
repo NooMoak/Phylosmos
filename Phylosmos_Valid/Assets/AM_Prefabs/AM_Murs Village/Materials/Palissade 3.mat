@@ -72,8 +72,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BaseCellOffset: 0
-    - _BaseCellSharpness: 0.01
+    - _BaseCellOffset: 0.28
+    - _BaseCellSharpness: 0.096
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -89,10 +89,10 @@ Material:
     - _Mode: 0
     - _NormalScale: 1
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.02
+    - _OutlineWidth: 0.0348
     - _Parallax: 0.02
-    - _RimOffset: 0.6
-    - _RimPower: 0.4
+    - _RimOffset: 1
+    - _RimPower: 1
     - _ShadowContribution: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
