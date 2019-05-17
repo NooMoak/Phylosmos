@@ -392,6 +392,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
+                Debug.Log("RockAb");
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
@@ -403,7 +404,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 rockCharge -= 1;
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(2f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();

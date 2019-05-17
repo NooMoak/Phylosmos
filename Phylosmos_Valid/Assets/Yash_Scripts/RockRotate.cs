@@ -7,12 +7,14 @@ public class RockRotate : MonoBehaviour
 {
     Animator anim;
     public bool animActive;
+   
    // public float speed = 50.0f;
     // Start is called before the first frame update
     void Start()
     {
         // StartCoroutine(RotateStart());
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -27,11 +29,12 @@ public class RockRotate : MonoBehaviour
             if (GameObject.FindWithTag("Player").GetComponent<PlayerController>().rockAb == true)
             {
                 anim.SetBool("Move", true);
+                Debug.Log("Active");
             }
-            else
+           /*else
             {
                 anim.SetBool("Move", false);
-            }
+            }*/
         }
     }
 
