@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         UIText = dialogue.UIText;
         shownTime = dialogue.shownTime;
         player.GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+        player.GetComponentInChildren<Animator>().SetBool("Moving", false);
         DisplayNextSentence();
 
     }

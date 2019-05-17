@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float bulletForce = 1000f;
     bool canShoot = true;
     [SerializeField] Text magazineText;
+    [SerializeField] Text reloadText;
     int bulletFired = 0;
 
     //Ability Variables
@@ -97,7 +98,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
+        string magazineToDisplay;
+        if(bulletFired == 0)
+            magazineToDisplay = (10 - bulletFired).ToString();
+        else 
+            magazineToDisplay = "0" + (10 - bulletFired).ToString();
         magazineText.text = magazineToDisplay;
 
         //Sword Attack
@@ -146,10 +151,13 @@ public class PlayerController : MonoBehaviour
         //Selecting Ability
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            currentState = PlayerState.Stagger;
-            selectionUI.SetActive(true);
-            Time.timeScale = 0.2f;
-            StartCoroutine("CursorChange");
+            if(currentState != PlayerState.Stagger && currentState != PlayerState.Ability)
+            {
+                currentState = PlayerState.Stagger;
+                selectionUI.SetActive(true);
+                Time.timeScale = 0.2f;
+                StartCoroutine("CursorChange");
+            }
         }
         if(Input.GetKey(KeyCode.Space))
         {
@@ -389,6 +397,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
+                Debug.Log("RockAb");
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();
@@ -400,7 +409,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 rockCharge -= 1;
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(2f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
@@ -430,10 +439,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Reload()
     {
+        reloadText.text = "Reloading";
         canShoot = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         bulletFired = 0;
         canShoot = true;
+        reloadText.text = "";
     }
     IEnumerator CursorChange()
     {
