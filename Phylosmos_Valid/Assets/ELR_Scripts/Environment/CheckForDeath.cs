@@ -22,17 +22,29 @@ public class CheckForDeath : MonoBehaviour
     {
         foreach (GameObject enemy in enemiesToCheck)
         {
-            if(enemy.tag == "Liana" && enemy.GetComponent<LianaBehavior>().currentState == LianaState.Dead)
+            if(enemy.tag == "Liana" && enemy.GetComponent<LianaBehavior>().currentState == LianaState.Dead && enemy.activeSelf == true)
+            {
                 dead += 1;
-            if(enemy.tag == "Spike" && enemy.GetComponent<SpikeBehavior>().currentState == SpikeState.Dead)
+                enemy.SetActive(false);
+            }
+            if(enemy.tag == "Spike" && enemy.GetComponent<SpikeBehavior>().currentState == SpikeState.Dead && enemy.activeSelf == true)
+            {
                 dead += 1;
-            if(enemy.tag == "Healer" && enemy.GetComponent<HealerBehavior>().currentState == HealerState.Dead)
+                enemy.SetActive(false);
+            }
+            if(enemy.tag == "Healer" && enemy.GetComponent<HealerBehavior>().currentState == HealerState.Dead && enemy.activeSelf == true)
+            {
                 dead += 1;
-            if(enemy.tag == "Rock" && enemy.GetComponent<RockBehavior>().currentState == RockState.Dead)
+                enemy.SetActive(false);
+            }
+            if(enemy.tag == "Rock" && enemy.GetComponent<RockBehavior>().currentState == RockState.Dead && enemy.activeSelf == true)
+            {
                 dead += 1;
+                enemy.SetActive(false);
+            }
         }
 
-        if(dead == enemiesToCheck.Length)
+        if(dialogueTriggered == false && dead == enemiesToCheck.Length)
         {
             GetComponent<DialogueTrigger>().TriggerDialogue();
             dialogueTriggered = true;
