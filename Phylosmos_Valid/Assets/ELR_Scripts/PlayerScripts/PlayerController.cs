@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerState
     {
-        Idle,Walk,Attack,Ability,Interact, Stagger, Dead
+        Idle, Walk, Attack, Ability, Interact, Stagger, Dead
     }
 public enum StolenAbility
     {
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 	Rigidbody rb;
     GameObject mainCam;
     int enemyLayer;
+    GameObject dataSaver;
 
     //Movement Variables
 	Vector3 forward; 
@@ -81,6 +82,17 @@ public class PlayerController : MonoBehaviour
         currentAbility = StolenAbility.None;
         rayPlaneMask = LayerMask.GetMask("RayPlane");
         enemyLayer = LayerMask.GetMask("EnemyToHeal");
+
+        //Data
+        dataSaver = FindObjectOfType<DataSaver>().gameObject;
+        if(dataSaver != null)
+        {
+        dataSaver.GetComponent<DataSaver>().player = this.gameObject;
+        spikeCharge =  dataSaver.GetComponent<DataSaver>().spikeCharge;
+        lianaCharge =  dataSaver.GetComponent<DataSaver>().lianaCharge;
+        healerCharge =  dataSaver.GetComponent<DataSaver>().healerCharge;
+        rockCharge =  dataSaver.GetComponent<DataSaver>().rockCharge;
+        }
 	}
 
     void Update()
@@ -91,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //Sword Attack
         if (Input.GetButtonDown ("Fire2"))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability) 
             {
                 anim.SetTrigger("Attack");
                 StartCoroutine(AttackCO());
@@ -125,7 +137,7 @@ public class PlayerController : MonoBehaviour
         //Reloading
         if (Input.GetKeyDown (KeyCode.R))
         {
-            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && canShoot)
+            if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability && canShoot)
             {
                 StartCoroutine(Reload());
             }
@@ -143,31 +155,47 @@ public class PlayerController : MonoBehaviour
         {
             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                spikeImage.sprite = spikeIcon;
-                lianaImage.sprite = lianaCDIcon;
-                healerImage.sprite = healerCDIcon;
-                rockImage.sprite = rockCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                    spikeImage.sprite = spikeIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                    lianaImage.sprite = lianaCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                    healerImage.sprite = healerCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                    rockImage.sprite = rockCDIcon;
             } 
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                spikeImage.sprite = spikeCDIcon;
-                lianaImage.sprite = lianaIcon;
-                healerImage.sprite = healerCDIcon;
-                rockImage.sprite = rockCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                    spikeImage.sprite = spikeCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                    lianaImage.sprite = lianaIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                    healerImage.sprite = healerCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                    rockImage.sprite = rockCDIcon;
             }
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                spikeImage.sprite = spikeCDIcon;
-                lianaImage.sprite = lianaCDIcon;
-                healerImage.sprite = healerIcon;
-                rockImage.sprite = rockCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                    spikeImage.sprite = spikeCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                    lianaImage.sprite = lianaCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                    healerImage.sprite = healerIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                    rockImage.sprite = rockCDIcon;
             }  
             else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                spikeImage.sprite = spikeCDIcon;
-                lianaImage.sprite = lianaCDIcon;
-                healerImage.sprite = healerCDIcon;
-                rockImage.sprite = rockIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                    spikeImage.sprite = spikeCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                    lianaImage.sprite = lianaCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                    healerImage.sprite = healerCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                    rockImage.sprite = rockIcon;
             } 
         }
         if(Input.GetKeyUp(KeyCode.Space))
@@ -177,35 +205,47 @@ public class PlayerController : MonoBehaviour
             currentState = PlayerState.Idle;
             if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                currentAbility = StolenAbility.Spike;
-                if(spikeCharge > 0)
-                    abilityIcon.sprite = spikeIcon;
-                else 
-                    abilityIcon.sprite = spikeCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                {
+                    currentAbility = StolenAbility.Spike;
+                    if(spikeCharge > 0)
+                        abilityIcon.sprite = spikeIcon;
+                    else 
+                        abilityIcon.sprite = spikeCDIcon;
+                    }
             } 
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                currentAbility = StolenAbility.Liana;
-                if(lianaCharge > 0)
-                    abilityIcon.sprite = lianaIcon;
-                else 
-                    abilityIcon.sprite = lianaCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                {
+                    currentAbility = StolenAbility.Liana;
+                    if(lianaCharge > 0)
+                        abilityIcon.sprite = lianaIcon;
+                    else 
+                        abilityIcon.sprite = lianaCDIcon;
+                }
             }
             else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                currentAbility = StolenAbility.Healer;
-                if(healerCharge > 0)
-                    abilityIcon.sprite = healerIcon;
-                else 
-                    abilityIcon.sprite = healerCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                {
+                    currentAbility = StolenAbility.Healer;
+                    if(healerCharge > 0)
+                        abilityIcon.sprite = healerIcon;
+                    else 
+                        abilityIcon.sprite = healerCDIcon;
+                }
             }  
             else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
             {
-                currentAbility = StolenAbility.Rock;
-                if(rockCharge > 0)
-                    abilityIcon.sprite = rockIcon;
-                else 
-                    abilityIcon.sprite = rockCDIcon;
+                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                {
+                    currentAbility = StolenAbility.Rock;
+                    if(rockCharge > 0)
+                        abilityIcon.sprite = rockIcon;
+                    else 
+                        abilityIcon.sprite = rockCDIcon;
+                }
             } 
         }
 
@@ -324,7 +364,6 @@ public class PlayerController : MonoBehaviour
                     dir = dir.normalized;
                     clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);
                     GetComponent<LineRenderer>().enabled = false;
-                    abilityIcon.sprite = spikeCDIcon;
                     spikeCharge -= 1;
                     yield return new WaitForSeconds(0.2f);
                     currentState = PlayerState.Idle;
@@ -361,7 +400,6 @@ public class PlayerController : MonoBehaviour
                         hitRb.AddForce(-(transform.position - hitRb.transform.position) * rockPowerForce * ((1/distance) * 100));
                     }
                 }
-                abilityIcon.sprite = rockCDIcon;
                 rockCharge -= 1;
                 yield return new WaitForSeconds(2f);
                 rockAb = false;
@@ -375,7 +413,6 @@ public class PlayerController : MonoBehaviour
                 mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
-                abilityIcon.sprite = healerCDIcon;
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;

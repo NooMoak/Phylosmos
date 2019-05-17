@@ -26,12 +26,7 @@ public class RockRotate : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-<<<<<<< Updated upstream
             if (GameObject.FindWithTag("Player").GetComponent<PlayerController>().rockAb == true)
-=======
-            Debug.Log("Player");
-            if (PlayerController.rockAb)
->>>>>>> Stashed changes
             {
                 anim.SetBool("Move", true);
                 Debug.Log("Active");
