@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1549589099196440145}
   - component: {fileID: 1549589099196440146}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Lucioles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
