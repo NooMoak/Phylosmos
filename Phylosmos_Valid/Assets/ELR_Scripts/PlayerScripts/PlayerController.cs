@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     public int healerCharge;
     public bool abilityReady = true;
     public Image abilityIcon;
+    [SerializeField] Image chargeJauge;
     public Sprite lianaIcon;
     public Sprite lianaCDIcon;
     public Sprite spikeIcon;
@@ -98,12 +99,42 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Bullet UI
         string magazineToDisplay;
         if(bulletFired == 0)
             magazineToDisplay = (10 - bulletFired).ToString();
         else 
             magazineToDisplay = "0" + (10 - bulletFired).ToString();
         magazineText.text = magazineToDisplay;
+
+        //UI Charge
+        if(currentAbility != StolenAbility.None)
+        {
+            if(currentAbility == StolenAbility.Liana)
+                if(lianaCharge != 3)
+                    chargeJauge.fillAmount = 0.333f * lianaCharge;
+                else
+                    chargeJauge.fillAmount = 1;
+            if(currentAbility == StolenAbility.Spike)
+                if(spikeCharge != 3)
+                    chargeJauge.fillAmount = 0.333f * spikeCharge;
+                else
+                    chargeJauge.fillAmount = 1;
+            if(currentAbility == StolenAbility.Healer)
+                if(healerCharge != 3)
+                    chargeJauge.fillAmount = 0.333f * healerCharge;
+                else
+                    chargeJauge.fillAmount = 1;
+            if(currentAbility == StolenAbility.Rock)
+                if(rockCharge != 3)
+                    chargeJauge.fillAmount = 0.333f * rockCharge;
+                else
+                    chargeJauge.fillAmount = 1;
+        }
+        else 
+        {
+            chargeJauge.fillAmount = 0;
+        }
 
         //Sword Attack
         if (Input.GetButtonDown ("Fire2"))
