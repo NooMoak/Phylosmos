@@ -146,10 +146,13 @@ public class PlayerController : MonoBehaviour
         //Selecting Ability
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            currentState = PlayerState.Stagger;
-            selectionUI.SetActive(true);
-            Time.timeScale = 0.2f;
-            StartCoroutine("CursorChange");
+            if(currentState != PlayerState.Stagger && currentState != PlayerState.Ability)
+            {
+                currentState = PlayerState.Stagger;
+                selectionUI.SetActive(true);
+                Time.timeScale = 0.2f;
+                StartCoroutine("CursorChange");
+            }
         }
         if(Input.GetKey(KeyCode.Space))
         {
