@@ -41,7 +41,7 @@ public class SpikeBehavior : MonoBehaviour
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
             anim.SetBool("IsWalking", false);
-            if(Vector3.Distance(player.transform.position, homePosition) < 100 && Vector3.Distance(player.transform.position, homePosition) > 100)
+            if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }
     }
