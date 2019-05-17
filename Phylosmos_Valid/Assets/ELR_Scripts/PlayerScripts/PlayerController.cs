@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float bulletForce = 1000f;
     bool canShoot = true;
     [SerializeField] Text magazineText;
+    [SerializeField] Text reloadText;
     int bulletFired = 0;
 
     //Ability Variables
@@ -97,7 +98,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        string magazineToDisplay = (10 - bulletFired).ToString() + " / 10";
+        string magazineToDisplay;
+        if(bulletFired == 0)
+            magazineToDisplay = (10 - bulletFired).ToString();
+        else 
+            magazineToDisplay = "0" + (10 - bulletFired).ToString();
         magazineText.text = magazineToDisplay;
 
         //Sword Attack
@@ -434,10 +439,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Reload()
     {
+        reloadText.text = "Reloading";
         canShoot = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         bulletFired = 0;
         canShoot = true;
+        reloadText.text = "";
     }
     IEnumerator CursorChange()
     {
