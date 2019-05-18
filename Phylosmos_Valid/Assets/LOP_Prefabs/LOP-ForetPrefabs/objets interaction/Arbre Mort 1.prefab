@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1433282523842186668}
   - component: {fileID: 78876273}
   - component: {fileID: 78876272}
+  - component: {fileID: 2920321441726672716}
   m_Layer: 0
   m_Name: Arbre Mort 1
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &2920321441726672716
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78876271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.82
+  m_Height: 12.4
+  m_Direction: 2
+  m_Center: {x: -0.43594596, y: -0.36, z: 5.452799}
