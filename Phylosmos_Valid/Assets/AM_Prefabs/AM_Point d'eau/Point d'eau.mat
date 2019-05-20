@@ -91,8 +91,8 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.02
     - _Parallax: 0.02
-    - _RimOffset: 0.56
-    - _RimPower: 0.14
+    - _RimOffset: 1
+    - _RimPower: 1
     - _ShadowContribution: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -106,7 +106,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseTint: {r: 0.82797784, g: 1, b: 0.8254717, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
