@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rockPowerRadius = 5f;
     [SerializeField] float rockPowerForce = 10f;
     public bool rockAb = false;
+    public bool flowerAnim = false;
     public int lianaCharge;
     public int spikeCharge;
     public int rockCharge;
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability && abilityReady)
             {
                 StartCoroutine(LaunchAbility());
+                
             }
         }
 
@@ -449,9 +451,11 @@ public class PlayerController : MonoBehaviour
             }
             else if(currentAbility == StolenAbility.Healer && healerCharge > 0)
             {
+                flowerAnim = true;
                 mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                flowerAnim = true;
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
                 currentState = PlayerState.Idle;
@@ -461,6 +465,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                flowerAnim = true;
                 abilityReady = true;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
