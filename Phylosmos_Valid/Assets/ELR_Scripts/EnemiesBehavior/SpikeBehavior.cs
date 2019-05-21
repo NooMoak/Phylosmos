@@ -39,7 +39,7 @@ public class SpikeBehavior : MonoBehaviour
         {
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<MeshRenderer>().enabled = false;
             anim.SetBool("IsWalking", false);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
@@ -144,6 +144,6 @@ public class SpikeBehavior : MonoBehaviour
         currentState = SpikeState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
+        GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 }

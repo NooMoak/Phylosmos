@@ -24,7 +24,7 @@ public class PlayerDamage : MonoBehaviour
         {
             playerHealth = 100f;
         }
-        healthBar.fillAmount = playerHealth / 100;
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, playerHealth/100, 0.2f);
         Color curColor = redBorders.color;
         float alphaDiff = Mathf.Abs(curColor.a-targetAlpha);
         if (alphaDiff>0.0001f)

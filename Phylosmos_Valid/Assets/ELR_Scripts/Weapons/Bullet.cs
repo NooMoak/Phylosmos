@@ -34,5 +34,10 @@ public class Bullet : MonoBehaviour {
             hit.GetComponent<EnemyLife>().TakeDamage(1);
 			Destroy(this.gameObject);
         }
+        if (collision.gameObject.CompareTag ("Wall"))
+        {
+			Destroy(this.gameObject);
+        }
+
 	}
 }

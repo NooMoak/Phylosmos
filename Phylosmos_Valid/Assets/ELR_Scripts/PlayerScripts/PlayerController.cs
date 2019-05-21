@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 	Ray ray;
     int rayPlaneMask;
     Vector3 look;
+    float shootAngle;
 
     //Attack Variables
     [SerializeField] GameObject attackHitbox;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image lianaImage;
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
+    bool inWheel = false;
 
 	void Start ()
     {
@@ -113,24 +115,24 @@ public class PlayerController : MonoBehaviour
         {
             if(currentAbility == StolenAbility.Liana)
                 if(lianaCharge != 3)
-                    chargeJauge.fillAmount = 0.333f * lianaCharge;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 0.333f * lianaCharge, 0.2f);
                 else
-                    chargeJauge.fillAmount = 1;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 1, 0.2f);
             if(currentAbility == StolenAbility.Spike)
                 if(spikeCharge != 3)
-                    chargeJauge.fillAmount = 0.333f * spikeCharge;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 0.333f * spikeCharge, 0.2f);
                 else
-                    chargeJauge.fillAmount = 1;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 1, 0.2f);
             if(currentAbility == StolenAbility.Healer)
                 if(healerCharge != 3)
-                    chargeJauge.fillAmount = 0.333f * healerCharge;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 0.333f * healerCharge, 0.2f);
                 else
-                    chargeJauge.fillAmount = 1;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 1, 0.2f);
             if(currentAbility == StolenAbility.Rock)
                 if(rockCharge != 3)
-                    chargeJauge.fillAmount = 0.333f * rockCharge;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 0.333f * rockCharge, 0.2f);
                 else
-                    chargeJauge.fillAmount = 1;
+                    chargeJauge.fillAmount = Mathf.Lerp(chargeJauge.fillAmount, 1, 0.2f);
         }
         else 
         {
@@ -187,6 +189,7 @@ public class PlayerController : MonoBehaviour
             if(currentState != PlayerState.Stagger && currentState != PlayerState.Ability)
             {
                 currentState = PlayerState.Stagger;
+                inWheel = true;
                 selectionUI.SetActive(true);
                 Time.timeScale = 0.2f;
                 StartCoroutine("CursorChange");
@@ -194,100 +197,107 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.Space))
         {
-            if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            if(inWheel)
             {
-                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
-                    spikeImage.sprite = spikeIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
-                    lianaImage.sprite = lianaCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
-                    healerImage.sprite = healerCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
-                    rockImage.sprite = rockCDIcon;
-            } 
-            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
-                    spikeImage.sprite = spikeCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
-                    lianaImage.sprite = lianaIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
-                    healerImage.sprite = healerCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
-                    rockImage.sprite = rockCDIcon;
+                if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                        spikeImage.sprite = spikeIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                        lianaImage.sprite = lianaCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                        healerImage.sprite = healerCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                        rockImage.sprite = rockCDIcon;
+                } 
+                else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                        spikeImage.sprite = spikeCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                        lianaImage.sprite = lianaIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                        healerImage.sprite = healerCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                        rockImage.sprite = rockCDIcon;
+                }
+                else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                        spikeImage.sprite = spikeCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                        lianaImage.sprite = lianaCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                        healerImage.sprite = healerIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                        rockImage.sprite = rockCDIcon;
+                }  
+                else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                        spikeImage.sprite = spikeCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                        lianaImage.sprite = lianaCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                        healerImage.sprite = healerCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                        rockImage.sprite = rockIcon;
+                } 
             }
-            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
-                    spikeImage.sprite = spikeCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
-                    lianaImage.sprite = lianaCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
-                    healerImage.sprite = healerIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
-                    rockImage.sprite = rockCDIcon;
-            }  
-            else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
-                    spikeImage.sprite = spikeCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
-                    lianaImage.sprite = lianaCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
-                    healerImage.sprite = healerCDIcon;
-                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
-                    rockImage.sprite = rockIcon;
-            } 
         }
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            selectionUI.SetActive(false);
-            Time.timeScale = 1f;
-            currentState = PlayerState.Idle;
-            if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+            if(inWheel)
             {
-                if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                selectionUI.SetActive(false);
+                Time.timeScale = 1f;
+                currentState = PlayerState.Idle;
+                inWheel = false;
+                if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
                 {
-                    currentAbility = StolenAbility.Spike;
-                    if(spikeCharge > 0)
-                        abilityIcon.sprite = spikeIcon;
-                    else 
-                        abilityIcon.sprite = spikeCDIcon;
+                    if(dataSaver.GetComponent<DataSaver>().knowSpike == true)
+                    {
+                        currentAbility = StolenAbility.Spike;
+                        if(spikeCharge > 0)
+                            abilityIcon.sprite = spikeIcon;
+                        else 
+                            abilityIcon.sprite = spikeCDIcon;
+                        }
+                } 
+                else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
+                    {
+                        currentAbility = StolenAbility.Liana;
+                        if(lianaCharge > 0)
+                            abilityIcon.sprite = lianaIcon;
+                        else 
+                            abilityIcon.sprite = lianaCDIcon;
                     }
-            } 
-            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) > ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowLiana == true)
-                {
-                    currentAbility = StolenAbility.Liana;
-                    if(lianaCharge > 0)
-                        abilityIcon.sprite = lianaIcon;
-                    else 
-                        abilityIcon.sprite = lianaCDIcon;
                 }
+                else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
+                    {
+                        currentAbility = StolenAbility.Healer;
+                        if(healerCharge > 0)
+                            abilityIcon.sprite = healerIcon;
+                        else 
+                            abilityIcon.sprite = healerCDIcon;
+                    }
+                }  
+                else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
+                {
+                    if(dataSaver.GetComponent<DataSaver>().knowRock == true)
+                    {
+                        currentAbility = StolenAbility.Rock;
+                        if(rockCharge > 0)
+                            abilityIcon.sprite = rockIcon;
+                        else 
+                            abilityIcon.sprite = rockCDIcon;
+                    }
+                } 
             }
-            else if((Input.mousePosition.y * Screen.width) < (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowHealer == true)
-                {
-                    currentAbility = StolenAbility.Healer;
-                    if(healerCharge > 0)
-                        abilityIcon.sprite = healerIcon;
-                    else 
-                        abilityIcon.sprite = healerCDIcon;
-                }
-            }  
-            else if((Input.mousePosition.y * Screen.width) > (Input.mousePosition.x * Screen.height) && (Input.mousePosition.y * Screen.width) < ((Screen.height * Screen.width) - Input.mousePosition.x * Screen.height))
-            {
-                if(dataSaver.GetComponent<DataSaver>().knowRock == true)
-                {
-                    currentAbility = StolenAbility.Rock;
-                    if(rockCharge > 0)
-                        abilityIcon.sprite = rockIcon;
-                    else 
-                        abilityIcon.sprite = rockCDIcon;
-                }
-            } 
         }
 
         //Camera Changing
@@ -306,7 +316,7 @@ public class PlayerController : MonoBehaviour
     {
         //Player Movement & Rotation
 		Vector3 rightMovement = right * p_Speed * Time.deltaTime * Input.GetAxis("Horizontal");
-		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical");
+		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical") * 1.4f;
 		Vector3 heading = rightMovement + upMovement;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -319,10 +329,19 @@ public class PlayerController : MonoBehaviour
             }
             if (heading != Vector3.zero)
             {
-                rb.MovePosition(transform.position + heading);
+                if(rightMovement == Vector3.zero || upMovement == Vector3.zero)
+                {
+                    rb.MovePosition(transform.position + heading * 1.4f);
+                }
+                else
+                {
+                    rb.MovePosition(transform.position + heading);
+                }
                 anim.SetBool("Moving", true);
                 if(currentState != PlayerState.Attack)
                     currentState = PlayerState.Walk;
+                shootAngle = Vector3.Angle(heading, look);
+                anim.SetFloat("RunBlend", shootAngle);
             }
             else
             {
