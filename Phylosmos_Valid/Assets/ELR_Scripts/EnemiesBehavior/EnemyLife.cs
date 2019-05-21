@@ -20,7 +20,8 @@ public class EnemyLife : MonoBehaviour
     void Update()
     {
         healthBar.transform.rotation = Quaternion.Euler(0,-45,-30);
-        healthBar.transform.localScale = new Vector3(0.5f, 1, health);
+        healthBar.GetComponentInParent<Transform>().localScale = new Vector3 (1, 1, health/maxHealth);
+        healthBar.transform.localScale = new Vector3(0.5f, 0.5f, maxHealth);
     }
 
     public void TakeDamage(int damage)
