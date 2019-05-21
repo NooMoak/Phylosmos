@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VillagePostProcessProfile
   m_EditorClassIdentifier: 
   debugViews:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
       depth:
@@ -26,7 +26,7 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   fog:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       excludeSkybox: 1
   antialiasing:
@@ -41,11 +41,11 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      intensity: 1
-      radius: 0.3
-      sampleCount: 10
+      intensity: 0.07
+      radius: 11.77
+      sampleCount: 3
       downsampling: 1
       forceForwardCompatibility: 0
       ambientOnly: 0
@@ -84,60 +84,60 @@ MonoBehaviour:
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      lowPercent: 45
-      highPercent: 95
+      lowPercent: 49.00001
+      highPercent: 99
       minLuminance: -5
       maxLuminance: 1
       keyValue: 0.25
       dynamicKeyValue: 1
       adaptationType: 0
-      speedUp: 2
+      speedUp: 2.88
       speedDown: 1
-      logMin: -8
-      logMax: 4
+      logMin: -4
+      logMax: 8
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
-        threshold: 1.1
-        softKnee: 0.5
-        radius: 4
+        intensity: 0.24
+        threshold: 0.5
+        softKnee: 0.086
+        radius: 4.57
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
-        intensity: 3
+        intensity: 3.2
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.02
-        neutralWhiteIn: 10
-        neutralBlackOut: 0
-        neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
-        neutralWhiteClip: 10
+        neutralBlackIn: 0.014
+        neutralWhiteIn: 10.8
+        neutralBlackOut: 0.004
+        neutralWhiteOut: 6.97
+        neutralWhiteLevel: 4.8
+        neutralWhiteClip: 6.72
       basic:
-        postExposure: 0
-        temperature: 0
-        tint: 0
-        hueShift: 0
-        saturation: 1
-        contrast: 1
+        postExposure: -0.37
+        temperature: 1
+        tint: 3
+        hueShift: -17
+        saturation: 0.67
+        contrast: 1.14
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
+        red: {x: 0.95, y: 0.13, z: 0.03}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0, g: 0, b: 0, a: 0}
-          power: {r: 0, g: 0, b: 0, a: 0}
-          offset: {r: 0, g: 0, b: 0, a: 0}
+          slope: {r: 1, g: 1, b: 1, a: 0.021798365}
+          power: {r: 1, g: 1, b: 1, a: 0}
+          offset: {r: 1, g: 1, b: 1, a: 0.003633501}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -148,19 +148,19 @@ MonoBehaviour:
             serializedVersion: 2
             m_Curve:
             - serializedVersion: 3
-              time: 0
+              time: 0.0024937657
               value: 0
-              inSlope: 1
-              outSlope: 1
+              inSlope: 1.0552633
+              outSlope: 1.0552633
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 1
+              time: 0.9625935
               value: 1
-              inSlope: 1
-              outSlope: 1
+              inSlope: 0.3445758
+              outSlope: 0.3445758
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -306,10 +306,10 @@ MonoBehaviour:
       lut: {fileID: 0}
       contribution: 1
   chromaticAberration:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.1
+      intensity: 0.102
   grain:
     m_Enabled: 0
     m_Settings:
@@ -318,13 +318,13 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 0.3207547, g: 0.1767919, b: 0.13465646, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.45
-      smoothness: 0.2
+      intensity: 0.4
+      smoothness: 0.314
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
