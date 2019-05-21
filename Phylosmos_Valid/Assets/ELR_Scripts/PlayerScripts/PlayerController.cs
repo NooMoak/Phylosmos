@@ -145,9 +145,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown ("Fire2"))
         {
             if(currentState != PlayerState.Attack && currentState != PlayerState.Stagger && currentState != PlayerState.Ability) 
-            {
+            {        
                 anim.SetTrigger("Attack");
-                StartCoroutine(AttackCO());
+                currentState = PlayerState.Attack;
             }
         }
 
@@ -377,15 +377,9 @@ public class PlayerController : MonoBehaviour
         
     }
     
-    IEnumerator AttackCO()
+    public void AttackCO()
     {
-        currentState = PlayerState.Attack;
-        yield return new WaitForSeconds(.3f);
         attackHitbox.SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        attackHitbox.SetActive(false);
-        currentState = PlayerState.Idle;
-        yield return new WaitForSeconds(.2f);
     }
 
     public void Fire()
@@ -503,11 +497,12 @@ public class PlayerController : MonoBehaviour
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
                 abilityReady = true;
+                flowerAnim = false;
                 StopCoroutine(LaunchAbility());
             }
             else
             {
-                flowerAnim = true;
+                flowerAnim = false;
                 abilityReady = true;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
@@ -519,7 +514,9 @@ public class PlayerController : MonoBehaviour
     {
         reloadText.text = "Reloading";
         canShoot = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.3f);
+        anim.SetTrigger("Reload");
+        yield return new WaitForSeconds(1.2f);
         bulletFired = 0;
         canShoot = true;
         reloadText.text = "";
@@ -544,5 +541,11 @@ public class PlayerController : MonoBehaviour
                 currentState = PlayerState.Idle;
             } 
         }
+    }
+
+    public void AttackStop()
+    {
+        attackHitbox.SetActive(false);
+        currentState = PlayerState.Idle;
     }
 }

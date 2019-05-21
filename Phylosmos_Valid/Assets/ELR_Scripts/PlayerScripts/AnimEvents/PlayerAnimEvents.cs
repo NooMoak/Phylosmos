@@ -8,4 +8,14 @@ public class PlayerAnimEvents : MonoBehaviour
     {
         GetComponentInParent<PlayerController>().Fire();
     }
+
+    public void PlayerAnimAttack()
+    {
+        GetComponentInParent<PlayerController>().AttackCO();
+    }
+
+    public void PlayerAnimAttackStop()
+    {
+        GetComponentInParent<PlayerController>().AttackStop();
+    }
 }

@@ -16,12 +16,11 @@ public class FlowerScript : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if(GameObject.FindWithTag("Player").GetComponent<PlayerController>().flowerAnim == true)
         {
             anim.SetBool("Grow", true);
-            Debug.Log("FlowerAnim");
         }
     }
         
