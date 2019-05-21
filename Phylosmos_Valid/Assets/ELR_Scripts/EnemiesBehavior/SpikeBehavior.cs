@@ -90,31 +90,11 @@ public class SpikeBehavior : MonoBehaviour
         }
     }
 
-    private IEnumerator SpikeShoot()
+    IEnumerator SpikeShoot()
     {
 		canShoot = false;
         anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(0.35f);
-
-        GameObject clone1;
-        GameObject clone2;
-        GameObject clone3;
-        Vector3 look = player.transform.position - transform.position;
-        clone1 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone1.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
-        Vector3 dir = (player.transform.position + new Vector3(0,2,0)) - clone1.transform.position;
-        dir = dir.normalized;
-        clone1.GetComponent<Rigidbody>().AddForce(dir * launchForce);
-
-        clone2 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone2.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,135,90);
-        clone2.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(45f, Vector3.up) * dir * launchForce);
-
-        clone3 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
-        clone3.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,45,90);
-        clone3.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(-45f, Vector3.up) * dir * launchForce);
-
-		yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);
 		canShoot = true;
         randomNumber = Random.Range(1,5);
     }
@@ -145,5 +125,26 @@ public class SpikeBehavior : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         GetComponentInChildren<MeshRenderer>().enabled = true;
+    }
+
+    public void AnimShoot()
+    {
+        GameObject clone1;
+        GameObject clone2;
+        GameObject clone3;
+        Vector3 look = player.transform.position - transform.position;
+        clone1 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
+        clone1.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,90,90);
+        Vector3 dir = (player.transform.position + new Vector3(0,2,0)) - clone1.transform.position;
+        dir = dir.normalized;
+        clone1.GetComponent<Rigidbody>().AddForce(dir * launchForce);
+
+        clone2 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
+        clone2.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,135,90);
+        clone2.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(45f, Vector3.up) * dir * launchForce);
+
+        clone3 = Instantiate(spikeProjectile, transform.position + new Vector3(0,2,0), transform.rotation);
+        clone3.transform.rotation = Quaternion.LookRotation (look) * Quaternion.Euler(0,45,90);
+        clone3.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(-45f, Vector3.up) * dir * launchForce);
     }
 }

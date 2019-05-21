@@ -82,7 +82,7 @@ MonoBehaviour:
   fightRadius: 50
   lianaSpeed: 15
   grab: {fileID: 7401379680880916875, guid: 2b7d878aff337de4b8e2e6644b58a791, type: 3}
-  grabSpeed: 200
+  grabSpeed: 250
 --- !u!114 &8577989738436935503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1917,6 +1917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8125878946189391371}
   - component: {fileID: 8125878946197100941}
+  - component: {fileID: 2963868873251489518}
   m_Layer: 0
   m_Name: liane_animations
   m_TagString: Untagged
@@ -1959,6 +1960,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2963868873251489518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125878946189683691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fbba91639ceaa4fab93b7c2c9d64e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8125878946189683693
 GameObject:
   m_ObjectHideFlags: 0
