@@ -109,20 +109,6 @@ public class RockBehavior : MonoBehaviour
         canShockWave = false;
         shockWaving = true;
         anim.SetTrigger("ShockWave");
-        yield return new WaitForSeconds(1.5f);
-        Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, rockRadius);
-        foreach(Collider hit in colliders)
-        {
-            Rigidbody hitRb = hit.GetComponent<Rigidbody>();
-            
-            if(hitRb == player.GetComponent<Rigidbody>())
-            {
-                float distance = Vector3.Distance(hitRb.transform.position, explosionPos);
-                hitRb.AddForce(-(transform.position - player.transform.position) * rockForce * ((1/distance) * 100));
-                player.GetComponent<PlayerDamage>().TakeDamage(10f);
-            }
-        }
         yield return new WaitForSeconds(0.5f);
         shockWaving = false;
         yield return new WaitForSeconds(5);
@@ -137,6 +123,23 @@ public class RockBehavior : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         GetComponentInChildren<MeshRenderer>().enabled = true;
+    }
+
+    public void ShockWaveAnim()
+    {
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, rockRadius);
+        foreach(Collider hit in colliders)
+        {
+            Rigidbody hitRb = hit.GetComponent<Rigidbody>();
+            
+            if(hitRb == player.GetComponent<Rigidbody>())
+            {
+                float distance = Vector3.Distance(hitRb.transform.position, explosionPos);
+                hitRb.AddForce(-(transform.position - player.transform.position) * rockForce * ((1/distance) * 100));
+                player.GetComponent<PlayerDamage>().TakeDamage(10f);
+            }
+        }
     }
 
 }

@@ -95,12 +95,6 @@ public class LianaBehavior : MonoBehaviour
     {
         canGrab = false;
         anim.SetTrigger("Grab");
-        yield return new WaitForSeconds(0.5f);
-        grabbing = true;
-        GameObject lianaClone;
-        lianaClone = Instantiate(grab, transform.position + new Vector3(0,3,0), transform.rotation);
-        lianaClone.GetComponent<GrabScript>().lianaEnemy = gameObject;
-        lianaClone.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(-(transform.position - player.transform.position)) * grabSpeed * 50);
         yield return new WaitForSeconds(2f);
         grabbing = false;
         yield return new WaitForSeconds(6f);
@@ -128,5 +122,14 @@ public class LianaBehavior : MonoBehaviour
             yield return new WaitForSeconds(1f);
             currentState = LianaState.Fight;
         }
+    }
+
+    public void GrabAnim()
+    {
+        grabbing = true;
+        GameObject lianaClone;
+        lianaClone = Instantiate(grab, transform.position + new Vector3(0,3,0), transform.rotation);
+        lianaClone.GetComponent<GrabScript>().lianaEnemy = gameObject;
+        lianaClone.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(-(transform.position - player.transform.position)) * grabSpeed * 50);
     }
 }
