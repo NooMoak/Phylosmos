@@ -18,4 +18,14 @@ public class PlayerAnimEvents : MonoBehaviour
     {
         GetComponentInParent<PlayerController>().AttackStop();
     }
+
+    public void PlayerAnimLaser()
+    {
+        GetComponentInParent<PlayerController>().Laser();
+    }
+
+    public void PlayerAnimSniperShoot()
+    {
+        GetComponentInParent<PlayerController>().SniperShoot();
+    }
 }

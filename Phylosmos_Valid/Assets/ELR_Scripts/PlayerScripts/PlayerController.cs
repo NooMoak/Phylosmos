@@ -402,6 +402,7 @@ public class PlayerController : MonoBehaviour
         {
             abilityReady = false;
             currentState = PlayerState.Ability;
+            anim.SetBool("Moving", false);
             yield return null;
             if(currentAbility == StolenAbility.Liana && lianaCharge > 0)
             {
@@ -432,25 +433,15 @@ public class PlayerController : MonoBehaviour
                     transform.rotation = Quaternion.LookRotation (look);
                     transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 }
-                GetComponent<LineRenderer>().enabled = true;
+                anim.SetBool("Sniper", true);
                 if(Input.GetButtonDown("Fire1")){
-                    GameObject clone;
-                    clone = Instantiate(sniperBullet, bulletStart.transform.position, bulletStart.transform.rotation);
-                    clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
-                    Vector3 dir = look;
-                    dir = dir.normalized;
-                    clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);
-                    GetComponent<LineRenderer>().enabled = false;
-                    spikeCharge -= 1;
-                    yield return new WaitForSeconds(0.2f);
-                    currentState = PlayerState.Idle;
-                    mainCam.GetComponent<CameraController>().NormalCam();
-                    abilityReady = true;
+                    anim.SetTrigger("SniperShoot");
                     StopCoroutine(LaunchAbility());
                 } 
                 else if (Input.GetKeyDown(KeyCode.E))
                 {
                     GetComponent<LineRenderer>().enabled = false;
+                    anim.SetBool("Sniper", false);
                     abilityReady = true;
                     currentState = PlayerState.Idle;
                     StopCoroutine(LaunchAbility());
@@ -547,5 +538,32 @@ public class PlayerController : MonoBehaviour
     {
         attackHitbox.SetActive(false);
         currentState = PlayerState.Idle;
+    }
+
+    public void Laser()
+    {
+        GetComponent<LineRenderer>().enabled = true;
+    }
+
+    public void SniperShoot()
+    {
+        GameObject clone;
+        clone = Instantiate(sniperBullet, bulletStart.transform.position, bulletStart.transform.rotation);
+        clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
+        Vector3 dir = look;
+        dir = dir.normalized;
+        clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);
+        GetComponent<LineRenderer>().enabled = false;
+        anim.SetBool("Sniper", false);
+        spikeCharge -= 1;
+        StartCoroutine(SniperStop());
+    }
+
+    IEnumerator SniperStop()
+    {
+        yield return new WaitForSeconds(0.5f);
+        currentState = PlayerState.Idle;
+        mainCam.GetComponent<CameraController>().NormalCam();
+        abilityReady = true;
     }
 }
