@@ -99,6 +99,13 @@ public class CameraController : MonoBehaviour
             spellCam.SetActive(false);
             normalCam.SetActive(false);
             hurtCam.SetActive(true);
+            StartCoroutine(ReturnToNormal());
         }
+    }
+
+    IEnumerator ReturnToNormal()
+    {
+        yield return new WaitForSeconds(0.5f);
+        NormalCam();
     }
 }
