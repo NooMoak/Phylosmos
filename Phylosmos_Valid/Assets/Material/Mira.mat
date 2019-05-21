@@ -138,7 +138,7 @@ Material:
     - _OcclusionStrength: 1
     - _Outline: 0.05
     - _OutlineSize: 0.09
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.0005
     - _Parallax: 0.02
     - _RimIntensity: 0.13
     - _RimOffset: 0.326

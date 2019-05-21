@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     int rayPlaneMask;
     Vector3 look;
     float shootAngle;
+    Vector3 heading;
 
     //Attack Variables
     [SerializeField] GameObject attackHitbox;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     //Shoot Variables
     [SerializeField] GameObject bullet;
     [SerializeField] float bulletForce = 1000f;
+    [SerializeField] GameObject bulletStart;
     bool canShoot = true;
     [SerializeField] Text magazineText;
     [SerializeField] Text reloadText;
@@ -156,12 +158,18 @@ public class PlayerController : MonoBehaviour
             {
                 if(bulletFired < 10)
                 {
-                    StartCoroutine(Fire());
-                } else 
+                    anim.SetBool("Shooting", true);
+                } 
+                else 
                 {
+                    anim.SetBool("Shooting", false);
                     StartCoroutine(Reload());
                 }
             }
+        }
+        if (Input.GetButtonUp ("Fire1"))
+        {
+            anim.SetBool("Shooting", false);
         }
 
         //Ability Launch
@@ -317,13 +325,13 @@ public class PlayerController : MonoBehaviour
         //Player Movement & Rotation
 		Vector3 rightMovement = right * p_Speed * Time.deltaTime * Input.GetAxis("Horizontal");
 		Vector3 upMovement = forward * p_Speed * Time.deltaTime * Input.GetAxis("Vertical") * 1.4f;
-		Vector3 heading = rightMovement + upMovement;
+		heading = rightMovement + upMovement;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (currentState == PlayerState.Walk || currentState == PlayerState.Idle || currentState == PlayerState.Attack )
         {
             if(Physics.Raycast(ray, out hit, 10000, rayPlaneMask)){
-                look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
+                look = hit.point - new Vector3 (transform.position.x, transform.position.y + 6.5f, transform.position.z);
                 transform.rotation = Quaternion.LookRotation (look);
                 transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
@@ -336,18 +344,34 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     rb.MovePosition(transform.position + heading);
-                }
-                anim.SetBool("Moving", true);
+                }          
                 if(currentState != PlayerState.Attack)
+                {
                     currentState = PlayerState.Walk;
+                }
+             
                 shootAngle = Vector3.Angle(heading, look);
+                Vector3 cross = Vector3.Cross(heading, look);
+                if(cross.y < 0)
+                {
+                    shootAngle = -shootAngle;
+                }
+                if((shootAngle <= 90 && shootAngle >= 0) || (shootAngle >= -90 && shootAngle <= 0))
+                {
+                    anim.SetBool("MovingForward", true);
+                    anim.SetBool("MovingBackward", false);
+                }
+                else if((shootAngle > 90 && shootAngle >= 0) || (shootAngle < -90 && shootAngle <= 0))
+                {
+                    anim.SetBool("MovingBackward", true);
+                    anim.SetBool("MovingForward", false);
+                }
                 anim.SetFloat("RunBlend", shootAngle);
+                anim.SetBool("Moving", true);
             }
             else
             {
-                anim.SetBool("Moving", false);
-                if(currentState != PlayerState.Attack)
-                    currentState = PlayerState.Idle; 
+                StartCoroutine(WaitForIdle());
             }
         }
         
@@ -364,18 +388,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.2f);
     }
 
-    IEnumerator Fire()
+    public void Fire()
     {
         if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask)){
             canShoot = false;
             GameObject clone;
-            clone = Instantiate(bullet, transform.position + new Vector3(0,5,0), transform.rotation);
+            clone = Instantiate(bullet, bulletStart.transform.position, bulletStart.transform.rotation);
             Vector3 dir = look;
             dir = dir.normalized;
             clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce);
-            yield return new WaitForSeconds(0.2f);
-            canShoot = true;
             bulletFired += 1;
+            canShoot = true;
         }
     }
 
@@ -391,10 +414,10 @@ public class PlayerController : MonoBehaviour
                 mainCam.GetComponent<CameraController>().SpellCam();
                 if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
                 {
-                    look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
+                    look = hit.point - new Vector3 (transform.position.x, transform.position.y + 6.5f, transform.position.z);
                 }
                 GameObject grabClone;
-                grabClone = Instantiate(grab, transform.position + new Vector3(0,5,0), transform.rotation);
+                grabClone = Instantiate(grab, bulletStart.transform.position, bulletStart.transform.rotation);
                 grabClone.GetComponent<PlayerGrab>().player = gameObject;
                 Vector3 dir = look;
                 dir = dir.normalized;
@@ -411,14 +434,14 @@ public class PlayerController : MonoBehaviour
                 mainCam.GetComponent<CameraController>().SpellCam();
                 if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
                 {
-                    look = hit.point - new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
+                    look = hit.point - new Vector3 (transform.position.x, transform.position.y + 6.5f, transform.position.z);
                     transform.rotation = Quaternion.LookRotation (look);
                     transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
                 }
                 GetComponent<LineRenderer>().enabled = true;
                 if(Input.GetButtonDown("Fire1")){
                     GameObject clone;
-                    clone = Instantiate(sniperBullet, transform.position + new Vector3(0,5,0), transform.rotation);
+                    clone = Instantiate(sniperBullet, bulletStart.transform.position, bulletStart.transform.rotation);
                     clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
                     Vector3 dir = look;
                     dir = dir.normalized;
@@ -506,5 +529,20 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         yield return null;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    IEnumerator WaitForIdle()
+    {
+        yield return new WaitForSeconds(0.05f);
+        if(heading == Vector3.zero)
+        {
+            anim.SetBool("MovingForward", false);
+            anim.SetBool("MovingBackward", false);
+            anim.SetBool("Moving", false);
+            if(currentState != PlayerState.Attack)
+            {
+                currentState = PlayerState.Idle;
+            } 
+        }
     }
 }
