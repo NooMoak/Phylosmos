@@ -50,7 +50,7 @@ public class RockBehavior : MonoBehaviour
         {
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            GetComponentInChildren<MeshRenderer>().enabled = false;
+            //GetComponentInChildren<MeshRenderer>().enabled = false;
             anim.SetBool("IsWalking", false);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
@@ -122,7 +122,7 @@ public class RockBehavior : MonoBehaviour
         currentState = RockState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        GetComponentInChildren<MeshRenderer>().enabled = true;
+        //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 
     public void ShockWaveAnim()

@@ -4,28 +4,47 @@ using UnityEngine;
 
 public class PlayerAnimEvents : MonoBehaviour
 {
+    [SerializeField] AudioClip audioGun;
+    [SerializeField] AudioClip audioSword;
+    [SerializeField] AudioClip audioWalk;
+    GameObject player;
+
+    private void Start() 
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     public void PlayerAnimShoot()
     {
-        GetComponentInParent<PlayerController>().Fire();
+        player.GetComponent<PlayerController>().Fire();
+        player.GetComponentInParent<AudioSource>().clip = audioGun;
+        player.GetComponentInParent<AudioSource>().Play();
     }
 
     public void PlayerAnimAttack()
     {
-        GetComponentInParent<PlayerController>().AttackCO();
+        player.GetComponentInParent<PlayerController>().AttackCO();
+        player.GetComponentInParent<AudioSource>().clip = audioSword;
+        player.GetComponentInParent<AudioSource>().Play();
     }
 
     public void PlayerAnimAttackStop()
     {
-        GetComponentInParent<PlayerController>().AttackStop();
+        player.GetComponentInParent<PlayerController>().AttackStop();
     }
 
     public void PlayerAnimLaser()
     {
-        GetComponentInParent<PlayerController>().Laser();
+        player.GetComponentInParent<PlayerController>().Laser();
     }
 
     public void PlayerAnimSniperShoot()
     {
-        GetComponentInParent<PlayerController>().SniperShoot();
+        player.GetComponentInParent<PlayerController>().SniperShoot();
+    }
+
+    public void PlayerWalkSound()
+    {
+        GetComponent<AudioSource>().clip = audioWalk;
+        GetComponent<AudioSource>().Play();
     }
 }

@@ -24,7 +24,7 @@ public class IntroCam : MonoBehaviour
 
     IEnumerator CamMove()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         introCam.SetActive(false);
         Camera.main.gameObject.GetComponent<CameraController>().exeption = false;
         Camera.main.gameObject.GetComponent<CameraController>().NormalCam();

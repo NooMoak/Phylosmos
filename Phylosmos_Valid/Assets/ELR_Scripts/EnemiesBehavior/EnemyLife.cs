@@ -9,6 +9,8 @@ public class EnemyLife : MonoBehaviour
     public bool invicible;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarContainer;
+    [SerializeField] AudioClip audioHurt1;
+    [SerializeField] AudioClip audioHurt2;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,16 @@ public class EnemyLife : MonoBehaviour
         {
             health -= damage;
             anim.SetTrigger("Hurt");
+            int random = Random.Range(1,3);
+            if(random == 1)
+            {
+                GetComponent<AudioSource>().clip = audioHurt1;
+            }
+            if(random == 2)
+            {
+                GetComponent<AudioSource>().clip = audioHurt2;
+            }
+            GetComponent<AudioSource>().Play();
             CheckHealth();
         }
     }

@@ -7,6 +7,8 @@ public class DynamicLight : MonoBehaviour
     Light lt;
     float intensityFloat;
     float rangeFloat;
+    float intensityTarget;
+    float rangeTarget;
     
     
     [SerializeField] float minimumRange;
@@ -27,10 +29,23 @@ public class DynamicLight : MonoBehaviour
     {
         //rangeFloat = Mathf.PingPong(Time.time * rangeSpeed, maximumRange - minimumRange);
         //lt.range = rangeFloat + minimumRange;
-        lt.range = Random.Range(minimumRange, maximumRange);
+        if(lt.range == rangeTarget){
+            rangeTarget = Random.Range(minimumRange, maximumRange);
+        }
+        else
+        {
+            lt.range = Mathf.Lerp(lt.range, rangeTarget, 0.2f);
+        }
 
         //intensityFloat = Mathf.PingPong(Time.time * intensitySpeed, maximumIntensity - minimumIntensity);
         //lt.intensity = intensityFloat + minimumIntensity;
-        lt.intensity = Random.Range(minimumIntensity, maximumIntensity);
+        if(lt.intensity == intensityTarget)
+        {
+            intensityTarget = Random.Range(minimumIntensity, maximumIntensity);
+        }
+        else
+        {
+            lt.intensity = Mathf.Lerp(lt.intensity, intensityTarget, 0.2f);
+        }
     }
 }

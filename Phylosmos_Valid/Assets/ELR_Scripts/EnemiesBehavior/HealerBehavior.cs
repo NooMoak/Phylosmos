@@ -134,7 +134,7 @@ public class HealerBehavior : MonoBehaviour
         {
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            GetComponentInChildren<MeshRenderer>().enabled = false;
+            //GetComponentInChildren<MeshRenderer>().enabled = false;
             anim.SetBool("IsWalking", false);
             anim.SetBool("IsHealing", false);
             isFleeing = false;
@@ -163,7 +163,7 @@ public class HealerBehavior : MonoBehaviour
         currentState = HealerState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        GetComponentInChildren<MeshRenderer>().enabled = true;
+        //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
     void Scan()
     {
