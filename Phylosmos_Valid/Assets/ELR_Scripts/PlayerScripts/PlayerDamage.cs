@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerDamage : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Image redBorders;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject blackFade;
+    [SerializeField] GameObject UI;
 
     private void Start() 
     {
@@ -71,7 +74,17 @@ public class PlayerDamage : MonoBehaviour
         if(playerHealth <= 0)
         {
             anim.SetBool("Dead", true);
-            Destroy(gameObject, 2);
+            GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(2);
+        blackFade.GetComponent<Animator>().SetBool("FadeOut", true);
+        UI.SetActive(false);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

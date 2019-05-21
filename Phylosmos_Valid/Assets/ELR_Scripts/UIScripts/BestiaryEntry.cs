@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BestiaryEntry : MonoBehaviour
 {
-
     public GameObject analyseText;
     public GameObject normalUI;
     public GameObject bestiaryUI;
@@ -19,25 +18,23 @@ public class BestiaryEntry : MonoBehaviour
     public string desiredTitleText2;
     public string desiredInfoText;
     public bool imageDiscovered;
+    BestiaryData bestiaryData;
+    bool pressed = false;
 
+    private void Start() 
+    {
+        bestiaryData = FindObjectOfType<BestiaryData>();
+    }
     void OnTriggerStay(Collider other) {
         if(other.tag == "Player")
         {
             analyseText.SetActive(true);
             analyseText.GetComponent<Text>().text = "Press 'F' to analyse";
-            if(Input.GetKeyDown(KeyCode.F))
+            if(Input.GetKeyDown(KeyCode.F) && pressed == false)
             {
-                FindObjectOfType<CameraController>().GetComponent<CameraController>().normal = false;
-                analyseText.SetActive(false);
-                normalUI.SetActive(false);
-                bestiaryUI.SetActive(true);
-                mainPanel.SetActive(false);
-                correspondingPanel.SetActive(true);
-                panelTitleText1.text = desiredTitleText1;
-                panelTitleText2.text = desiredTitleText2;
-                infoText.text = desiredInfoText;
-                panelIllustration.enabled = imageDiscovered;
-                Time.timeScale = 0f;
+                pressed = true;
+                bestiaryData.SpikeEntry();
+                StartCoroutine(Entry());
             }
         }
     }
@@ -47,4 +44,21 @@ public class BestiaryEntry : MonoBehaviour
             analyseText.SetActive(false);
         }
     }  
+
+    IEnumerator Entry()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<CameraController>().GetComponent<CameraController>().normal = false;
+        analyseText.SetActive(false);
+        normalUI.SetActive(false);
+        bestiaryUI.SetActive(true);
+        mainPanel.SetActive(false);
+        correspondingPanel.SetActive(true);
+        //panelTitleText1.text = desiredTitleText1;
+        //panelTitleText2.text = desiredTitleText2;
+        //infoText.text = desiredInfoText;
+        //panelIllustration.enabled = imageDiscovered;
+        Time.timeScale = 0f;
+        Destroy(this.gameObject);
+    }
 }
