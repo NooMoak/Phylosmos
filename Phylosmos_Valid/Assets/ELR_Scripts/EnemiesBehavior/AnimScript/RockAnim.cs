@@ -10,5 +10,7 @@ public class RockAnim : MonoBehaviour
         GetComponentInParent<RockBehavior>().ShockWaveAnim();
         GetComponentInParent<AudioSource>().clip = audioShock;
         GetComponentInParent<AudioSource>().Play();
+        GameObject parent = transform.parent.gameObject;
+        parent.GetComponentInChildren<ParticleSystem>().Play();
     }
 }
