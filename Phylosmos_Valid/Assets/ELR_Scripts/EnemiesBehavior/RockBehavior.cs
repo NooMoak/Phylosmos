@@ -22,7 +22,18 @@ public class RockBehavior : MonoBehaviour
     Rigidbody rb;
     bool canShockWave = true;
     bool shockWaving = false;
+    bool hasDied = false;
     Animator anim;
+    [SerializeField] Material dissolveMat1;
+    [SerializeField] Material dissolveMat2;
+    [SerializeField] Material dissolveMat3;
+    [SerializeField] Material baseMat1;
+    [SerializeField] Material baseMat2;
+    [SerializeField] Material baseMat3;
+    Renderer matRenderer;
+    Material[] baseMaterials;
+    Material[] newMaterials;
+    float dissolveAmount = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +42,9 @@ public class RockBehavior : MonoBehaviour
         player = GameObject.FindWithTag("Player");
 		rb = GetComponent<Rigidbody>(); 
         anim = GetComponentInChildren<Animator>();
+        matRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        baseMaterials = new Material[]{baseMat1, baseMat2, baseMat3};
+        newMaterials = new Material[]{dissolveMat1, dissolveMat2, dissolveMat3};
     }
 
     // Update is called once per frame
@@ -48,10 +62,23 @@ public class RockBehavior : MonoBehaviour
 
         if(currentState == RockState.Dead)
         {
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            //GetComponentInChildren<MeshRenderer>().enabled = false;
-            anim.SetBool("IsWalking", false);
+            if(hasDied == false)
+            {
+                GetComponent<CapsuleCollider>().enabled = false;
+                GetComponent<Rigidbody>().useGravity = false;
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                anim.SetBool("IsWalking", false);
+                matRenderer.materials = newMaterials;
+                matRenderer.materials[0].SetFloat("_DissolveAmount", 0);
+                matRenderer.materials[1].SetFloat("_DissolveAmount", 0);
+                matRenderer.materials[2].SetFloat("_DissolveAmount", 0);
+                dissolveAmount = 0;
+                hasDied = true;
+            }
+            dissolveAmount = Mathf.Lerp(dissolveAmount, 1, 0.02f);
+            matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
+            matRenderer.materials[1].SetFloat("_DissolveAmount", dissolveAmount);
+            matRenderer.materials[2].SetFloat("_DissolveAmount", dissolveAmount);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }
@@ -121,7 +148,9 @@ public class RockBehavior : MonoBehaviour
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = RockState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
-        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        matRenderer.materials = baseMaterials;
+        hasDied = false;
         //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 
