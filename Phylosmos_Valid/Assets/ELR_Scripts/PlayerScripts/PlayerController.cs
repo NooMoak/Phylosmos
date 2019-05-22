@@ -76,9 +76,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
     bool inWheel = false;
+    GameObject particleContainer;
     GameObject healParticle;
     GameObject shockwaveParticle;
     [SerializeField] AudioClip audioShock;
+    [SerializeField] AudioClip audioGrab;
 
 	void Start ()
     {
@@ -93,18 +95,23 @@ public class PlayerController : MonoBehaviour
         rayPlaneMask = LayerMask.GetMask("RayPlane");
         enemyLayer = LayerMask.GetMask("EnemyToHeal");
 
-        healParticle = transform.Find("HealParticle").gameObject;
-        shockwaveParticle = transform.Find("ShockwaveParticle").gameObject;
+        particleContainer = transform.Find("Particles").gameObject;
+        healParticle = particleContainer.transform.Find("HealParticle").gameObject;
+        shockwaveParticle = particleContainer.transform.Find("ShockwaveParticle").gameObject;
 
         //Data
         dataSaver = FindObjectOfType<DataSaver>().gameObject;
         if(dataSaver != null)
         {
-        dataSaver.GetComponent<DataSaver>().player = this.gameObject;
-        spikeCharge =  dataSaver.GetComponent<DataSaver>().spikeCharge;
-        lianaCharge =  dataSaver.GetComponent<DataSaver>().lianaCharge;
-        healerCharge =  dataSaver.GetComponent<DataSaver>().healerCharge;
-        rockCharge =  dataSaver.GetComponent<DataSaver>().rockCharge;
+            dataSaver.GetComponent<DataSaver>().player = this.gameObject;
+            spikeCharge =  dataSaver.GetComponent<DataSaver>().spikeCharge;
+            lianaCharge =  dataSaver.GetComponent<DataSaver>().lianaCharge;
+            healerCharge =  dataSaver.GetComponent<DataSaver>().healerCharge;
+            rockCharge =  dataSaver.GetComponent<DataSaver>().rockCharge;
+        }
+        else
+        {
+            Debug.Log("DataSaver not found! Several errors will occur.");
         }
 	}
 
@@ -423,6 +430,8 @@ public class PlayerController : MonoBehaviour
                 Vector3 dir = look;
                 dir = dir.normalized;
                 grabClone.GetComponent<Rigidbody>().AddForce(dir* grabSpeed * 50);
+                GetComponent<AudioSource>().clip = audioGrab;
+                GetComponent<AudioSource>().Play();
                 yield return new WaitForSeconds(1f);
                 abilityReady = true;
                 currentState = PlayerState.Idle;
@@ -521,6 +530,7 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
         reloadText.text = "";
     }
+
     IEnumerator CursorChange()
     {
         Cursor.lockState = CursorLockMode.Locked;

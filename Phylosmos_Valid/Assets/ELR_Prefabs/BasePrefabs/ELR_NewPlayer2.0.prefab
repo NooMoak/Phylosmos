@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572618781267911531}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2572618782141908915}
-  m_RootOrder: 4
+  m_Father: {fileID: 2657477039537800838}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2572618781267911524
 ParticleSystem:
@@ -4885,8 +4885,7 @@ Transform:
   - {fileID: 3855081985843756564}
   - {fileID: 2572618781809140227}
   - {fileID: 6408850697654140284}
-  - {fileID: 2572618781267911530}
-  - {fileID: 4630330226773347454}
+  - {fileID: 2657477039537800838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -4940,6 +4939,8 @@ MonoBehaviour:
   lianaImage: {fileID: 0}
   healerImage: {fileID: 0}
   rockImage: {fileID: 0}
+  audioShock: {fileID: 8300000, guid: 46350cfc32948db458ec0d4dd853caaf, type: 3}
+  audioGrab: {fileID: 8300000, guid: 9762b0333e503a9428946741474ffc60, type: 3}
 --- !u!114 &2572618782141908912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11151,15 +11152,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4630330226773347453}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.10000001, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4630330228715219507}
   - {fileID: 4630330228527653462}
   - {fileID: 4630330226736999507}
   - {fileID: 4630330227611526580}
-  m_Father: {fileID: 2572618782141908915}
-  m_RootOrder: 5
+  m_Father: {fileID: 2657477039537800838}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4630330226773347455
 ParticleSystem:
@@ -30154,6 +30155,38 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &7643622662137562825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2657477039537800838}
+  m_Layer: 0
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2657477039537800838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643622662137562825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2572618781267911530}
+  - {fileID: 4630330226773347454}
+  m_Father: {fileID: 2572618782141908915}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8353499841350726478
 GameObject:
   m_ObjectHideFlags: 0
