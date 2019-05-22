@@ -6,6 +6,7 @@ public class PlayerGrab : MonoBehaviour
 {
     [SerializeField] float grabForce;
     public GameObject player;
+    GameObject anchor;
 
     private void Start()
     {
@@ -21,7 +22,9 @@ public class PlayerGrab : MonoBehaviour
         if(other.gameObject.tag == "GrabAnchor")
         {
             player.GetComponent<CapsuleCollider>().isTrigger = true;
+            player.GetComponent<Rigidbody>().useGravity = false;
             player.GetComponent<Rigidbody>().AddForce(-(player.transform.position - other.gameObject.transform.position) * grabForce * 1.5f);
+            anchor = other.gameObject;
             StartCoroutine("Arrived");
         }
         if(other.gameObject.tag == "Wall")
@@ -30,9 +33,18 @@ public class PlayerGrab : MonoBehaviour
         }
     }
 
+    private void Update() 
+    {
+        if(anchor != null && Vector3.Distance(player.transform.position, anchor.transform.position) < 4f)
+        {
+            player.GetComponent<CapsuleCollider>().isTrigger = false;
+            player.GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
     IEnumerator Arrived ()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(3f);
         player.GetComponent<CapsuleCollider>().isTrigger = false;
+        player.GetComponent<Rigidbody>().useGravity = true;
     }
 }
