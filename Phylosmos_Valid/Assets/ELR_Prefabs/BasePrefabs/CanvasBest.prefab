@@ -916,8 +916,8 @@ RectTransform:
   m_Father: {fileID: 153132172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.45415008}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.45415}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: -0.000011444, y: 0}
   m_SizeDelta: {x: 68.4, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1420,13 +1420,16 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1379687813}
+  - {fileID: 241923427}
+  - {fileID: 1034480332}
   m_Father: {fileID: 2129546377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00040387755, y: 0.000032424927}
+  m_AnchoredPosition: {x: 0.00040387755, y: 0.00009346008}
   m_SizeDelta: {x: 0, y: 741.3}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &202211646
@@ -1470,18 +1473,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\r\rAccording to the inhabitants of the village, it is an extremely rare
-    species. It grew up in an extremely rich and predator-free environment, which
-    allowed it to grow.\n\nWhen it reaches its adult height, he is a mini ecosystem
-    on his own. A species of beetle lives between its feathers and feeds on everything
-    that the pores of Pt\xECsi folia release.\n\nThese very special little insects
-    can catch fire if they come in contact with a certain vitamin, which the beast
-    can secrete on command. The Flight of Fire uses it in different ways to defend
-    or hunt.\n\nDuring its growth, the creature developed an extremely resistant skin,
-    strong enough to withstand the claws and fangs of predators. But even if its skin
-    is strong, she can not withstand big shocks. \n\nIn addition, if Pt\xECsi folia
-    uses insects that ignite to attack, the contact of a bullet with flaming insects
-    can cause a violent explosion to injure the animal."
+  m_Text: 
 --- !u!1 &202563218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,6 +1625,87 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Healing spore
+--- !u!1 &241923426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241923427}
+  - component: {fileID: 241923429}
+  - component: {fileID: 241923428}
+  m_Layer: 5
+  m_Name: TextLore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &241923427
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241923426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 202211644}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.002319336, y: 39.204987}
+  m_SizeDelta: {x: 608.5, y: 120.61}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &241923429
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241923426}
+  m_CullTransparentMesh: 0
+--- !u!114 &241923428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241923426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\r\rAccording to the inhabitants of the village, it is an extremely rare
+    species. It grew up in an extremely rich and predator-free environment, which
+    allowed it to grow."
 --- !u!1 &265632564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,8 +2115,9 @@ RectTransform:
   - {fileID: 1507366481}
   - {fileID: 1972977289}
   - {fileID: 1422522026}
+  - {fileID: 1426881602}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3457,7 +3531,7 @@ RectTransform:
   - {fileID: 1460452307}
   - {fileID: 1582285952}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3513,7 +3587,7 @@ GameObject:
   - component: {fileID: 533332018}
   - component: {fileID: 533332017}
   m_Layer: 5
-  m_Name: InfosText
+  m_Name: InfosTextRW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3535,8 +3609,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.35}
-  m_SizeDelta: {x: 630, y: 630}
+  m_AnchoredPosition: {x: 0, y: 254.3}
+  m_SizeDelta: {x: 630, y: 126.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &533332018
 CanvasRenderer:
@@ -3579,13 +3653,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "This little animal has evolved to look like plants in its environment.
-    This allows him to hide himself from big predators and surprise his prey.\n\nWe
-    must not trust his appearance that can be misleading, he is carnivorous and feeds
-    on small animals. He throws spades that grow on his forelimb, which allows him
-    to reach prey that would flee too quickly for him if he approached.\n\nHis main
-    strength is based on the distance he can put between him and his prey. \nIn addition,
-    he will try to dissuade anyone from approaching by firing bursts of spades."
+  m_Text: "His main strength is based on the distance he can put between him and his
+    prey. \nIn addition, he will try to dissuade anyone from approaching by firing
+    bursts of spades."
 --- !u!1 &542878443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,6 +4243,93 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: The flight of fire
+--- !u!1 &676353369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676353370}
+  - component: {fileID: 676353372}
+  - component: {fileID: 676353371}
+  m_Layer: 5
+  m_Name: TextLore(analyse du journal fin lvl catacombs)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &676353370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676353369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -235}
+  m_SizeDelta: {x: 705, y: 545.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &676353372
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676353369}
+  m_CullTransparentMesh: 0
+--- !u!114 &676353371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676353369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "After the death of the last humans on earth, plants and fungi infested
+    human cadavers and took possession of them. They thus create a new species of
+    plant man. Over time, the plant and its host have evolved so that their cells
+    merge and a new species is born.\r\nThey are primitive and live in small villages.
+    They grow a few plants and hunt around their village. Having inherited the abilities
+    of the plants, they also \"feed\" on the sun and therefore have a smaller conventional
+    diet. They draw most of the nutrients they need from the water points where they
+    base their village.\nTheir lifestyle is very self-sufficient, we can see some
+    rare cases of barter, but they seem to share everything.\r"
 --- !u!1 &725822016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4762,6 +4919,88 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Thorny imitator
+--- !u!1 &774193617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774193618}
+  - component: {fileID: 774193620}
+  - component: {fileID: 774193619}
+  m_Layer: 5
+  m_Name: "TextDrawings(cette analyse doit d\xE9bloquer une entr\xE9e dans le panel
+    du boss aussi)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &774193618
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774193617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 324}
+  m_SizeDelta: {x: 705, y: 135.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &774193620
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774193617}
+  m_CullTransparentMesh: 0
+--- !u!114 &774193619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774193617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "They do not know how to write. Therefore, they use different pigments to
+    leave visual indications. They use it especially to remember exploits or to prevent
+    the whole village, as of a great danger for example.\r"
 --- !u!1 &787876857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5057,7 +5296,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Thorny Imitator
+  m_Text: Thorny imitator
 --- !u!1 &805905872
 GameObject:
   m_ObjectHideFlags: 0
@@ -6093,7 +6332,7 @@ RectTransform:
   m_Children:
   - {fileID: 107241250}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6381,7 +6620,7 @@ RectTransform:
   - {fileID: 757526403}
   - {fileID: 884000344}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6453,13 +6692,18 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1146589360}
+  - {fileID: 1830082800}
+  - {fileID: 774193618}
+  - {fileID: 1300491906}
+  - {fileID: 676353370}
   m_Father: {fileID: 1023462095}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00048828125, y: 0}
+  m_AnchoredPosition: {x: 0.00045776367, y: 0.00012207031}
   m_SizeDelta: {x: -20, y: 1379.5}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &966113250
@@ -6503,32 +6747,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "After the death of the last humans on earth, plants and fungi infested
-    human cadavers and took possession of them. They thus create a new species of
-    plant man. Over time, the plant and its host have evolved so that their cells
-    merge and a new species is born.\r\nThey are primitive and live in small villages.
-    They grow a few plants and hunt around their village. Having inherited the abilities
-    of the plants, they also \"feed\" on the sun and therefore have a smaller conventional
-    diet. They draw most of the nutrients they need from the water points where they
-    base their village.\n\n\r\n(to add after having discussed with one of them :)\r\nTo
-    communicate, they use a very simple language. They use only a few simple words
-    to express their ideas. They will not do any frills in their way of speaking and
-    will get right to the point. Tip: They do not really understand our humor and
-    even less the irony.\r\n\r\n(to add after having discussed with a person who makes
-    us understand that we must speak to the old ones :)\r\nTheir lifestyle is very
-    self-sufficient, we can see some rare cases of barter, but they seem to share
-    everything.\r\nA semblance of hierarchy is in place, based on a gerontocracy where
-    decisions are made by a \"council of elders\".\r\n\r\n(to add after having analyzed
-    \"drawings\" :)\r\nThey do not know how to write. Therefore, they use different
-    pigments to leave visual indications. They use it especially to remember exploits
-    or to prevent the whole village, as of a great danger for example.\r\n\r\n(to
-    add after analyzing primitives who pray around :)\r\nFinally, they seem to have
-    developed a proto-religion. In the village visited by the explorer Mira, the cult
-    revolves around a sort of giant antenna, which did not have to be built by them.
-    We can therefore assume that the object of their prayers may vary according to
-    the villages.\r\n\r\n(to add after doing the boss :)\r\nThey established their
-    place of worship in a ruin of an ancient civilization. The place is full of frescoes
-    made on rocks brought here, pieces of bark or stretched leather.\n"
+  m_Text: "\n\r\n"
 --- !u!1 &984852580
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,6 +7275,89 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Guardian colony
+--- !u!1 &1034480331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034480332}
+  - component: {fileID: 1034480334}
+  - component: {fileID: 1034480333}
+  m_Layer: 5
+  m_Name: TextEndOfFight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1034480332
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034480331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 202211644}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.002319336, y: -249.00003}
+  m_SizeDelta: {x: 608.5, y: 396.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1034480334
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034480331}
+  m_CullTransparentMesh: 0
+--- !u!114 &1034480333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034480331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "When it reaches its adult height, he is a mini ecosystem on his own. A
+    species of beetle lives between its feathers and feeds on everything that the
+    pores of Pt\xECsi folia release.\n\nThese very special little insects can catch
+    fire if they come in contact with a certain vitamin, which the beast can secrete
+    on command. The Flight of Fire uses it in different ways to defend or hunt.\n"
 --- !u!1 &1054526600
 GameObject:
   m_ObjectHideFlags: 0
@@ -7311,7 +7613,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1057872290}
   m_HandleRect: {fileID: 1518526751}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.99999905
   m_Size: 0.8269257
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7645,7 +7947,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7814,8 +8116,9 @@ RectTransform:
   - {fileID: 1911613758}
   - {fileID: 1240338100}
   - {fileID: 1213713376}
+  - {fileID: 1604915130}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8044,6 +8347,88 @@ MonoBehaviour:
   m_Text: 'Natives
 
 '
+--- !u!1 &1146589359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146589360}
+  - component: {fileID: 1146589362}
+  - component: {fileID: 1146589361}
+  m_Layer: 5
+  m_Name: TextLanguage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1146589360
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146589359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 614.8}
+  m_SizeDelta: {x: 705, y: 149.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1146589362
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146589359}
+  m_CullTransparentMesh: 0
+--- !u!114 &1146589361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146589359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "To communicate, they use a very simple language. They use only a few simple
+    words to express their ideas. They will not do any frills in their way of speaking
+    and will get right to the point. Tip: They do not really understand our humor
+    and even less the irony.\r"
 --- !u!1 &1164661282
 GameObject:
   m_ObjectHideFlags: 0
@@ -8073,6 +8458,7 @@ Transform:
   m_Children:
   - {fileID: 1970371434}
   - {fileID: 1448292152}
+  - {fileID: 6911048300631518349}
   - {fileID: 1943147699}
   - {fileID: 1581159119}
   - {fileID: 59592143}
@@ -8197,7 +8583,7 @@ RectTransform:
   m_Children:
   - {fileID: 1012293695}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8414,7 +8800,7 @@ RectTransform:
   m_Children:
   - {fileID: 1735883731}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8845,6 +9231,7 @@ RectTransform:
   - {fileID: 1783028286}
   - {fileID: 1254730742}
   - {fileID: 546537626}
+  - {fileID: 8567423477931800276}
   - {fileID: 2118140089}
   - {fileID: 937803549}
   - {fileID: 1211136806}
@@ -8855,7 +9242,7 @@ RectTransform:
   - {fileID: 1420070505}
   - {fileID: 1229649358}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8899,6 +9286,88 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!1 &1300491905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1300491906}
+  - component: {fileID: 1300491908}
+  - component: {fileID: 1300491907}
+  m_Layer: 5
+  m_Name: TextTower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1300491906
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300491905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 144}
+  m_SizeDelta: {x: 705, y: 158.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1300491908
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300491905}
+  m_CullTransparentMesh: 0
+--- !u!114 &1300491907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300491905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "They seem to have developed a proto-religion. In the village visited by
+    the explorer Mira, the cult revolves around a sort of giant antenna, which did
+    not have to be built by them. We can therefore assume that the object of their
+    prayers may vary according to the villages.\r"
 --- !u!1 &1311340205
 GameObject:
   m_ObjectHideFlags: 0
@@ -9355,6 +9824,177 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Apoikia kidem\xF3nas"
+--- !u!1 &1379687812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379687813}
+  - component: {fileID: 1379687815}
+  - component: {fileID: 1379687814}
+  m_Layer: 5
+  m_Name: TextRW
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1379687813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379687812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 202211644}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0002746582, y: 240.6}
+  m_SizeDelta: {x: 608.5, y: 260.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1379687815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379687812}
+  m_CullTransparentMesh: 0
+--- !u!114 &1379687814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379687812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "During its growth, the creature developed an extremely resistant skin,
+    strong enough to withstand the claws and fangs of predators. But even if its skin
+    is strong, she can not withstand big shocks. \n\nIn addition, if Pt\xECsi folia
+    uses insects that ignite to attack, the contact of a tough projectile with flaming
+    insects can cause a violent explosion to injure the animal."
+--- !u!1 &1383856363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383856364}
+  - component: {fileID: 1383856366}
+  - component: {fileID: 1383856365}
+  m_Layer: 5
+  m_Name: InfosTextLore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1383856364
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383856363}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000095, y: 1.0000095, z: 1.0000095}
+  m_Children: []
+  m_Father: {fileID: 1833083436}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.75, y: 37.841}
+  m_SizeDelta: {x: 630, y: 278.86}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1383856366
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383856363}
+  m_CullTransparentMesh: 0
+--- !u!114 &1383856365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383856363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'This little animal has evolved to look like plants in its environment.
+    This allows him to hide himself from big predators and surprise his prey.
+
+
+    We must not trust his appearance that can be misleading, he is carnivorous and
+    feeds on small animals. He throws spades that grow on his forelimb, which allows
+    him to reach prey that would flee too quickly for him if he approached.
+
+
+'
 --- !u!1 &1384822050
 GameObject:
   m_ObjectHideFlags: 0
@@ -9466,7 +10106,7 @@ RectTransform:
   m_Children:
   - {fileID: 1081219783}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -9685,7 +10325,7 @@ RectTransform:
   m_Children:
   - {fileID: 1823542318}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -9933,6 +10573,88 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1426881601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426881602}
+  - component: {fileID: 1426881604}
+  - component: {fileID: 1426881603}
+  m_Layer: 5
+  m_Name: InfoTextLore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1426881602
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426881601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 374680157}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.75, y: 21}
+  m_SizeDelta: {x: 630, y: 181.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1426881604
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426881601}
+  m_CullTransparentMesh: 0
+--- !u!114 &1426881603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426881601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "A parasitic plant has pushed into the body of an animal to take control
+    of it. \nThe plant needs its host to move and feed, because only it will wither.
+    It can not perfectly control the body it parasitizes. The parasitic plant uses
+    its abilities to the detriment of the body it occupies."
 --- !u!1 &1448292151
 GameObject:
   m_ObjectHideFlags: 0
@@ -10096,7 +10818,7 @@ GameObject:
   - component: {fileID: 1460452309}
   - component: {fileID: 1460452308}
   m_Layer: 5
-  m_Name: Title Text (1)
+  m_Name: Title Text 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10714,8 +11436,8 @@ RectTransform:
   m_Father: {fileID: 50465994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.1730743}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.17307413}
+  m_AnchorMax: {x: 1, y: 0.9999998}
   m_AnchoredPosition: {x: 0.000009536743, y: 28}
   m_SizeDelta: {x: 62, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10869,7 +11591,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 20456397}
   m_HandleRect: {fileID: 20456396}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11555,7 +12277,7 @@ RectTransform:
   - {fileID: 1311340206}
   - {fileID: 148131710}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12081,6 +12803,90 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Parasite liana
+--- !u!1 &1604915129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604915130}
+  - component: {fileID: 1604915132}
+  - component: {fileID: 1604915131}
+  m_Layer: 5
+  m_Name: InfosTextLore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1604915130
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604915129}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000095, y: 1.0000095, z: 1.0000095}
+  m_Children: []
+  m_Father: {fileID: 1669569369}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.75, y: -10.3}
+  m_SizeDelta: {x: 630, y: 288.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1604915132
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604915129}
+  m_CullTransparentMesh: 0
+--- !u!114 &1604915131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604915129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Apoikia Kidem\xF3nas are a species of insects living in colonies. They
+    have developed an unprecedented survival technique. Their hive is made up of several
+    types of debris that they stick with a sticky substance that they secrete. \n\nThe
+    peculiarity of this hive is that it is moving and directed by the swarm itself.
+    It uses it to defend itself. The shape can vary according to the living beings
+    that they crossed before forming the nest.\r\n\r"
 --- !u!1 &1611233919
 GameObject:
   m_ObjectHideFlags: 0
@@ -12093,7 +12899,7 @@ GameObject:
   - component: {fileID: 1611233922}
   - component: {fileID: 1611233921}
   m_Layer: 5
-  m_Name: InfosText
+  m_Name: InfosTextRW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12115,8 +12921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.35}
-  m_SizeDelta: {x: 630, y: 630}
+  m_AnchoredPosition: {x: 0, y: 228.1}
+  m_SizeDelta: {x: 630, y: 178.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1611233922
 CanvasRenderer:
@@ -12159,14 +12965,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "A parasitic plant has pushed into the body of an animal to take control
-    of it. \nThe plant needs its host to move and feed, because only it will wither.
-    It can not perfectly control the body it parasitizes. The parasitic plant uses
-    its abilities to the detriment of the body it occupies.\n\nThe body of this creature
-    allows it to resist bullets because its body regenerates too quickly. \n\nThe
-    only way to beat him is to cut his creepers with a sharp weapon. The creature
-    is also very sensitive and will be momentarily paralyzed if we cut one of its
-    lianas."
+  m_Text: "The body of this creature allows it to resist bullets because its body
+    regenerates too quickly. \n\nThe only way to beat him is to cut his creepers with
+    a sharp weapon. The creature is also very sensitive and will be momentarily paralyzed
+    if we cut one of its lianas."
 --- !u!1 &1616030448
 GameObject:
   m_ObjectHideFlags: 0
@@ -12422,7 +13224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1667167705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12756,7 +13558,7 @@ RectTransform:
   m_Children:
   - {fileID: 773906410}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13920,6 +14722,86 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Guardian colony
+--- !u!1 &1830082799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1830082800}
+  - component: {fileID: 1830082802}
+  - component: {fileID: 1830082801}
+  m_Layer: 5
+  m_Name: "TextCheffe(apr\xE8s l'avoir scann\xE9)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1830082800
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830082799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 464}
+  m_SizeDelta: {x: 705, y: 89.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1830082802
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830082799}
+  m_CullTransparentMesh: 0
+--- !u!114 &1830082801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830082799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "A semblance of hierarchy is in place, based on a gerontocracy where decisions
+    are made by a \"council of elders\".\r"
 --- !u!1 &1833083433
 GameObject:
   m_ObjectHideFlags: 0
@@ -13961,8 +14843,9 @@ RectTransform:
   - {fileID: 1988974370}
   - {fileID: 819795777}
   - {fileID: 984852581}
+  - {fileID: 1383856364}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14393,7 +15276,7 @@ RectTransform:
   m_Children:
   - {fileID: 570823752}
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15555,7 +16438,7 @@ RectTransform:
   - {fileID: 1620660096}
   - {fileID: 1455380255}
   m_Father: {fileID: 1164661283}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -15657,7 +16540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -16498,7 +17381,7 @@ GameObject:
   - component: {fileID: 2033609238}
   - component: {fileID: 2033609237}
   m_Layer: 5
-  m_Name: InfosText
+  m_Name: InfosTextRW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16520,8 +17403,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.35}
-  m_SizeDelta: {x: 630, y: 630}
+  m_AnchoredPosition: {x: 0, y: 243.7}
+  m_SizeDelta: {x: 630, y: 147.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2033609238
 CanvasRenderer:
@@ -16564,15 +17447,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Apoikia Kidem\xF3nas are a species of insects living in colonies. They
-    have developed an unprecedented survival technique. Their hive is made up of several
-    types of debris that they stick with a sticky substance that they secrete. \n\nThe
-    peculiarity of this hive is that it is moving and directed by the swarm itself.
-    It uses it to defend itself. The shape can vary according to the living beings
-    that they crossed before forming the nest.\r\n\r\nThis giant stone is actually
-    an insect colony that has recovered a lot of materials to create a kind of mobile
-    fortress. \nThe only way to defeat this enemy is to attack from the back of the
-    monster, where the queen is uncovered."
+  m_Text: "This giant stone is actually an insect colony that has recovered a lot
+    of materials to create a kind of mobile fortress. \nThe only way to defeat this
+    enemy is to attack from the back of the monster, where the queen is uncovered."
 --- !u!1 &2048753291
 GameObject:
   m_ObjectHideFlags: 0
@@ -16962,7 +17839,7 @@ GameObject:
   - component: {fileID: 2118140091}
   - component: {fileID: 2118140090}
   m_Layer: 5
-  m_Name: InfosText
+  m_Name: TextLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16980,7 +17857,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1277531891}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17028,10 +17905,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Small harmless creature who lives at the expense of other animals. \nIn
-    exchange for food, it can heal the animals that help it by using spores. \nIt
-    can also use the spores it produces as a miracle fertilizer that boosts plant
-    growth."
+  m_Text: "Small harmless creature depend of the others animals. They hunt for it
+    and it heal them with some spores. \nIt can use those spores like a miracle fertilizer
+    to help plants to grow"
 --- !u!1 &2125173702
 GameObject:
   m_ObjectHideFlags: 0
@@ -17200,3 +18076,168 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!1 &5616742672491643088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6911048300631518349}
+  - component: {fileID: 8138782007960829907}
+  - component: {fileID: 6946291570588313316}
+  m_Layer: 5
+  m_Name: BestiaryIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6911048300631518349
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616742672491643088}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10.350006}
+  m_LocalScale: {x: 0.098287106, y: 0.098287106, z: 0.098287106}
+  m_Children: []
+  m_Father: {fileID: 1164661283}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -440.3, y: -112.9}
+  m_SizeDelta: {x: 800, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8138782007960829907
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616742672491643088}
+  m_CullTransparentMesh: 0
+--- !u!114 &6946291570588313316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616742672491643088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 75
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "This is your DataBase, it's automatically filled by S\xFDntrofos each time
+    you analyze elements of this planet. It contains important information that allow
+    you to better understand your environment, read your DataBase will help surviving
+    during your adventure. \nHere, S\xFDntrofos discovered that this spike belonged
+    to a living creature, by analyzing it, S\xFDntrofos could find some precious information
+    about this creature. \nKeep analyzing in order to complete your DataBase. \nYou
+    can access it at any time by pressing \"TAB\".\nPress \"Escape\" to quit the DataBase."
+--- !u!1 &7576683327763741685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8567423477931800276}
+  - component: {fileID: 1576104547335964449}
+  - component: {fileID: 7078319355570894518}
+  m_Layer: 5
+  m_Name: TextWR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8567423477931800276
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576683327763741685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000062, y: 1.0000062, z: 1.0000062}
+  m_Children: []
+  m_Father: {fileID: 1277531891}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0005187988, y: 102}
+  m_SizeDelta: {x: 630, y: 434.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1576104547335964449
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576683327763741685}
+  m_CullTransparentMesh: 0
+--- !u!114 &7078319355570894518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576683327763741685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "We can often find this creature with other animals. \nIt can heal them
+    in return of a protection"

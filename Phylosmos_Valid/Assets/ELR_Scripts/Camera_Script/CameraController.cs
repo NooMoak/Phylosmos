@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     public GameObject healerPanel;
     public GameObject rockPanel;
     public GameObject bossPanel;
+    [SerializeField] GameObject introText;
     public bool normal = true;
 
     public GameObject normalCam;
@@ -40,6 +41,10 @@ public class CameraController : MonoBehaviour
         {
             QuitBestiary();
         }
+        if(normal == false)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+        }
     }
 
     void QuitBestiary()
@@ -56,6 +61,8 @@ public class CameraController : MonoBehaviour
         bestiaryUI.SetActive(false);
         Time.timeScale = 1f;
         normal = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Idle;
+        introText.SetActive(false);  
     }
 
     public void NormalCam() 

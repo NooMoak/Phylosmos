@@ -23,15 +23,15 @@ public class BestiaryEntry : MonoBehaviour
     public string desiredTitleText2;
     public string desiredInfoText;
     public bool imageDiscovered;
-    BestiaryData bestiaryData;
+    [SerializeField] BestiaryData bestiaryData;
     bool pressed = false;
     GameObject scan;
 
-    private void Start() 
+    void Start() 
     {
-        bestiaryData = FindObjectOfType<BestiaryData>();
         scan = transform.Find("Scan").gameObject;
     }
+
     void OnTriggerStay(Collider other) {
         if(other.tag == "Player")
         {
