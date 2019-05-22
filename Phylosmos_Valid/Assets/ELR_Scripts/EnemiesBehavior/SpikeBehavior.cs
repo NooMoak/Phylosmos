@@ -21,9 +21,17 @@ public class SpikeBehavior : MonoBehaviour
     bool canShoot = true;
     int randomNumber;
     float timer = 0f;
+    bool hasDied = false;
     Animator anim;
     [SerializeField] GameObject targetRotation;
     [SerializeField] float rotateSpeed;
+    [SerializeField] Material dissolveMat;
+    [SerializeField] Material baseMat1;
+    [SerializeField] Material baseMat2;
+    Renderer matRenderer;
+    Material[] baseMaterials;
+    Material[] newMaterials;
+    float dissolveAmount = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,16 +41,30 @@ public class SpikeBehavior : MonoBehaviour
 		rb = GetComponent<Rigidbody>(); 
         anim = GetComponentInChildren<Animator>();
         randomNumber = Random.Range(1,5);
+        matRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        baseMaterials = new Material[]{baseMat1, baseMat2};
+        newMaterials = new Material[]{dissolveMat, dissolveMat};
     }
 
     void Update()
     {
         if(currentState == SpikeState.Dead)
         {
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            //GetComponentInChildren<MeshRenderer>().enabled = false;
-            anim.SetBool("IsWalking", false);
+            if(hasDied == false)
+            {
+                //GetComponent<CapsuleCollider>().enabled = false;
+                //GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                anim.SetBool("IsWalking", false);
+                matRenderer.materials = newMaterials;
+                matRenderer.materials[0].SetFloat("_DissolveAmount", 0);
+                matRenderer.materials[1].SetFloat("_DissolveAmount", 0);
+                hasDied = true;
+            }
+            dissolveAmount = Mathf.Lerp(dissolveAmount, 1, 0.2f);
+            matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
+            matRenderer.materials[1].SetFloat("_DissolveAmount", dissolveAmount);
+            Debug.Log(dissolveAmount);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }
@@ -128,6 +150,8 @@ public class SpikeBehavior : MonoBehaviour
         currentState = SpikeState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        matRenderer.materials = baseMaterials;
+        hasDied = false;
         //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 
