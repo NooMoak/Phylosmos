@@ -79,7 +79,7 @@ public class BestiaryData : MonoBehaviour
         {
             spike1 = true;
             dataSaver.spike1 = true;
-            analysisText.text = "Spike_analysis";
+            analysisText.text = "Thorny_analysis";
             analysisStep.text = "1 / 3 step";
             targetedAmount = 0.33f;
         }
@@ -87,7 +87,7 @@ public class BestiaryData : MonoBehaviour
         {
             spike2 = true;
             dataSaver.spike2 = true;
-            analysisText.text = "Spike_analysis";
+            analysisText.text = "Thorny_analysis";
             analysisStep.text = "2 / 3 step";
             targetedAmount = 0.66f;
         }
@@ -95,7 +95,7 @@ public class BestiaryData : MonoBehaviour
         {
             spike3 = true;
             dataSaver.spike3 = true;
-            analysisText.text = "Spike_analysis";
+            analysisText.text = "Thorny_analysis";
             analysisStep.text = "3 / 3 step";
             targetedAmount = 1f;
         }
@@ -169,7 +169,7 @@ public class BestiaryData : MonoBehaviour
         {
             rock1 = true;
             dataSaver.rock1 = true;
-            analysisText.text = "Rock_analysis";
+            analysisText.text = "Guardian_analysis";
             analysisStep.text = "1 / 3 step";
             targetedAmount = 0.33f;
         }
@@ -177,7 +177,7 @@ public class BestiaryData : MonoBehaviour
         {
             rock2 = true;
             dataSaver.rock2 = true;
-            analysisText.text = "Rock_analysis";
+            analysisText.text = "Guardian_analysis";
             analysisStep.text = "2 / 3 step";
             targetedAmount = 0.66f;
         }
@@ -185,7 +185,7 @@ public class BestiaryData : MonoBehaviour
         {
             rock3 = true;
             dataSaver.rock3 = true;
-            analysisText.text = "Rock_analysis";
+            analysisText.text = "Guardian_analysis";
             analysisStep.text = "3 / 3 step";
             targetedAmount = 1f;
         }
@@ -261,7 +261,7 @@ public class BestiaryData : MonoBehaviour
         {
             boss1 = true;
             dataSaver.boss1 = true;
-            analysisText.text = "FireBoss_analysis";
+            analysisText.text = "???_analysis";
             analysisStep.text = "1 / 3 step";
             targetedAmount = 0.33f;
         }
@@ -269,7 +269,7 @@ public class BestiaryData : MonoBehaviour
         {
             boss2 = true;
             dataSaver.boss2 = true;
-            analysisText.text = "FireBoss_analysis";
+            analysisText.text = "???_analysis";
             analysisStep.text = "2 / 3 step";
             targetedAmount = 0.66f;
         }
@@ -277,7 +277,7 @@ public class BestiaryData : MonoBehaviour
         {
             boss3 = true;
             dataSaver.boss3 = true;
-            analysisText.text = "FireBoss_analysis";
+            analysisText.text = "???_analysis";
             analysisStep.text = "3 / 3 step";
             targetedAmount = 1f;
         }
