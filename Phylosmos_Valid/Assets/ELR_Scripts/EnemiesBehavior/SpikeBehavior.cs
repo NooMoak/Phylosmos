@@ -22,6 +22,8 @@ public class SpikeBehavior : MonoBehaviour
     int randomNumber;
     float timer = 0f;
     Animator anim;
+    [SerializeField] GameObject targetRotation;
+    [SerializeField] float rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,14 +58,16 @@ public class SpikeBehavior : MonoBehaviour
         }
         else if(currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 10){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, spikeSpeed * Time.deltaTime));
-            transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(player.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             anim.SetBool("IsWalking", true);
         }
         else if (currentState == SpikeState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 10)
         {
-            transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(player.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             anim.SetBool("IsWalking", false);
             if(canShoot && randomNumber == 1 || canShoot && randomNumber == 2){
                 StartCoroutine(SpikeShoot());

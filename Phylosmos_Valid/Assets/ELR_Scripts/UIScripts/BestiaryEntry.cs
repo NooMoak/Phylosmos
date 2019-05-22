@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TypeOfEntry
+{
+    Spike, Liana, Healer, Rock, Villager, FireBoss
+}
 public class BestiaryEntry : MonoBehaviour
 {
+    public TypeOfEntry entryFor;
     public GameObject analyseText;
     public GameObject normalUI;
     public GameObject bestiaryUI;
@@ -20,10 +25,12 @@ public class BestiaryEntry : MonoBehaviour
     public bool imageDiscovered;
     BestiaryData bestiaryData;
     bool pressed = false;
+    GameObject scan;
 
     private void Start() 
     {
         bestiaryData = FindObjectOfType<BestiaryData>();
+        scan = transform.Find("Scan").gameObject;
     }
     void OnTriggerStay(Collider other) {
         if(other.tag == "Player")
@@ -33,7 +40,35 @@ public class BestiaryEntry : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.F) && pressed == false)
             {
                 pressed = true;
-                bestiaryData.SpikeEntry();
+                scan.GetComponent<ParticleSystem>().Play();
+                if(entryFor == TypeOfEntry.Spike)
+                {
+                    bestiaryData.SpikeEntry();
+                }
+                else if(entryFor == TypeOfEntry.Liana)
+                {
+                    bestiaryData.LianaEntry();
+                }
+                else if(entryFor == TypeOfEntry.Healer)
+                {
+                    bestiaryData.HealerEntry();
+                }
+                else if(entryFor == TypeOfEntry.Rock)
+                {
+                    bestiaryData.RockEntry();
+                }
+                else if(entryFor == TypeOfEntry.Villager)
+                {
+                    bestiaryData.VillagerEntry();
+                }
+                else if(entryFor == TypeOfEntry.FireBoss)
+                {
+                    bestiaryData.BossEntry();
+                }
+                else
+                {
+                    Debug.Log("Entry For is not assigned, please assign it in the script component");
+                }
                 StartCoroutine(Entry());
             }
         }

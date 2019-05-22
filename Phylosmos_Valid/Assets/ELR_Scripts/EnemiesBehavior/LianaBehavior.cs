@@ -20,6 +20,8 @@ public class LianaBehavior : MonoBehaviour
     bool canGrab = true;
     bool grabbing = false;
     Animator anim;
+    [SerializeField] GameObject targetRotation;
+    [SerializeField] float rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,14 +57,16 @@ public class LianaBehavior : MonoBehaviour
         }
         else if(currentState == LianaState.Fight && Vector3.Distance(player.transform.position, transform.position) > fightRadius - 20){
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, lianaSpeed * Time.deltaTime));
-            transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(player.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             anim.SetBool("IsWalking", true);
         }
         else if (currentState == LianaState.Fight && Vector3.Distance(player.transform.position, transform.position) <= fightRadius - 20 && grabbing == false)
         {
-            transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(player.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             anim.SetBool("IsWalking", false);
             if(canGrab == true)
             {
@@ -72,8 +76,9 @@ public class LianaBehavior : MonoBehaviour
         else if (currentState == LianaState.Flee && Vector3.Distance(player.transform.position, transform.position) <= fightRadius && grabbing == false)
         {
             rb.MovePosition(Vector3.MoveTowards(transform.position, player.transform.position, -lianaSpeed * 1.5f * Time.deltaTime));
-            transform.LookAt(player.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(player.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             anim.SetTrigger("Flee");
         }
 
