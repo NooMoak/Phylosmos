@@ -22,11 +22,18 @@ public class HealerBehavior : MonoBehaviour
     Vector3 vectorToPlayer;
     bool isFleeing = false;
     int index;
+    bool hasDied = false;
     Collider[] enemies;
     int randomNumber;
     Animator anim;
     [SerializeField] GameObject targetRotation;
     [SerializeField] float rotateSpeed;
+    [SerializeField] Material dissolveMat1;
+    [SerializeField] Material baseMat1;
+    Renderer matRenderer;
+    Material[] baseMaterials;
+    Material[] newMaterials;
+    float dissolveAmount = 0f;
     // Use this for initialization
     void Start()
     {
@@ -37,6 +44,9 @@ public class HealerBehavior : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         homePosition = transform.position;
         enemyToHealLayer = LayerMask.GetMask("EnemyToHeal");
+        matRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        baseMaterials = new Material[]{baseMat1};
+        newMaterials = new Material[]{dissolveMat1};
     }
 
     void FixedUpdate() 
@@ -138,12 +148,21 @@ public class HealerBehavior : MonoBehaviour
     {
         if(currentState == HealerState.Dead)
         {
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            //GetComponentInChildren<MeshRenderer>().enabled = false;
-            anim.SetBool("IsWalking", false);
-            anim.SetBool("IsHealing", false);
-            isFleeing = false;
+            if(hasDied == false)
+            {
+                GetComponent<CapsuleCollider>().enabled = false;
+                GetComponent<Rigidbody>().useGravity = false;
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                anim.SetBool("IsWalking", false);
+                anim.SetBool("IsHealing", false);
+                isFleeing = false;
+                matRenderer.materials = newMaterials;
+                matRenderer.materials[0].SetFloat("_DissolveAmount", 0);
+                dissolveAmount = 0;
+                hasDied = true;
+            }
+            dissolveAmount = Mathf.Lerp(dissolveAmount, 1, 0.02f);
+            matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }
@@ -168,7 +187,9 @@ public class HealerBehavior : MonoBehaviour
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = HealerState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
-        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        matRenderer.materials = baseMaterials;
+        hasDied = false;
         //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
     void Scan()

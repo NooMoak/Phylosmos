@@ -1345,7 +1345,8 @@ MonoBehaviour:
   targetR: {fileID: 8035106165113819642}
   targetRotation: {fileID: 6759158571307824161}
   rotateSpeed: 120
-  dissolveMat: {fileID: 2100000, guid: f144f2d7ff3daf349a2b7f0fd81ec8ac, type: 2}
+  dissolveMat1: {fileID: 2100000, guid: 97ebfdb19e5ff7b47b653f78de4dc748, type: 2}
+  dissolveMat2: {fileID: 2100000, guid: 351b24d4f9e91fd4da54647b64f8c2df, type: 2}
   baseMat1: {fileID: 2100000, guid: 85f84f10ccd77284a81355c2ec0e588c, type: 2}
   baseMat2: {fileID: 2100000, guid: d9c2828f6ef9e8546875fcc347cf52d7, type: 2}
 --- !u!114 &4275773044932362077

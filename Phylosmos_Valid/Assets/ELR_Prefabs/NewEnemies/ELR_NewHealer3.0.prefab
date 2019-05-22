@@ -1610,6 +1610,8 @@ MonoBehaviour:
   healerSpeed: 20
   targetRotation: {fileID: 4964604857104020511}
   rotateSpeed: 180
+  dissolveMat1: {fileID: 2100000, guid: 4d4f6685b24f74d4abbba6684cd6cc80, type: 2}
+  baseMat1: {fileID: 2100000, guid: 05c4c3ab5a801b34b9ffdce2f1bf932d, type: 2}
 --- !u!114 &6379339399340109771
 MonoBehaviour:
   m_ObjectHideFlags: 0

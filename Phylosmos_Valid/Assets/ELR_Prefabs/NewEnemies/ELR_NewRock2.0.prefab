@@ -2163,6 +2163,12 @@ MonoBehaviour:
   rockRadius: 35
   rotateSpeed: 40
   targetRotation: {fileID: 2734692242802644136}
+  dissolveMat1: {fileID: 2100000, guid: 9f4f96691c60eef4ba8aee7c6b97757e, type: 2}
+  dissolveMat2: {fileID: 2100000, guid: 39ab3b9ead86bfe4690df2d53bdde981, type: 2}
+  dissolveMat3: {fileID: 2100000, guid: 50ddb46971babe04e92c2d4947101604, type: 2}
+  baseMat1: {fileID: 2100000, guid: c09eb9cd0a32764438d52a6f206aff3c, type: 2}
+  baseMat2: {fileID: 2100000, guid: 6ae9c543717333143a308b9d277c6ea8, type: 2}
+  baseMat3: {fileID: 2100000, guid: f4b8138547736304ea0389e20618d2f9, type: 2}
 --- !u!114 &3732603400370920854
 MonoBehaviour:
   m_ObjectHideFlags: 0
