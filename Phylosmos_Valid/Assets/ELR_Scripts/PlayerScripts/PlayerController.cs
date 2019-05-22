@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image healerImage;
     [SerializeField] Image rockImage;
     bool inWheel = false;
+    GameObject healParticle;
+    GameObject shockwaveParticle;
 
 	void Start ()
     {
@@ -89,6 +91,9 @@ public class PlayerController : MonoBehaviour
         currentAbility = StolenAbility.None;
         rayPlaneMask = LayerMask.GetMask("RayPlane");
         enemyLayer = LayerMask.GetMask("EnemyToHeal");
+
+        healParticle = transform.Find("HealParticle").gameObject;
+        shockwaveParticle = transform.Find("ShockwaveParticle").gameObject;
 
         //Data
         dataSaver = FindObjectOfType<DataSaver>().gameObject;
@@ -454,6 +459,7 @@ public class PlayerController : MonoBehaviour
             else if(currentAbility == StolenAbility.Rock && rockCharge > 0)
             {
                 mainCam.GetComponent<CameraController>().SpellCam();
+                shockwaveParticle.GetComponent<ParticleSystem>().Play();
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
@@ -469,7 +475,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 rockCharge -= 1;
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
@@ -481,7 +487,7 @@ public class PlayerController : MonoBehaviour
                 flowerAnim = true;
                 mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
-                gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                healParticle.GetComponent<ParticleSystem>().Play();
                 flowerAnim = true;
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
