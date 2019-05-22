@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     bool inWheel = false;
     GameObject healParticle;
     GameObject shockwaveParticle;
+    [SerializeField] AudioClip audioShock;
 
 	void Start ()
     {
@@ -460,6 +461,8 @@ public class PlayerController : MonoBehaviour
             {
                 mainCam.GetComponent<CameraController>().SpellCam();
                 shockwaveParticle.GetComponent<ParticleSystem>().Play();
+                GetComponent<AudioSource>().clip = audioShock;
+                GetComponent<AudioSource>().Play();
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
