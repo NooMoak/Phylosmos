@@ -17,7 +17,7 @@ public class EnemyLife : MonoBehaviour
     {
         health = maxHealth;
         anim = GetComponentInChildren<Animator>();
-        healthBar.transform.localScale = new Vector3(0.5f, 0.5f, maxHealth);
+        healthBar.transform.localScale = new Vector3(0.5f, 0.5f, maxHealth);     
     }
 
     // Update is called once per frame

@@ -19,9 +19,20 @@ public class LianaBehavior : MonoBehaviour
     Rigidbody rb;
     bool canGrab = true;
     bool grabbing = false;
+    bool hasDied = false;
     Animator anim;
     [SerializeField] GameObject targetRotation;
     [SerializeField] float rotateSpeed;
+    [SerializeField] Material dissolveMat1;
+    [SerializeField] Material dissolveMat2;
+    [SerializeField] Material dissolveMat3;
+    [SerializeField] Material baseMat1;
+    [SerializeField] Material baseMat2;
+    [SerializeField] Material baseMat3;
+    Renderer matRenderer;
+    Material[] baseMaterials;
+    Material[] newMaterials;
+    float dissolveAmount = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +41,9 @@ public class LianaBehavior : MonoBehaviour
         player = GameObject.FindWithTag("Player");
 		rb = GetComponent<Rigidbody>(); 
         anim = GetComponentInChildren<Animator>();
+        matRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        baseMaterials = new Material[]{baseMat1, baseMat2, baseMat3};
+        newMaterials = new Material[]{dissolveMat1, dissolveMat2, dissolveMat3};
     }
 
     // Update is called once per frame
@@ -37,12 +51,25 @@ public class LianaBehavior : MonoBehaviour
     {
         if(currentState == LianaState.Dead)
         {
-            StopCoroutine("Grab");
-            StopCoroutine("Stunned");
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-            //GetComponentInChildren<MeshRenderer>().enabled = false;
-            anim.SetBool("IsWalking", false);
+            if(hasDied == false)
+            {
+                StopCoroutine("Grab");
+                StopCoroutine("Stunned");
+                GetComponent<CapsuleCollider>().enabled = false;
+                GetComponent<Rigidbody>().useGravity = false;
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                anim.SetBool("IsWalking", false);
+                matRenderer.materials = newMaterials;
+                matRenderer.materials[0].SetFloat("_DissolveAmount", 0);
+                matRenderer.materials[1].SetFloat("_DissolveAmount", 0);
+                matRenderer.materials[2].SetFloat("_DissolveAmount", 0);
+                dissolveAmount = 0;
+                hasDied = true;
+            }
+            dissolveAmount = Mathf.Lerp(dissolveAmount, 1, 0.02f);
+            matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
+            matRenderer.materials[1].SetFloat("_DissolveAmount", dissolveAmount);
+            matRenderer.materials[2].SetFloat("_DissolveAmount", dissolveAmount);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }
@@ -113,7 +140,9 @@ public class LianaBehavior : MonoBehaviour
         GetComponent<EnemyLife>().health = GetComponent<EnemyLife>().maxHealth;
         currentState = LianaState.Sleep;
         GetComponent<CapsuleCollider>().enabled = true;
-        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        matRenderer.materials = baseMaterials;
+        hasDied = false;
         //GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 
