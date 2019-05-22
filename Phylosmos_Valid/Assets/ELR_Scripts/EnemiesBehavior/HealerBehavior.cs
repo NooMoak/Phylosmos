@@ -25,6 +25,8 @@ public class HealerBehavior : MonoBehaviour
     Collider[] enemies;
     int randomNumber;
     Animator anim;
+    [SerializeField] GameObject targetRotation;
+    [SerializeField] float rotateSpeed;
     // Use this for initialization
     void Start()
     {
@@ -52,8 +54,9 @@ public class HealerBehavior : MonoBehaviour
                 rb.MovePosition(Vector3.MoveTowards(transform.position, healTarget.transform.position, healerSpeed * Time.deltaTime));
                 anim.SetBool("IsWalking", true);
             }
-            transform.LookAt(healTarget.transform.position);
-            transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            targetRotation.transform.LookAt(healTarget.transform.position);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             healLine.SetPosition(0, new Vector3(transform.position.x, 1, transform.position.z));
             healLine.SetPosition(1, new Vector3(healTarget.transform.position.x, 1, healTarget.transform.position.z));
             if(canHeal)
@@ -85,20 +88,23 @@ public class HealerBehavior : MonoBehaviour
             if(randomNumber == 1)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, vectorToPlayer, -healerSpeed * Time.deltaTime));
-                transform.LookAt(vectorToPlayer);
-                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+                targetRotation.transform.LookAt(vectorToPlayer);
+                targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,-90,0);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             }
             else if(randomNumber == 2)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, Quaternion.Euler(0,45,0) * vectorToPlayer, -healerSpeed * Time.deltaTime));
-                transform.LookAt(Quaternion.Euler(0,45,0) * vectorToPlayer);
-                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+                targetRotation.transform.LookAt(Quaternion.Euler(0,45,0) * vectorToPlayer);
+                targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,-90,0);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             }
             else if(randomNumber == 3)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, Quaternion.Euler(0,-5,0) * vectorToPlayer, -healerSpeed * Time.deltaTime));
-                transform.LookAt(Quaternion.Euler(0,-5,0) * vectorToPlayer); 
-                transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+                targetRotation.transform.LookAt(Quaternion.Euler(0,-5,0) * vectorToPlayer);
+            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,-90,0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             }
         }
 

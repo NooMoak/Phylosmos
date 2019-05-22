@@ -16,6 +16,7 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] AudioClip audioHurt1;
     [SerializeField] AudioClip audioHurt2;
+    bool invicible = false;
 
     private void Start() 
     {
@@ -60,29 +61,33 @@ public class PlayerDamage : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Color curColor = redBorders.color;
-        playerHealth -= damage;
-        curColor.a = 0.7f;
-        redBorders.color = curColor;
-        targetAlpha = 0.7f;
-        redBorders.enabled = true;
-        Camera.main.gameObject.GetComponent<CameraController>().HurtCam();
-        targetAlpha = 0.2f;
-        int random = Random.Range(1,3);
-        if(random == 1)
-            GetComponent<AudioSource>().clip = audioHurt1;
-        if(random == 2)
-            GetComponent<AudioSource>().clip = audioHurt2;
-        GetComponent<AudioSource>().Play();
-        CheckHealth();
+        if(invicible == false)
+        {
+            Color curColor = redBorders.color;
+            playerHealth -= damage;
+            curColor.a = 0.7f;
+            redBorders.color = curColor;
+            targetAlpha = 0.7f;
+            redBorders.enabled = true;
+            Camera.main.gameObject.GetComponent<CameraController>().HurtCam();
+            targetAlpha = 0.2f;
+            int random = Random.Range(1,3);
+            if(random == 1)
+                GetComponent<AudioSource>().clip = audioHurt1;
+            if(random == 2)
+                GetComponent<AudioSource>().clip = audioHurt2;
+            GetComponent<AudioSource>().Play();
+            CheckHealth();
+        }
     }
 
     void CheckHealth()
     {
         if(playerHealth <= 0)
         {
-            anim.SetBool("Dead", true);
+            anim.SetTrigger("Dead");
             GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+            invicible = true;
             StartCoroutine(Death());
         }
     }
