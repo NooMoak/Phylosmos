@@ -199,7 +199,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager1 = true;
             dataSaver.villager1 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "1 / 7 step";
             targetedAmount = 0.14f;
         }
@@ -207,7 +207,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager2 = true;
             dataSaver.villager2 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "2 / 7 step";
             targetedAmount = 0.28f;
         }
@@ -215,7 +215,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager3 = true;
             dataSaver.villager3 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "3 / 7 step";
             targetedAmount = 0.42f;
         }
@@ -223,7 +223,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager4 = true;
             dataSaver.villager4 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "4 / 7 step";
             targetedAmount = 0.57f;
         }
@@ -231,7 +231,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager5 = true;
             dataSaver.villager5 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "5 / 7 step";
             targetedAmount = 0.71f;
         }
@@ -239,7 +239,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager6 = true;
             dataSaver.villager6 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "6 / 7 step";
             targetedAmount = 0.85f;
         }
@@ -247,7 +247,7 @@ public class BestiaryData : MonoBehaviour
         {
             villager7 = true;
             dataSaver.villager7 = true;
-            analysisText.text = "Villager_analysis";
+            analysisText.text = "Natives_analysis";
             analysisStep.text = "7 / 7 step";
             targetedAmount = 1f;
         }
