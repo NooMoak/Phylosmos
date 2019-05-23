@@ -34,6 +34,7 @@ public class HealerBehavior : MonoBehaviour
     Material[] baseMaterials;
     Material[] newMaterials;
     float dissolveAmount = 0f;
+    bool shouldDie = false;
     // Use this for initialization
     void Start()
     {
@@ -114,8 +115,8 @@ public class HealerBehavior : MonoBehaviour
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, Quaternion.Euler(0,-5,0) * vectorToPlayer, -healerSpeed * Time.deltaTime));
                 targetRotation.transform.LookAt(Quaternion.Euler(0,-5,0) * vectorToPlayer);
-            targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,-90,0);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
+                targetRotation.transform.rotation = targetRotation.transform.rotation * Quaternion.Euler(0,-90,0);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.transform.rotation, rotateSpeed * Time.deltaTime);
             }
         }
 
@@ -149,6 +150,7 @@ public class HealerBehavior : MonoBehaviour
     {
         if(currentState == HealerState.Dead)
         {
+            shouldDie = false;
             if(hasDied == false)
             {
                 GetComponent<CapsuleCollider>().enabled = false;
@@ -166,6 +168,14 @@ public class HealerBehavior : MonoBehaviour
             matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
+        }
+        if(shouldDie)
+        {
+            currentState = HealerState.Dead;
+        }
+        if(shouldDie == false && currentState == HealerState.Flee)
+        {
+            StartCoroutine(AutoDie());
         }
     }
     IEnumerator Heal()
@@ -217,6 +227,6 @@ public class HealerBehavior : MonoBehaviour
     IEnumerator AutoDie()
     {
         yield return new WaitForSeconds(5);
-        currentState = HealerState.Dead;
+        shouldDie = true;
     }
 }

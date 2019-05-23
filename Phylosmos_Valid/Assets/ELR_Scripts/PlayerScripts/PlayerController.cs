@@ -491,7 +491,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 rockCharge -= 1;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
                 rockAb = false;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();

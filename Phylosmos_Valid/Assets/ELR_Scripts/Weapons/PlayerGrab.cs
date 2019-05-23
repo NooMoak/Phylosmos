@@ -7,6 +7,7 @@ public class PlayerGrab : MonoBehaviour
     [SerializeField] float grabForce;
     public GameObject player;
     GameObject anchor;
+    bool checking = false;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerGrab : MonoBehaviour
             {
                 player.GetComponent<CapsuleCollider>().isTrigger = true;
                 player.GetComponent<Rigidbody>().useGravity = false;
+                player.GetComponent<PlayerController>().currentState = PlayerState.Stagger;
                 player.GetComponent<Rigidbody>().AddForce(-(player.transform.position - other.gameObject.transform.position) * grabForce * 1.5f);
                 anchor = other.gameObject;
                 StartCoroutine("Arrived");
@@ -42,12 +44,26 @@ public class PlayerGrab : MonoBehaviour
         {
             player.GetComponent<CapsuleCollider>().isTrigger = false;
             player.GetComponent<Rigidbody>().useGravity = true;
+            player.GetComponent<PlayerController>().currentState = PlayerState.Idle;
+        }
+        if(checking)
+        {
+            player.GetComponent<CapsuleCollider>().isTrigger = false;
+            player.GetComponent<Rigidbody>().useGravity = true;
+            player.GetComponent<PlayerController>().currentState = PlayerState.Idle;
+        }
+        if(player.GetComponent<CapsuleCollider>().isTrigger == false && player.GetComponent<Rigidbody>().useGravity == true)
+        {
+            checking = false;
+        }
+        if(player.transform.position.y >= 20)
+        {
+            checking = true;
         }
     }
     IEnumerator Arrived ()
     {
         yield return new WaitForSeconds(3f);
-        player.GetComponent<CapsuleCollider>().isTrigger = false;
-        player.GetComponent<Rigidbody>().useGravity = true;
+        checking = true;
     }
 }
