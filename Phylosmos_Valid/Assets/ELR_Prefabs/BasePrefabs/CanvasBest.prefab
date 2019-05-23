@@ -9216,7 +9216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1277531891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16416,7 +16416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1943147699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17905,9 +17905,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Small harmless creature depend of the others animals. They hunt for it
-    and it heal them with some spores. \nIt can use those spores like a miracle fertilizer
-    to help plants to grow"
+  m_Text: 'Small harmless creature depend of the others animals. They hunt for it
+    and it heal them with some spores. '
 --- !u!1 &2125173702
 GameObject:
   m_ObjectHideFlags: 0
@@ -18240,4 +18239,5 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "We can often find this creature with other animals. \nIt can heal them
-    in return of a protection"
+    in return of a protection\nIt can also use those spores like a miracle fertilizer
+    to help plants to grow"
