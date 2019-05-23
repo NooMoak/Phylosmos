@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         enemyLayer = LayerMask.GetMask("EnemyToHeal");
 
         particleContainer = transform.Find("Particles").gameObject;
-        healParticle = particleContainer.transform.Find("HealParticle").gameObject;
+        healParticle = particleContainer.transform.Find("HealParticles").gameObject;
         shockwaveParticle = particleContainer.transform.Find("ShockwaveParticle").gameObject;
 
         //Data
@@ -503,7 +503,11 @@ public class PlayerController : MonoBehaviour
                 flowerAnim = true;
                 mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
-                healParticle.GetComponent<ParticleSystem>().Play();
+                ParticleSystem[] particles = healParticle.GetComponentsInChildren<ParticleSystem>();
+                foreach(ParticleSystem particle in particles)
+                {
+                    particle.Play();
+                }
                 flowerAnim = true;
                 healerCharge -= 1;
                 yield return new WaitForSeconds(0.2f);
