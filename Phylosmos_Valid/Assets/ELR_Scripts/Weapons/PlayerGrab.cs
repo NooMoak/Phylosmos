@@ -21,11 +21,14 @@ public class PlayerGrab : MonoBehaviour
         }
         if(other.gameObject.tag == "GrabAnchor")
         {
-            player.GetComponent<CapsuleCollider>().isTrigger = true;
-            player.GetComponent<Rigidbody>().useGravity = false;
-            player.GetComponent<Rigidbody>().AddForce(-(player.transform.position - other.gameObject.transform.position) * grabForce * 1.5f);
-            anchor = other.gameObject;
-            StartCoroutine("Arrived");
+            if(Vector3.Distance(other.gameObject.transform.position, player.transform.position) > 10)
+            {
+                player.GetComponent<CapsuleCollider>().isTrigger = true;
+                player.GetComponent<Rigidbody>().useGravity = false;
+                player.GetComponent<Rigidbody>().AddForce(-(player.transform.position - other.gameObject.transform.position) * grabForce * 1.5f);
+                anchor = other.gameObject;
+                StartCoroutine("Arrived");
+            }
         }
         if(other.gameObject.tag == "Wall")
         {

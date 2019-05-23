@@ -480,7 +480,6 @@ public class PlayerController : MonoBehaviour
                 Vector3 explosionPos = transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, rockPowerRadius);
                 rockAb = true;
-                Debug.Log("RockAb");
                 foreach(Collider hit in colliders)
                 {
                     Rigidbody hitRb = hit.GetComponent<Rigidbody>();

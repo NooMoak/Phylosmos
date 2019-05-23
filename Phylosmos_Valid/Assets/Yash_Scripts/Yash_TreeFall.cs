@@ -18,10 +18,11 @@ public class Yash_TreeFall : MonoBehaviour
     }
     public void OnTriggerStay(Collider other)
     {
-        if (GameObject.FindWithTag("Player").GetComponent<PlayerController>().lianaAnim == true)
+        /*if (GameObject.FindWithTag("Player").GetComponent<PlayerController>().lianaAnim == true)
         {
             anim.SetBool("Fall", true);
             
         }
+        */
     }
 }

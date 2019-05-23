@@ -93,8 +93,8 @@ public class HealerBehavior : MonoBehaviour
                 vectorToPlayer = player.transform.position;
                 anim.SetBool("IsWalking", true);
                 anim.SetBool("IsHealing", false);
-                isFleeing = true;
                 StartCoroutine(AutoDie());
+                isFleeing = true;
             }
             if(randomNumber == 1)
             {
