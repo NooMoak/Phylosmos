@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Text magazineText;
     [SerializeField] Text reloadText;
     int bulletFired = 0;
+    [SerializeField] AudioClip audioReload;
 
     //Ability Variables
     [SerializeField] GameObject sniperBullet;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
     GameObject shockwaveParticle;
     [SerializeField] AudioClip audioShock;
     [SerializeField] AudioClip audioGrab;
-
+    [SerializeField] AudioClip audioSniperAim;
 	void Start ()
     {
 		rb = GetComponent<Rigidbody>();
@@ -525,6 +526,8 @@ public class PlayerController : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(0.3f);
         anim.SetTrigger("Reload");
+        GetComponent<AudioSource>().clip = audioReload;
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1.2f);
         bulletFired = 0;
         canShoot = true;
@@ -562,13 +565,15 @@ public class PlayerController : MonoBehaviour
     public void Laser()
     {
         GetComponent<LineRenderer>().enabled = true;
+        GetComponent<AudioSource>().clip = audioSniperAim;
+        GetComponent<AudioSource>().Play();
     }
 
     public void SniperShoot()
     {
         GameObject clone;
         clone = Instantiate(sniperBullet, bulletStart.transform.position, bulletStart.transform.rotation);
-        clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(90,0,0);
+        clone.transform.rotation = Quaternion.LookRotation(look) * Quaternion.Euler(0,0,0);
         Vector3 dir = look;
         dir = dir.normalized;
         clone.GetComponent<Rigidbody>().AddForce(dir * bulletForce * 2f);

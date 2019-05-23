@@ -7,6 +7,7 @@ public class PlayerAnimEvents : MonoBehaviour
     [SerializeField] AudioClip audioGun;
     [SerializeField] AudioClip audioSword;
     [SerializeField] AudioClip audioWalk;
+    [SerializeField] AudioClip audioSniperShoot;
     GameObject player;
 
     private void Start() 
@@ -35,11 +36,14 @@ public class PlayerAnimEvents : MonoBehaviour
     public void PlayerAnimLaser()
     {
         player.GetComponentInParent<PlayerController>().Laser();
+
     }
 
     public void PlayerAnimSniperShoot()
     {
         player.GetComponentInParent<PlayerController>().SniperShoot();
+        player.GetComponentInParent<AudioSource>().clip = audioSniperShoot;
+        player.GetComponentInParent<AudioSource>().Play();
     }
 
     public void PlayerWalkSound()

@@ -16,6 +16,8 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] AudioClip audioHurt1;
     [SerializeField] AudioClip audioHurt2;
+    [SerializeField] AudioClip audioHurt3;
+    [SerializeField] AudioClip audioHurt4;
     bool invicible = false;
 
     private void Start() 
@@ -71,11 +73,15 @@ public class PlayerDamage : MonoBehaviour
             redBorders.enabled = true;
             Camera.main.gameObject.GetComponent<CameraController>().HurtCam();
             targetAlpha = 0.2f;
-            int random = Random.Range(1,3);
+            int random = Random.Range(1,5);
             if(random == 1)
                 GetComponent<AudioSource>().clip = audioHurt1;
             if(random == 2)
                 GetComponent<AudioSource>().clip = audioHurt2;
+            if(random == 3)
+                GetComponent<AudioSource>().clip = audioHurt3;
+            if(random == 4)
+                GetComponent<AudioSource>().clip = audioHurt4;
             GetComponent<AudioSource>().Play();
             CheckHealth();
         }
