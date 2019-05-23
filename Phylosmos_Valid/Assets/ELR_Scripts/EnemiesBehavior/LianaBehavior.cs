@@ -23,6 +23,7 @@ public class LianaBehavior : MonoBehaviour
     Animator anim;
     [SerializeField] GameObject targetRotation;
     [SerializeField] float rotateSpeed;
+    [SerializeField] GameObject grabStart;
     [SerializeField] Material dissolveMat1;
     [SerializeField] Material dissolveMat2;
     [SerializeField] Material dissolveMat3;
@@ -162,7 +163,7 @@ public class LianaBehavior : MonoBehaviour
     {
         grabbing = true;
         GameObject lianaClone;
-        lianaClone = Instantiate(grab, transform.position + new Vector3(0,3,0), transform.rotation);
+        lianaClone = Instantiate(grab, grabStart.transform.position, transform.rotation);
         lianaClone.GetComponent<GrabScript>().lianaEnemy = gameObject;
         lianaClone.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(-(transform.position - player.transform.position)) * grabSpeed * 50);
     }

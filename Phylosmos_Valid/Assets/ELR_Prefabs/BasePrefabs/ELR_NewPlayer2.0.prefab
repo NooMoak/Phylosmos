@@ -4920,6 +4920,7 @@ MonoBehaviour:
   rockPowerForce: 70
   rockAb: 0
   flowerAnim: 0
+  lianaAnim: 0
   lianaCharge: 0
   spikeCharge: 0
   rockCharge: 0
@@ -4980,7 +4981,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &2572618782141908919
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5626,7 +5627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3855081985844109844}
-  m_LocalRotation: {x: -0.6203458, y: -0.25632536, z: 0.32896444, w: 0.6642671}
+  m_LocalRotation: {x: -0.62034583, y: -0.25632536, z: 0.32896447, w: 0.6642671}
   m_LocalPosition: {x: 8.9406965e-10, y: 0.013993593, z: 0.0000000011920929}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_Children:

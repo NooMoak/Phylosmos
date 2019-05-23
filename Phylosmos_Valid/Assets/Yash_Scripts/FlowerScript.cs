@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class FlowerScript : MonoBehaviour
 {
-    public Animator anim;
-    public GameObject flowerColldier;
+    Animator anim;
+    bool used = false;
+    [SerializeField] GameObject secondFlower;
+    [SerializeField] GameObject thirdFlower;
+    [SerializeField] GameObject slope;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        flowerColldier.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,12 +22,23 @@ public class FlowerScript : MonoBehaviour
     }
     public void OnTriggerStay(Collider other)
     {
-        if(GameObject.FindWithTag("Player").GetComponent<PlayerController>().flowerAnim == true)
+        if(other.gameObject.tag == "Player")
         {
-            anim.SetBool("Grow", true);
-            flowerColldier.SetActive(true);
+            if(other.GetComponent<PlayerController>().flowerAnim == true && used == false)
+            {
+                anim.SetTrigger("Grow");
+                StartCoroutine(WaitAnim());
+                used = true;
+            }
         }
     }
-        
+
+    IEnumerator WaitAnim()
+    {
+        yield return new WaitForSeconds(1);
+        secondFlower.SetActive(true);
+        thirdFlower.SetActive(true);
+        slope.SetActive(true);
+    }  
     
 }

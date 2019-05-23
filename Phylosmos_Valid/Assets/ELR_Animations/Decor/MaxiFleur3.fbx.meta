@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 13bc8442ebab6f74fab80e010c1c0bda
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Armature.001
+    100004: Armature.002
+    100006: Bone
+    100008: Bone 1
+    100010: Bone 2
+    100012: Bone_end
+    100014: Bone_end 1
+    100016: Bone_end 2
+    100018: Camera
+    100020: Lamp
+    100022: //RootNode
+    100024: tige
+    100026: tige.001
+    100028: tige.003
+    400000: Armature
+    400002: Armature.001
+    400004: Armature.002
+    400006: Bone
+    400008: Bone 1
+    400010: Bone 2
+    400012: Bone_end
+    400014: Bone_end 1
+    400016: Bone_end 2
+    400018: Camera
+    400020: Lamp
+    400022: //RootNode
+    400024: tige
+    400026: tige.001
+    400028: tige.003
+    2000000: Camera
+    2100000: No Name
+    4300000: tige.003
+    4300002: tige.001
+    4300004: tige
+    7400000: Armature.002|Grow
+    7400002: Armature.002|Grow.001
+    7400004: Armature.002|Grow.002
+    7400006: Armature.002|Grow.003
+    7400008: Armature.002|Grow.004
+    7400010: Armature.002|tige|Take 001|BaseLayer
+    7400012: Armature.002|tige|Take 001|BaseLayer.001
+    7400014: Armature.002|tige|Take 001|BaseLayer.002
+    7400016: Armature.002|tige|Take 001|BaseLayer.003
+    7400018: Armature.001|Grow
+    7400020: Armature.001|Grow.001
+    7400022: Armature.001|Grow.002
+    7400024: Armature.001|Grow.003
+    7400026: Armature.001|Grow.004
+    7400028: Armature.001|tige|Take 001|BaseLayer
+    7400030: Armature.001|tige|Take 001|BaseLayer.001
+    7400032: Armature.001|tige|Take 001|BaseLayer.002
+    7400034: Armature.001|tige|Take 001|BaseLayer.003
+    7400036: Armature|Grow
+    7400038: Armature|Grow.001
+    7400040: Armature|Grow.002
+    7400042: Armature|Grow.003
+    7400044: Armature|Grow.004
+    7400046: Armature|tige|Take 001|BaseLayer
+    7400048: Armature|tige|Take 001|BaseLayer.001
+    7400050: Armature|tige|Take 001|BaseLayer.002
+    7400052: Armature|tige|Take 001|BaseLayer.003
+    9500000: //RootNode
+    10800000: Lamp
+    13700000: tige
+    13700002: tige.001
+    13700004: tige.003
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
