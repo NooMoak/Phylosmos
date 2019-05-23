@@ -111,6 +111,11 @@ public class BestiaryData : MonoBehaviour
         boss3 = dataSaver.boss3;
         boss4 = dataSaver.boss4;
 
+        if(spike1 == true || liana1 == true || healer1 == true || rock1 == true)
+        {
+            introText.gameObject.SetActive(false);
+        }
+
         UpdateBestiary();
     }
 
@@ -417,7 +422,7 @@ public class BestiaryData : MonoBehaviour
                 text.text = "Healing spore";
             }
             healerTitle.text = "Healing spore";
-            healerWR.text = "We can often find this creature with other animals.\nIt can heal them in return of a protection";
+            healerWR.text = "We can often find this creature with other animals.\nIt can heal them in return of a protection.\nIt can also use those spores like a miracle fertilizer to help plants to grow";
         }
         if(healer2 == true)
         {
@@ -426,7 +431,7 @@ public class BestiaryData : MonoBehaviour
         }
         if(healer3 == true)
         {
-            healerLore.text = "Small harmless creature depend of the others animals. They hunt for it and it heal them with some spores.\nIt can use those spores like a miracle fertilizer to help plants to grow";
+            healerLore.text = "Small harmless creature depend of the others animals. They hunt for it and it heal them with some spores.";
         }
 
         if(rock1 == false)

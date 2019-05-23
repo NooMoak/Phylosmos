@@ -18,6 +18,7 @@ TagManager:
   - Wall
   - GrabAnchor
   - EnemyGrab
+  - PlayerGrab
   layers:
   - Default
   - TransparentFX

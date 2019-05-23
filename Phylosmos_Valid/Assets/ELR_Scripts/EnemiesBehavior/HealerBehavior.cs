@@ -94,6 +94,7 @@ public class HealerBehavior : MonoBehaviour
                 anim.SetBool("IsWalking", true);
                 anim.SetBool("IsHealing", false);
                 isFleeing = true;
+                StartCoroutine(AutoDie());
             }
             if(randomNumber == 1)
             {
@@ -211,5 +212,11 @@ public class HealerBehavior : MonoBehaviour
         {
             currentState = HealerState.Dead;
         }
+    }
+
+    IEnumerator AutoDie()
+    {
+        yield return new WaitForSeconds(5);
+        currentState = HealerState.Dead;
     }
 }
