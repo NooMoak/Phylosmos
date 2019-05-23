@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5979207832187407921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5979207832187407923}
+  - component: {fileID: 5979207832187407922}
+  m_Layer: 0
+  m_Name: SavedData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5979207832187407923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979207832187407921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 72, y: 25.730017, z: -242}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5979207832187407922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979207832187407921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d191d8398ffd4fa8cb70488ae6804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knowSpike: 0
+  knowLiana: 0
+  knowHealer: 0
+  knowRock: 0
+  knowBoss: 0
+  spike1: 0
+  spike2: 0
+  spike3: 0
+  liana1: 0
+  liana2: 0
+  liana3: 0
+  healer1: 0
+  healer2: 0
+  healer3: 0
+  rock1: 0
+  rock2: 0
+  rock3: 0
+  villager1: 0
+  villager2: 0
+  villager3: 0
+  villager4: 0
+  villager5: 0
+  villager6: 0
+  villager7: 0
+  boss1: 0
+  boss2: 0
+  boss3: 0
+  boss4: 0
+  spikeCharge: 0
+  lianaCharge: 0
+  healerCharge: 0
+  rockCharge: 0
+  player: {fileID: 0}
