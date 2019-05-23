@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
     public GameObject spellCam;
     public GameObject hurtCam;
     public bool exeption;
+    bool isOpen = false;
 
     void Start()
     {
@@ -34,7 +35,6 @@ public class CameraController : MonoBehaviour
         {
             normalUI.SetActive(false);
             bestiaryUI.SetActive(true);
-            Time.timeScale = 0f;
             normal = false;
         }
         if(Input.GetKeyDown(KeyCode.Escape) && normal == false)
@@ -43,7 +43,12 @@ public class CameraController : MonoBehaviour
         }
         if(normal == false)
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+            if(isOpen == false)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+                GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("Moving", false);
+                StartCoroutine(BestiaryOpen());
+            }
         }
     }
 
@@ -61,8 +66,10 @@ public class CameraController : MonoBehaviour
         bestiaryUI.SetActive(false);
         Time.timeScale = 1f;
         normal = true;
+        isOpen = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Idle;
         introText.SetActive(false);  
+        bestiaryUI.GetComponent<Animator>().SetTrigger("Close");
     }
 
     public void NormalCam() 
@@ -114,5 +121,13 @@ public class CameraController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         NormalCam();
+    }
+
+    IEnumerator BestiaryOpen()
+    {
+        isOpen = true;
+        bestiaryUI.GetComponent<Animator>().SetTrigger("Open");
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0f;
     }
 }
