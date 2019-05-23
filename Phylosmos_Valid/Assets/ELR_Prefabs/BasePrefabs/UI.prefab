@@ -3015,10 +3015,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasBest
       objectReference: {fileID: 0}
-    - target: {fileID: 1667167701, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1667167705, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3104,8 +3100,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.174337
+      propertyPath: m_LocalPosition.y
+      value: 854
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
       propertyPath: m_LocalScale.y
@@ -3114,18 +3114,6 @@ PrefabInstance:
     - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4970.8843
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 854
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164661283, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be49c0074fa4e79419aedbe506f19b1e, type: 3}

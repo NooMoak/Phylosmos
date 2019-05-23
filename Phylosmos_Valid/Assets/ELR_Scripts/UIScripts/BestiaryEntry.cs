@@ -18,6 +18,7 @@ public class BestiaryEntry : MonoBehaviour
     [SerializeField] BestiaryData bestiaryData;
     bool pressed = false;
     [SerializeField] GameObject scan;
+    [SerializeField] AudioClip audioAnalyze;
 
     void Start() 
     {
@@ -33,6 +34,8 @@ public class BestiaryEntry : MonoBehaviour
             {
                 pressed = true;
                 scan.GetComponent<ParticleSystem>().Play();
+                GetComponent<AudioSource>().clip = audioAnalyze;
+                GetComponent<AudioSource>().Play();
                 if(entryFor == TypeOfEntry.Spike)
                 {
                     bestiaryData.SpikeEntry();
@@ -74,7 +77,7 @@ public class BestiaryEntry : MonoBehaviour
 
     IEnumerator Entry()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         FindObjectOfType<CameraController>().GetComponent<CameraController>().normal = false;
         analyseText.SetActive(false);
         normalUI.SetActive(false);

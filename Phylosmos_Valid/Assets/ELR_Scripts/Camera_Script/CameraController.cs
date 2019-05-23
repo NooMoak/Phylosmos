@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     public GameObject bossPanel;
     [SerializeField] GameObject introText;
     public bool normal = true;
+    [SerializeField] AudioClip audioOpen;
 
     public GameObject normalCam;
     public GameObject fightCam;
@@ -45,10 +46,12 @@ public class CameraController : MonoBehaviour
         {
             if(isOpen == false)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Stagger;
                 GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("Moving", false);
+                GetComponent<AudioSource>().clip = audioOpen;
+                GetComponent<AudioSource>().Play();
                 StartCoroutine(BestiaryOpen());
             }
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentState = PlayerState.Stagger;
         }
     }
 
