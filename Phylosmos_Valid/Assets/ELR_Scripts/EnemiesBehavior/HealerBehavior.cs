@@ -59,7 +59,7 @@ public class HealerBehavior : MonoBehaviour
         } 
         else if (currentState == HealerState.Heal && Vector3.Distance(player.transform.position, homePosition) <= healRadius + 10)
         {
-            if(Vector3.Distance(healTarget.transform.position, transform.position) > 10)
+            if(Vector3.Distance(healTarget.transform.position, transform.position) > 20)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, healTarget.transform.position, healerSpeed * Time.deltaTime));
                 anim.SetBool("IsWalking", true);
