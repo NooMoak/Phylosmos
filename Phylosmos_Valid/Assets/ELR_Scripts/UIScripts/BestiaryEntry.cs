@@ -14,24 +14,16 @@ public class BestiaryEntry : MonoBehaviour
     public GameObject normalUI;
     public GameObject bestiaryUI;
     public GameObject mainPanel;
-    public GameObject correspondingPanel;
-    public Text panelTitleText1;
-    public Text panelTitleText2;
-    public RawImage panelIllustration;
-    public Text infoText;
-    public string desiredTitleText1;
-    public string desiredTitleText2;
-    public string desiredInfoText;
-    public bool imageDiscovered;
-    BestiaryData bestiaryData;
+    public GameObject correspondingPanel; 
+    [SerializeField] BestiaryData bestiaryData;
     bool pressed = false;
-    GameObject scan;
+    [SerializeField] GameObject scan;
 
-    private void Start() 
+    void Start() 
     {
-        bestiaryData = FindObjectOfType<BestiaryData>();
-        scan = transform.Find("Scan").gameObject;
+        //scan = transform.Find("Scan").gameObject;
     }
+
     void OnTriggerStay(Collider other) {
         if(other.tag == "Player")
         {
@@ -93,7 +85,7 @@ public class BestiaryEntry : MonoBehaviour
         //panelTitleText2.text = desiredTitleText2;
         //infoText.text = desiredInfoText;
         //panelIllustration.enabled = imageDiscovered;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         Destroy(this.gameObject);
     }
 }

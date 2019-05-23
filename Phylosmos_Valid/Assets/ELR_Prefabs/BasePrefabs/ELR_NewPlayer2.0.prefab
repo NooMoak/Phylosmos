@@ -4911,6 +4911,7 @@ MonoBehaviour:
   bulletStart: {fileID: 8353499841350726478}
   magazineText: {fileID: 0}
   reloadText: {fileID: 0}
+  audioReload: {fileID: 8300000, guid: d9889d4492022f64cb1bd582156c37b4, type: 3}
   sniperBullet: {fileID: 1791254068669116, guid: 714d97495063bf54f96dd042f3fd3be4,
     type: 3}
   grab: {fileID: 3823104222144460384, guid: f07dca2cf679f0c4da97b7be23490bcc, type: 3}
@@ -4941,6 +4942,7 @@ MonoBehaviour:
   rockImage: {fileID: 0}
   audioShock: {fileID: 8300000, guid: 46350cfc32948db458ec0d4dd853caaf, type: 3}
   audioGrab: {fileID: 8300000, guid: 9762b0333e503a9428946741474ffc60, type: 3}
+  audioSniperAim: {fileID: 8300000, guid: ad0e76e0a0f88f848b80805986ba63bd, type: 3}
 --- !u!114 &2572618782141908912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4959,8 +4961,10 @@ MonoBehaviour:
   anim: {fileID: 3855081985851494856}
   blackFade: {fileID: 0}
   UI: {fileID: 0}
-  audioHurt1: {fileID: 8300000, guid: 1527e8ba2ad88914e85d4de52b0b2b7a, type: 3}
-  audioHurt2: {fileID: 8300000, guid: 3a2595df56658e145ab0b51c96d597fe, type: 3}
+  audioHurt1: {fileID: 8300000, guid: a5fd65d856bb35546ace2a82f7f47f32, type: 3}
+  audioHurt2: {fileID: 8300000, guid: 718ef2161ac2bc649baadd778de63c5f, type: 3}
+  audioHurt3: {fileID: 8300000, guid: 5f4bcfe96ca45b64b908351a0139baf9, type: 3}
+  audioHurt4: {fileID: 8300000, guid: d4c60570735e53c42b19d15586f6ba34, type: 3}
 --- !u!54 &2572618782141908913
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4987,8 +4991,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.84
-  m_Height: 10.901186
+  m_Radius: 1.2
+  m_Height: 10
   m_Direction: 1
   m_Center: {x: 0.16000003, y: 4.945593, z: 0.27000004}
 --- !u!120 &2572618782141908916
@@ -6194,9 +6198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdd0d6da03e8e846abaedcf1a2fc0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioGun: {fileID: 8300000, guid: e4c305428de5bcc4f87404df808564d8, type: 3}
+  audioGun: {fileID: 8300000, guid: 617b16c1ee31a0840b2c55b7b3ef876a, type: 3}
   audioSword: {fileID: 8300000, guid: 8cec6c91be9cbcf418aec691dbc9ef65, type: 3}
   audioWalk: {fileID: 8300000, guid: 12995643c06c31b448855361fe7fd485, type: 3}
+  audioSniperShoot: {fileID: 8300000, guid: 617b16c1ee31a0840b2c55b7b3ef876a, type: 3}
 --- !u!82 &4338532274401615174
 AudioSource:
   m_ObjectHideFlags: 0
