@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rockPowerForce = 10f;
     public bool rockAb = false;
     public bool flowerAnim = false;
+    public bool lianaAnim = false;
     public int lianaCharge;
     public int spikeCharge;
     public int rockCharge;
@@ -424,7 +425,9 @@ public class PlayerController : MonoBehaviour
                 if(Physics.Raycast(ray, out hit, 1000, rayPlaneMask))
                 {
                     look = hit.point - new Vector3 (transform.position.x, transform.position.y + 6.5f, transform.position.z);
+                    lianaAnim = true;
                 }
+                lianaAnim = true;
                 GameObject grabClone;
                 grabClone = Instantiate(grab, bulletStart.transform.position, bulletStart.transform.rotation);
                 grabClone.GetComponent<PlayerGrab>().player = gameObject;
@@ -435,6 +438,7 @@ public class PlayerController : MonoBehaviour
                 GetComponent<AudioSource>().Play();
                 yield return new WaitForSeconds(1f);
                 abilityReady = true;
+                lianaAnim = true;
                 currentState = PlayerState.Idle;
                 mainCam.GetComponent<CameraController>().NormalCam();
                 lianaCharge -= 1;
