@@ -14,15 +14,7 @@ public class BestiaryEntry : MonoBehaviour
     public GameObject normalUI;
     public GameObject bestiaryUI;
     public GameObject mainPanel;
-    public GameObject correspondingPanel;
-    public Text panelTitleText1;
-    public Text panelTitleText2;
-    public RawImage panelIllustration;
-    public Text infoText;
-    public string desiredTitleText1;
-    public string desiredTitleText2;
-    public string desiredInfoText;
-    public bool imageDiscovered;
+    public GameObject correspondingPanel; 
     [SerializeField] BestiaryData bestiaryData;
     bool pressed = false;
     GameObject scan;
