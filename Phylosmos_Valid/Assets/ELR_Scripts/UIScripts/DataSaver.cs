@@ -32,6 +32,7 @@ public class DataSaver : MonoBehaviour
     public bool boss1 = false;
     public bool boss2 = false;
     public bool boss3 = false;
+    public bool boss4 = false;
 
     public int spikeCharge = 0;
     public int lianaCharge = 0;

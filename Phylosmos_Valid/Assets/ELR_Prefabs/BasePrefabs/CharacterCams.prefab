@@ -839,6 +839,7 @@ MonoBehaviour:
   healerPanel: {fileID: 0}
   rockPanel: {fileID: 0}
   bossPanel: {fileID: 0}
+  introText: {fileID: 0}
   normal: 1
   normalCam: {fileID: 7230490267116751137}
   fightCam: {fileID: 7230490266567923657}
