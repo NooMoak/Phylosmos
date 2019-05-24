@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     //Attack Variables
     [SerializeField] GameObject attackHitbox;
+    [SerializeField] GameObject trail;
 
     //Shoot Variables
     [SerializeField] GameObject bullet;
@@ -396,6 +397,7 @@ public class PlayerController : MonoBehaviour
     public void AttackCO()
     {
         attackHitbox.SetActive(true);
+        trail.SetActive(true);
     }
 
     public void Fire()
@@ -570,6 +572,7 @@ public class PlayerController : MonoBehaviour
     {
         attackHitbox.SetActive(false);
         currentState = PlayerState.Idle;
+        trail.SetActive(false);
     }
 
     public void Laser()
