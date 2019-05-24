@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2216,8 +2216,8 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178300129}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 84685ca2d90e82947b39e1056f5dccfd, type: 3}
-  m_TargetCameraAlpha: 1
+  m_VideoClip: {fileID: 32900000, guid: a3f960411156e54438cb9a9db252136b, type: 3}
+  m_TargetCameraAlpha: 0
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 534669904}
   m_TargetTexture: {fileID: 0}
@@ -3537,7 +3537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.9777998}
-  m_AnchoredPosition: {x: 599.65, y: 0.01083374}
+  m_AnchoredPosition: {x: 599.65, y: 0.010864258}
   m_SizeDelta: {x: -1199.6, y: -483.3}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1820402817
