@@ -19,11 +19,14 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] AudioClip audioHurt3;
     [SerializeField] AudioClip audioHurt4;
     bool invicible = false;
+    bool dead = false;
 
     private void Start() 
     {
         playerHealth = 100f;
         targetAlpha = 0.7f;
+        invicible = false;
+        dead = false;
     }
 
     private void Update() 
@@ -46,6 +49,10 @@ public class PlayerDamage : MonoBehaviour
             redBorders.color = curColor;
             targetAlpha = 0.7f;
             redBorders.enabled = false;
+        }
+        if(dead == true)
+        {
+            this.gameObject.GetComponent<PlayerController>().currentState = PlayerState.Stagger;
         }
     }
     private void OnTriggerEnter(Collider collision)
@@ -92,7 +99,7 @@ public class PlayerDamage : MonoBehaviour
         if(playerHealth <= 0)
         {
             anim.SetTrigger("Dead");
-            GetComponent<PlayerController>().currentState = PlayerState.Stagger;
+            dead = true;
             invicible = true;
             StartCoroutine(Death());
         }

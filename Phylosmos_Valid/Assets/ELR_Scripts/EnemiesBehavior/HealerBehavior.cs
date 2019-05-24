@@ -164,8 +164,7 @@ public class HealerBehavior : MonoBehaviour
                 dissolveAmount = 0;
                 hasDied = true;
             }
-            dissolveAmount = Mathf.Lerp(dissolveAmount, 1, 0.02f);
-            matRenderer.materials[0].SetFloat("_DissolveAmount", dissolveAmount);
+             
             if(Vector3.Distance(player.transform.position, homePosition) < 120 && Vector3.Distance(player.transform.position, homePosition) > 100)
                 StartCoroutine("Respawn");
         }

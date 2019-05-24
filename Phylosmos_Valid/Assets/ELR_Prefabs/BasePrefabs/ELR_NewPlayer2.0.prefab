@@ -188,6 +188,7 @@ MonoBehaviour:
   audioShock: {fileID: 8300000, guid: 46350cfc32948db458ec0d4dd853caaf, type: 3}
   audioGrab: {fileID: 8300000, guid: 9762b0333e503a9428946741474ffc60, type: 3}
   audioSniperAim: {fileID: 8300000, guid: 13d22e0ab674df74e9c03fca9e35da98, type: 3}
+  audioHeal: {fileID: 8300000, guid: a4c9eb00a018081479f0271675e9bc70, type: 3}
 --- !u!114 &2572618782141908912
 MonoBehaviour:
   m_ObjectHideFlags: 0

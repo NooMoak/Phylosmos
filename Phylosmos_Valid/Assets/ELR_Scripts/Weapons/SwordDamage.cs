@@ -16,7 +16,7 @@ public class SwordDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag ("Destructible"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<LianaWall>().Fade();
         }
         if (collision.gameObject.CompareTag ("Liana"))
         {

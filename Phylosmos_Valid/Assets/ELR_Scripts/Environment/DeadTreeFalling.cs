@@ -6,6 +6,7 @@ public class DeadTreeFalling : MonoBehaviour
 {
     bool fallen = false;
     bool hasFallen = false;
+    [SerializeField] AudioClip audioFall;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class DeadTreeFalling : MonoBehaviour
         if(other.gameObject.tag == "PlayerGrab" && hasFallen == false)
         {
             GetComponent<Animator>().SetTrigger("Fall");
+            GetComponent<AudioSource>().clip = audioFall;
+            GetComponent<AudioSource>().Play();
             fallen = true;
             hasFallen = true;
             StartCoroutine(StopFalling());

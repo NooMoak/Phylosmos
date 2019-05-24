@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip audioShock;
     [SerializeField] AudioClip audioGrab;
     [SerializeField] AudioClip audioSniperAim;
+    [SerializeField] AudioClip audioHeal;
 	void Start ()
     {
 		rb = GetComponent<Rigidbody>();
@@ -503,6 +504,8 @@ public class PlayerController : MonoBehaviour
                 flowerAnim = true;
                 mainCam.GetComponent<CameraController>().SpellCam();
                 gameObject.GetComponent<PlayerDamage>().playerHealth += 30f;
+                GetComponent<AudioSource>().clip = audioHeal;
+                GetComponent<AudioSource>().Play();
                 ParticleSystem[] particles = healParticle.GetComponentsInChildren<ParticleSystem>();
                 foreach(ParticleSystem particle in particles)
                 {
@@ -556,7 +559,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("MovingForward", false);
             anim.SetBool("MovingBackward", false);
             anim.SetBool("Moving", false);
-            if(currentState != PlayerState.Attack)
+            if(currentState != PlayerState.Attack || currentState != PlayerState.Stagger || currentState != PlayerState.Ability)
             {
                 currentState = PlayerState.Idle;
             } 
