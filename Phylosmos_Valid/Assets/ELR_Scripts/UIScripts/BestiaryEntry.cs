@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum TypeOfEntry
 {
-    Spike, Liana, Healer, Rock, Villager, FireBoss
+    Spike, Liana, Healer, Rock, VillagerField, VillagerTower, VillagerLanguage, VillagerDrawings, VillagerChief, FireBoss
 }
 public class BestiaryEntry : MonoBehaviour
 {
@@ -52,8 +52,29 @@ public class BestiaryEntry : MonoBehaviour
                 {
                     bestiaryData.RockEntry();
                 }
-                else if(entryFor == TypeOfEntry.Villager)
+                else if(entryFor == TypeOfEntry.VillagerField)
                 {
+                    bestiaryData.villagerField = true;
+                    bestiaryData.VillagerEntry();
+                }
+                else if(entryFor == TypeOfEntry.VillagerTower)
+                {
+                    bestiaryData.villagerTower = true;
+                    bestiaryData.VillagerEntry();
+                }
+                else if(entryFor == TypeOfEntry.VillagerLanguage)
+                {
+                    bestiaryData.villagerLanguage = true;
+                    bestiaryData.VillagerEntry();
+                }
+                else if(entryFor == TypeOfEntry.VillagerDrawings)
+                {
+                    bestiaryData.villagerDrawings = true;
+                    bestiaryData.VillagerEntry();
+                }
+                else if(entryFor == TypeOfEntry.VillagerChief)
+                {
+                    bestiaryData.villagerChief = true;
                     bestiaryData.VillagerEntry();
                 }
                 else if(entryFor == TypeOfEntry.FireBoss)

@@ -27,8 +27,11 @@ public class DataSaver : MonoBehaviour
     public bool villager3 = false;
     public bool villager4 = false;
     public bool villager5 = false;
-    public bool villager6 = false;
-    public bool villager7 = false;
+    public bool villagerField = false;
+    public bool villagerTower = false;
+    public bool villagerLanguage = false;
+    public bool villagerDrawings = false;
+    public bool villagerChief = false;
     public bool boss1 = false;
     public bool boss2 = false;
     public bool boss3 = false;

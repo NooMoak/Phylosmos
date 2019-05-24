@@ -916,8 +916,8 @@ RectTransform:
   m_Father: {fileID: 153132172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.45415}
-  m_AnchorMax: {x: 1, y: 0.9999999}
+  m_AnchorMin: {x: 0, y: 0.45415008}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000011444, y: 0}
   m_SizeDelta: {x: 68.4, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4328,8 +4328,7 @@ MonoBehaviour:
     They grow a few plants and hunt around their village. Having inherited the abilities
     of the plants, they also \"feed\" on the sun and therefore have a smaller conventional
     diet. They draw most of the nutrients they need from the water points where they
-    base their village.\nTheir lifestyle is very self-sufficient, we can see some
-    rare cases of barter, but they seem to share everything.\r"
+    base their village."
 --- !u!1 &725822016
 GameObject:
   m_ObjectHideFlags: 0
@@ -6698,12 +6697,13 @@ RectTransform:
   - {fileID: 774193618}
   - {fileID: 1300491906}
   - {fileID: 676353370}
+  - {fileID: 4440690048536189106}
   m_Father: {fileID: 1023462095}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00045776367, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0.00061035156, y: 0.00012207031}
   m_SizeDelta: {x: -20, y: 1379.5}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &966113250
@@ -9216,7 +9216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1277531891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16416,7 +16416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1943147699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18241,3 +18241,86 @@ MonoBehaviour:
   m_Text: "We can often find this creature with other animals. \nIt can heal them
     in return of a protection\nIt can also use those spores like a miracle fertilizer
     to help plants to grow"
+--- !u!1 &7663328986076581008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4440690048536189106}
+  - component: {fileID: 7064841871924343965}
+  - component: {fileID: 7188466099208049174}
+  m_Layer: 5
+  m_Name: TextField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4440690048536189106
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663328986076581008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000043, y: 1.0000043, z: 1.0000043}
+  m_Children: []
+  m_Father: {fileID: 966113248}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -600}
+  m_SizeDelta: {x: 705, y: 545.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7064841871924343965
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663328986076581008}
+  m_CullTransparentMesh: 0
+--- !u!114 &7188466099208049174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663328986076581008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: cdac3ee85d94d8f429dd403c41d2b634, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Their lifestyle is very self-sufficient, we can see some rare cases of
+    barter, but they seem to share everything.\r\nThey grow few plants and hunt around
+    their village. Having inherited the abilities of the plants, they also \"feed\"
+    on the sun and therefore have a smaller conventional diet.\r\nThey draw most of
+    the nutrients they need from the water points where they base their village."

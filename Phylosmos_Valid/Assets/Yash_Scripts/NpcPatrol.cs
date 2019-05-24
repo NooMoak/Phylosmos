@@ -62,7 +62,6 @@ public class NpcPatrol : MonoBehaviour
 
             if (patrolWaiting)
             {
-                Debug.Log("JNf");
                 waiting = true;
                 waitTimer =0f;
             }

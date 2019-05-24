@@ -22,8 +22,11 @@ public class BestiaryData : MonoBehaviour
     public bool villager3 = false;
     public bool villager4 = false;
     public bool villager5 = false;
-    public bool villager6 = false;
-    public bool villager7 = false;
+    public bool villagerField = false;
+    public bool villagerTower = false;
+    public bool villagerLanguage = false;
+    public bool villagerDrawings = false;
+    public bool villagerChief = false;
     public bool boss1 = false;
     public bool boss2 = false;
     public bool boss3 = false;
@@ -48,6 +51,7 @@ public class BestiaryData : MonoBehaviour
     [SerializeField] Text nativesDrawings;
     [SerializeField] Text nativesTower;
     [SerializeField] Text nativesLore;
+    [SerializeField] Text nativesField;
 
     [SerializeField] Text lianaTitle;
     [SerializeField] Text lianaName;
@@ -104,8 +108,11 @@ public class BestiaryData : MonoBehaviour
         villager3 = dataSaver.villager3;
         villager4 = dataSaver.villager4;
         villager5 = dataSaver.villager5;
-        villager6 = dataSaver.villager6;
-        villager7 = dataSaver.villager7;
+        villagerField = dataSaver.villagerField;
+        villagerTower = dataSaver.villagerTower;
+        villagerLanguage = dataSaver.villagerLanguage;
+        villagerDrawings = dataSaver.villagerDrawings;
+        villagerChief = dataSaver.villagerChief;
         boss1 = dataSaver.boss1;
         boss2 = dataSaver.boss2;
         boss3 = dataSaver.boss3;
@@ -261,31 +268,39 @@ public class BestiaryData : MonoBehaviour
             villager1 = true;
             dataSaver.villager1 = true;
             analysisText.text = "Natives_analysis";
-            analysisStep.text = "1 / 4 step";
-            targetedAmount = 0.25f;
+            analysisStep.text = "1 / 5 step";
+            targetedAmount = 0.2f;
         }
         else if(villager2 == false)
         {
             villager2 = true;
             dataSaver.villager2 = true;
             analysisText.text = "Natives_analysis";
-            analysisStep.text = "2 / 4 step";
-            targetedAmount = 0.5f;
+            analysisStep.text = "2 / 5 step";
+            targetedAmount = 0.4f;
         }
         else if(villager3 == false)
         {
             villager3 = true;
             dataSaver.villager3 = true;
             analysisText.text = "Natives_analysis";
-            analysisStep.text = "3 / 4 step";
-            targetedAmount = 0.75f;
+            analysisStep.text = "3 / 5 step";
+            targetedAmount = 0.6f;
         }
         else if(villager4 == false)
         {
             villager4 = true;
             dataSaver.villager4 = true;
             analysisText.text = "Natives_analysis";
-            analysisStep.text = "4 / 4 step";
+            analysisStep.text = "4 / 5 step";
+            targetedAmount = 0.8f;
+        }
+        else if(villager5 == false)
+        {
+            villager5 = true;
+            dataSaver.villager5 = true;
+            analysisText.text = "Natives_analysis";
+            analysisStep.text = "5 / 5 step";
             targetedAmount = 1f;
         }
         UpdateBestiary();
@@ -350,7 +365,7 @@ public class BestiaryData : MonoBehaviour
             spikeImage.enabled = false;
             spikeWR.text = "???";
             spikeLore.text = "???";
-            introText.text = "This is your DataBase, it's automatically filled by Sýntrofos each time you analyze elements of this planet. It contains important information that allow you to better understand your environment, read your DataBase will help surviving during your adventure.\nYou can access it at any time by pressing \"TAB\".\nPress \"Escape\" to quit the DataBase.";
+            introText.text = "This is your DataBase, it's automatically filled by Syntro each time you analyze elements of this planet. It contains important information that allow you to better understand your environment, read your DataBase will help surviving during your adventure.\nYou can access it at any time by pressing \"TAB\".\nPress \"Escape\" to quit the DataBase.";
         }
         if(spike1 == true)
         {
@@ -360,7 +375,7 @@ public class BestiaryData : MonoBehaviour
             }
             spikeTitle.text = "Thorny imitator";
             spikeWR.text = "His main strength is based on the distance he can put between him and his prey.\nIn addition, he will try to dissuade anyone from approaching by firing bursts of spades.";
-            introText.text = "This is your DataBase, it's automatically filled by Sýntrofos each time you analyze elements of this planet. It contains important information that allow you to better understand your environment, read your DataBase will help surviving during your adventure.\nHere, Sýntrofos discovered that this spike belonged to a living creature, by analyzing it, Sýntrofos could find some precious information about this creature.\nKeep analyzing in order to complete your DataBase.\nYou can access it at any time by pressing \"TAB\".\nPress \"Escape\" to quit the DataBase.";
+            introText.text = "This is your DataBase, it's automatically filled by Syntro each time you analyze elements of this planet. It contains important information that allow you to better understand your environment, read your DataBase will help surviving during your adventure.\nHere, Syntro discovered that this spike belonged to a living creature, by analyzing it, Syntro could find some precious information about this creature.\nKeep analyzing in order to complete your DataBase.\nYou can access it at any time by pressing \"TAB\".\nPress \"Escape\" to quit the DataBase.";
         }
         if(spike2 == true)
         {
@@ -465,7 +480,7 @@ public class BestiaryData : MonoBehaviour
             rockLore.text = "Apoikia Kidemónas are a species of insects living in colonies. They have developed an unprecedented survival technique. Their hive is made up of several types of debris that they stick with a sticky substance that they secrete.\n\nThe peculiarity of this hive is that it is moving and directed by the swarm itself. It uses it to defend itself. The shape can vary according to the living beings that they crossed before forming the nest.";
         }
 
-        if(villager1 == false && villager2 == false && villager3 == false && villager4 == false)
+        if(villager1 == false && villager2 == false && villager3 == false && villager4 == false && villager5 == false)
         {
             foreach(Text text in nativesButtons)
             {
@@ -478,8 +493,9 @@ public class BestiaryData : MonoBehaviour
             nativesLanguage.text = "???";
             nativesLore.text = "???";
             nativesTower.text = "???";
+            nativesField.text = "???";
         }
-        if(villager1 == true || villager2 == true || villager3 == true || villager4 == true)
+        if(villager1 == true || villager2 == true || villager3 == true || villager4 == true && villager5 == false)
         {
             foreach(Text text in nativesButtons)
             {
@@ -488,21 +504,25 @@ public class BestiaryData : MonoBehaviour
             nativesTitle.text = "Natives";
             nativesImage.enabled = true;
         }
-        if(villager1 == true)
+        if(villagerLanguage == true)
         {
             nativesLanguage.text = "To communicate, they use a very simple language. They use only a few simple words to express their ideas. They will not do any frills in their way of speaking and will get right to the point. Tip: They do not really understand our humor and even less the irony.";
         }
-        if(villager2 == true)
+        if(villagerChief == true)
         {
             nativesChief.text = "A semblance of hierarchy is in place, based on a gerontocracy where decisions are made by a \"council of elders\".";
         }
-        if(villager3 == true)
+        if(villagerDrawings == true)
         {
             nativesDrawings.text = "They do not know how to write. Therefore, they use different pigments to leave visual indications. They use it especially to remember exploits or to prevent the whole village, as of a great danger for example.";
         }
-        if(villager4 == true)
+        if(villagerTower == true)
         {
             nativesTower.text = "They seem to have developed a proto-religion. In the village visited by the explorer Mira, the cult revolves around a sort of giant antenna, which did not have to be built by them. We can therefore assume that the object of their prayers may vary according to the villages.";
+        }
+        if(villagerField == true)
+        {
+            nativesField.text = "Their lifestyle is very self-sufficient, we can see some rare cases of barter, but they seem to share everything.\nThey grow few plants and hunt around their village. Having inherited the abilities of the plants, they also \"feed\" on the sun and therefore have a smaller conventional diet.\nThey draw most of the nutrients they need from the water points where they base their village.";
         }
 
         if(boss1 == false)
