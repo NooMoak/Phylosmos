@@ -2906,8 +2906,11 @@ MonoBehaviour:
   villager3: 0
   villager4: 0
   villager5: 0
-  villager6: 0
-  villager7: 0
+  villagerField: 0
+  villagerTower: 0
+  villagerLanguage: 0
+  villagerDrawings: 0
+  villagerChief: 0
   boss1: 0
   boss2: 0
   boss3: 0
@@ -2977,6 +2980,7 @@ MonoBehaviour:
   nativesDrawings: {fileID: 3333770363902409906}
   nativesTower: {fileID: 3333770365469332450}
   nativesLore: {fileID: 3333770363805214778}
+  nativesField: {fileID: 5584852419079974775}
   lianaTitle: {fileID: 3333770364096346556}
   lianaName: {fileID: 3333770364498492681}
   lianaImage: {fileID: 3333770364405097461}
@@ -3412,6 +3416,18 @@ MonoBehaviour:
 --- !u!114 &3333770363805214778 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 676353371, guid: be49c0074fa4e79419aedbe506f19b1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3333770364202646881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5584852419079974775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7188466099208049174, guid: be49c0074fa4e79419aedbe506f19b1e,
     type: 3}
   m_PrefabInstance: {fileID: 3333770364202646881}
   m_PrefabAsset: {fileID: 0}
