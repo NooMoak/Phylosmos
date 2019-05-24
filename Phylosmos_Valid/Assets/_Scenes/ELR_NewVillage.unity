@@ -39693,6 +39693,94 @@ Transform:
   m_Father: {fileID: 97105113}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -30.13143, y: -70.70261, z: 75.38285}
+--- !u!1 &745678457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745678458}
+  - component: {fileID: 745678460}
+  - component: {fileID: 745678459}
+  m_Layer: 0
+  m_Name: FirstDialogueTrigger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &745678458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745678457}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 123.5, y: -3.5, z: -21.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2042637557}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &745678459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745678457}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 20, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &745678460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745678457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6481e6aa9b6d1b647894d300f63f271a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    names:
+    - Chief
+    - Mira
+    - Chief
+    - Mira
+    - Chief
+    - Mira
+    - Chief
+    - Mira
+    - Chief
+    - Mira
+    - Chief
+    sentences:
+    - Guards told me about your presence. What do you want?
+    - As I explained to your friends, I don't have bad intentions, I'm only here to
+      explore this region for my people.
+    - You wear a very strange equipment... Does it protect you?
+    - Yes, thanks to it I can survive in the forest.
+    - We need some help from a person like you... Our place of worship is no longer
+      accessible...
+    - What happened?
+    - A big woe, a blazing monster occupy it, we can't do anything against it...
+    - If I help you, will you be friendly with my people?
+    - 'Of course, you will be our savior. '
+    - So count on me!
+    - Wonderful, this place is at northeast. And if you want to spent time in our
+      village, you are welcome!
+    hasUIText: 0
+    UIText: 
+    shownTime: 0
 --- !u!1001 &746634870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91866,6 +91954,7 @@ Transform:
   m_Children:
   - {fileID: 157020258}
   - {fileID: 1577833448}
+  - {fileID: 745678458}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
