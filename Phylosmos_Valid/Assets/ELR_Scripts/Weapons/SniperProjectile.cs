@@ -36,5 +36,11 @@ public class SniperProjectile : MonoBehaviour {
             hit.GetComponent<EnemyLife>().TakeDamage(3);
             Destroy(this.gameObject);
         }
+        if (collision.gameObject.CompareTag ("Boss"))
+        {
+            GameObject hit = collision.gameObject;
+            hit.GetComponent<EnemyLife>().TakeDamage(10);
+            Destroy(this.gameObject);
+        }
 	}
 }

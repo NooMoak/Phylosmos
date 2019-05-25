@@ -19,6 +19,7 @@ TagManager:
   - GrabAnchor
   - EnemyGrab
   - PlayerGrab
+  - Boss
   layers:
   - Default
   - TransparentFX

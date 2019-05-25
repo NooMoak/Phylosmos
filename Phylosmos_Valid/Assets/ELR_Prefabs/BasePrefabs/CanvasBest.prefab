@@ -18167,7 +18167,7 @@ GameObject:
   - component: {fileID: 4719222024190611221}
   - component: {fileID: 1122436816182215388}
   m_Layer: 5
-  m_Name: TextRW
+  m_Name: TextLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18240,7 +18240,7 @@ MonoBehaviour:
     are still alive made the decision to flee the Earth aboard a spaceship, I hope
     they will never forget where they come from...\n\nBut I refuse to believe that
     God has abandoned us, I remain on the land He has offered to us, I am sure we
-    will find peace. \n\nAmen.\n"
+    will find peace. \n\nSic transit gloria mundi. \nAmen.\n\n"
 --- !u!1 &5616742672491643088
 GameObject:
   m_ObjectHideFlags: 0

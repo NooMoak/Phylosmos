@@ -28,11 +28,11 @@ public class DeadTreeFalling : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.tag == "Spike" || other.gameObject.tag == "Liana" || other.gameObject.tag == "Healer" || other.gameObject.tag == "Rock")
+        if(other.gameObject.tag == "Spike" || other.gameObject.tag == "Liana" || other.gameObject.tag == "Healer" || other.gameObject.tag == "Rock" || other.gameObject.tag == "Boss")
         {
             if(fallen == true)
             {
-                other.gameObject.GetComponent<EnemyLife>().TakeDamage(20);
+                other.gameObject.GetComponent<EnemyLife>().TakeDamage(40);
             }
         }
     }
