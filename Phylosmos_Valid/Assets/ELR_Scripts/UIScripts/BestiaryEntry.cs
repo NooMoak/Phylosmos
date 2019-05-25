@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum TypeOfEntry
 {
-    Spike, Liana, Healer, Rock, VillagerField, VillagerTower, VillagerLanguage, VillagerDrawings, VillagerChief, FireBoss
+    Spike, Liana, Healer, Rock, VillagerField, VillagerTower, VillagerLanguage, VillagerDrawings, VillagerChief, FireBoss, End
 }
 public class BestiaryEntry : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class BestiaryEntry : MonoBehaviour
         if(other.tag == "Player")
         {
             analyseText.SetActive(true);
-            analyseText.GetComponent<Text>().text = "Press 'F' to analyse";
+            analyseText.GetComponent<Text>().text = "Press \"F\" to analyse";
             if(Input.GetKeyDown(KeyCode.F) && pressed == false)
             {
                 pressed = true;
@@ -80,6 +80,10 @@ public class BestiaryEntry : MonoBehaviour
                 else if(entryFor == TypeOfEntry.FireBoss)
                 {
                     bestiaryData.BossEntry();
+                }
+                else if(entryFor == TypeOfEntry.End)
+                {
+                    bestiaryData.EndEntry();
                 }
                 else
                 {

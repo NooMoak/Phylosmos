@@ -8,12 +8,22 @@ public class EndVillage : MonoBehaviour
     [SerializeField] GameObject blackFade;
     [SerializeField] GameObject UI;
     
+    private void Start() 
+    {
+        UI.SetActive(false);
+        StartCoroutine(StartLevel());
+    }
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.tag == "Player")
         {
             StartCoroutine(StartNewLevel());
         }
+    }
+    IEnumerator StartLevel()
+    {
+        yield return new WaitForSeconds(2);
+        UI.SetActive(true);
     }
 
     IEnumerator StartNewLevel()

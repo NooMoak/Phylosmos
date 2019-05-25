@@ -29,12 +29,13 @@ public class DynamicLight : MonoBehaviour
     {
         //rangeFloat = Mathf.PingPong(Time.time * rangeSpeed, maximumRange - minimumRange);
         //lt.range = rangeFloat + minimumRange;
-        if(lt.range == rangeTarget){
+        if((rangeTarget - rangeFloat) < 1.5f || (rangeFloat - rangeTarget) < 1.5f){
             rangeTarget = Random.Range(minimumRange, maximumRange);
+            Debug.Log("changing");
         }
         else
         {
-            lt.range = Mathf.Lerp(lt.range, rangeTarget, 0.2f);
+            lt.range = Mathf.Lerp(lt.range, rangeTarget, rangeSpeed);
         }
 
         //intensityFloat = Mathf.PingPong(Time.time * intensitySpeed, maximumIntensity - minimumIntensity);
@@ -45,7 +46,7 @@ public class DynamicLight : MonoBehaviour
         }
         else
         {
-            lt.intensity = Mathf.Lerp(lt.intensity, intensityTarget, 0.2f);
+            lt.intensity = Mathf.Lerp(lt.intensity, intensityTarget, intensitySpeed);
         }
     }
 }

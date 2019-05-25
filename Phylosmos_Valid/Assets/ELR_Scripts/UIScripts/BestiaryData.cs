@@ -345,6 +345,15 @@ public class BestiaryData : MonoBehaviour
         UpdateBestiary();
     }
 
+    public void EndEntry()
+    {
+        analysisUI.SetActive(true);
+        StartCoroutine(Stop());
+        analysisText.text = "The truth";
+        analysisStep.text = "1 / 1 step";
+        targetedAmount = 1f;
+    }
+
     IEnumerator Stop()
     {
         yield return new WaitForSeconds(3);

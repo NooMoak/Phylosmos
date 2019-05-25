@@ -7,6 +7,12 @@ public class EndForest : MonoBehaviour
 {
     [SerializeField] GameObject blackFade;
     [SerializeField] GameObject UI;
+
+    private void Start() 
+    {
+        UI.SetActive(false);
+        StartCoroutine(StartLevel());
+    }
     
     private void OnTriggerEnter(Collider other) 
     {
@@ -14,6 +20,11 @@ public class EndForest : MonoBehaviour
         {
             StartCoroutine(StartNewLevel());
         }
+    }
+    IEnumerator StartLevel()
+    {
+        yield return new WaitForSeconds(2);
+        UI.SetActive(true);
     }
 
     IEnumerator StartNewLevel()
